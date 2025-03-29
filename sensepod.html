@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sensepod: AIoT-Based Testbed for Sensing as a Service in Smart Homes</title>
+
+  <!-- Main CSS (Academic style, if you have it) -->
+  <link rel="stylesheet" href="academic.css" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome and Fancybox CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+  />
+
+  <style>
+    /* BODY & TYPOGRAPHY */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      background-color: #f7f7f7;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* CONTAINER */
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    /* HERO SECTION WITH SEMI-TRANSPARENT TEXT CONTAINER */
+    .hero {
+      position: relative;
+      background: url("sensepodimg/2.jpg") center center/cover no-repeat;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    /* The overlay covering the entire hero */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7); /* Adjust opacity as needed */
+    }
+    /* Container for hero text */
+    .hero-text {
+      position: relative; /* Ensure it sits above the overlay */
+      padding: 20px 30px;
+      background: rgba(255, 255, 255, 0.1); /* Optional tint; adjust or remove */
+      border-radius: 8px;
+    }
+    .hero-text h1 {
+      color: #fff;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    /* SECTION BASE */
+    .section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 60px;
+      height: 3px;
+      background: #007BFF;
+    }
+
+    /* Background colors for sections */
+    .overview { background: #ffffff; }
+    .features { background: #fff5f5; }
+    .nodes { background: #f5fff5; }
+    .gallery-section { background: #f5faff; }
+
+    /* List styles */
+    ul, ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background: #e9e9e9;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9em;
+      margin-top: 30px;
+    }
+    footer a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>SensePod</h1>
+    </div>
+  </section>
+
+  <!-- OVERVIEW SECTION -->
+  <section class="section overview">
+    <div class="container">
+      <h2 class="section-title">Sensepod: AIoT-Based Testbed for Sensing as a Service (SaaS)</h2>
+      <p>
+        Sensepod is an AIoT-based testbed designed to promote Sensing as a Service (SaaS) for ambient living.
+        The platform supports continuous collection and preprocessing of multimodal sensory data within a smart home,
+        tailored for ambient intelligence applications. Its dynamic and flexible approach allows researchers to customize
+        data acquisition to meet specific research objectives.
+      </p>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section class="section features">
+    <div class="container">
+      <h2 class="section-title">Key Features</h2>
+      <ul>
+        <li><strong>Continuous & Multimodal Data Collection:</strong> Real-time data from various sensors monitor the environment, occupancy, and user interactions.</li>
+        <li><strong>Application-Centric:</strong> Ideal for fire alarm systems, human occupancy detection, and environmental sensing such as air quality, humidity, and lighting.</li>
+        <li><strong>Human-Centric Processing:</strong> Captures user activities, aiding research in behavior analysis, smart healthcare, and home automation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SENSOR NODES -->
+  <section class="section nodes">
+    <div class="container">
+      <h2 class="section-title">Sensepod Sensor Nodes</h2>
+      <p>
+        Sensepod employs various sensor nodes strategically placed throughout a smart home for comprehensive data collection:
+      </p>
+      <ol>
+        <li>
+          <strong>Room Nodes (Ceiling-Mounted Sensors):</strong>
+          <ul>
+            <li>Temperature &amp; Humidity</li>
+            <li>CO₂ Levels</li>
+            <li>Light Intensity</li>
+            <li>MM-Wave Sensors (occupancy detection)</li>
+            <li>Noise Levels</li>
+          </ul>
+        </li>
+        <li><strong>Washroom Nodes:</strong> Monitor water levels in tanks.</li>
+        <li><strong>Window Nodes:</strong> Detect window movements.</li>
+        <li><strong>Chair Nodes:</strong> Detect occupancy for chairs, beds, and sofas.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- IMAGE GALLERY -->
+  <section class="section gallery-section">
+    <div class="container">
+      <h2 class="section-title">Sensepod Gallery</h2>
+      <div class="gallery">
+        <!-- Update these file paths to match your actual images in sensepodimg/ -->
+        <a href="sensepodimg/1.png" data-fancybox="gallery">
+          <img src="sensepodimg/1.png" alt="Sensepod Image 1">
+        </a>
+        <a href="sensepodimg/2.jpg" data-fancybox="gallery">
+          <img src="sensepodimg/2.jpg" alt="Sensepod Image 2">
+        </a>
+        <a href="sensepodimg/3.jpg" data-fancybox="gallery">
+          <img src="sensepodimg/3.jpg" alt="Sensepod Image 3">
+        </a>
+        <a href="sensepodimg/4.png" data-fancybox="gallery">
+          <img src="sensepodimg/4.png" alt="Sensepod Image 4">
+        </a>
+        <a href="sensepodimg/5.png" data-fancybox="gallery">
+          <img src="sensepodimg/5.png" alt="Sensepod Image 5">
+        </a>
+        <a href="sensepodimg/6.png" data-fancybox="gallery">
+          <img src="sensepodimg/6.png" alt="Sensepod Image 6">
+        </a>
+        <a href="sensepodimg/7.png" data-fancybox="gallery">
+          <img src="sensepodimg/7.png" alt="Sensepod Image 7">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 UbiSys Research Group. All rights reserved.</p>
+      <p><a href="index.html">Back to Home</a></p>
+    </div>
+  </footer>
+
+  <!-- JS for Fancybox -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
+    crossorigin="anonymous"
+  ></script>
+</body>
+</html>
