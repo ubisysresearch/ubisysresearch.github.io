@@ -1,0 +1,27 @@
+[
+    {
+      "title": "SpineSense: Earable IMU-based Posture Monitoring",
+      "authors": "S. Pendgaonkar, A. Kumar, M. Khan, S. Raju",
+      "venue": "IEEE PerCom",
+      "year": 2025,
+      "type": "Conference",
+      "link": "https://doi.org/10.xxxx/percom.2025.spinesense"
+    },
+    {
+      "title": "BiteSense: Detection of Eating Events with Earables",
+      "authors": "A. Kumar, S. Pendgaonkar, R. Singh",
+      "venue": "ACM UIST",
+      "year": 2024,
+      "type": "Conference",
+      "link": "https://doi.org/10.xxxx/uist.2024.bitesense"
+    },
+    {
+      "title": "VEDA: Spatial Awareness for the Deaf-Blind",
+      "authors": "M. Khan, S. Raju, A. Kumar",
+      "venue": "CHI",
+      "year": 2025,
+      "type": "Journal",
+      "link": ""
+    }
+  ]
+  

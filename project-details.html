@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Details | UbiSys Research Group</title> <!-- Title will be updated dynamically -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS Animate‑On‑Scroll CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="fade-down">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">UbiSys Lab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li> <!-- Make this active? Decide later -->
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="join.html">Join Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Project Image Container -->
+  <div id="project-image-container" class="container-fluid p-0"> 
+    <!-- Image will be loaded here -->
+  </div>
+
+  <!-- Dynamic Hero Banner -->
+  <header class="bg-dark text-white py-5 text-center" data-aos="fade-up" id="project-hero-banner">
+    <div class="container">
+      <h1 class="display-5 fw-bold" id="project-hero-title">Project Title</h1>
+      <p class="lead" id="project-hero-tagline">Project details loading...</p>
+    </div>
+  </header>
+
+  <!-- Project Detail Section -->
+  <section class="py-5">
+    <div class="container" id="project-detail-container">
+      <!-- Project details will be loaded here -->
+      <div class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center">
+    <div class="container">
+      <p class="mb-0 py-3">© 2025 UbiSys Lab, Department of CSE, IIT Jodhpur</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS Animate‑On‑Scroll JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+
+    // Function to display project details
+    function displayProjectDetails(project) {
+      const container = document.getElementById('project-detail-container');
+      const imageContainer = document.getElementById('project-image-container'); // Get image container
+      document.title = `${project.title} | UbiSys Research Group`; // Update page title
+
+      // Update Hero Banner Content
+      const heroTitle = document.getElementById('project-hero-title');
+      const heroTagline = document.getElementById('project-hero-tagline');
+      heroTitle.textContent = project.title;
+      heroTagline.textContent = `Status: ${project.status}`; // Or use project.description
+
+      // Add Image to its container
+      imageContainer.innerHTML = `
+        <img src="${project.image}" class="img-fluid w-100" alt="${project.title} Image" data-aos="fade-in" style="max-height: 450px; object-fit: cover; object-position: center;">
+      `;
+
+      // Populate Main Content Area (without the image)
+      container.innerHTML = `
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div data-aos="fade-up" data-aos-delay="100">
+              <p class="lead">${project.full_description}</p>
+              <hr>
+              <p><strong>Details:</strong> ${project.details}</p>
+              <!-- Add more details here if needed -->
+              <div class="text-center mt-4">
+                 <a href="projects.html" class="btn btn-outline-secondary">Back to Projects</a>
+               </div>
+            </div>
+          </div>
+        </div>
+      `;
+       // Re-initialize AOS after adding dynamic content
+       AOS.refresh();
+    }
+
+    // Function to display 'not found' message
+    function displayNotFound() {
+       // Hide Hero Banner and Image Container if project not found
+       const heroBanner = document.getElementById('project-hero-banner');
+       const imageContainer = document.getElementById('project-image-container');
+       if(heroBanner) heroBanner.style.display = 'none';
+       if(imageContainer) imageContainer.style.display = 'none';
+
+       const container = document.getElementById('project-detail-container');
+       document.title = 'Project Not Found | UbiSys Research Group';
+       container.innerHTML = `
+         <div class="text-center" data-aos="fade-up">
+           <h2 class="text-danger">Project Not Found</h2>
+           <p>The project you are looking for does not exist or the link is incorrect.</p>
+           <a href="projects.html" class="btn btn-primary mt-3">Back to Projects</a>
+         </div>
+       `;
+        // Re-initialize AOS after adding dynamic content
+        AOS.refresh();
+    }
+
+    // Get project index from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectIndex = parseInt(urlParams.get('index'), 10); // Using index as identifier
+
+    if (isNaN(projectIndex) || projectIndex < 0) {
+        displayNotFound();
+    } else {
+      // Fetch project data
+      fetch('data/projects.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(projects => {
+          if (projectIndex >= 0 && projectIndex < projects.length) {
+            const project = projects[projectIndex];
+            displayProjectDetails(project);
+          } else {
+            displayNotFound(); // Index out of bounds
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching or processing project details:', error);
+          // Hide Hero Banner and Image Container on error
+          const heroBanner = document.getElementById('project-hero-banner');
+          const imageContainer = document.getElementById('project-image-container');
+          if(heroBanner) heroBanner.style.display = 'none';
+          if(imageContainer) imageContainer.style.display = 'none';
+
+          const container = document.getElementById('project-detail-container');
+          container.innerHTML = `
+             <div class="text-center text-danger" data-aos="fade-up">
+                <h2>Error Loading Project</h2>
+                <p>Could not load project details. Please try again later.</p>
+                 <a href="projects.html" class="btn btn-primary mt-3">Back to Projects</a>
+             </div>
+          `;
+           // Re-initialize AOS after adding dynamic content
+           AOS.refresh();
+        });
+    }
+  </script>
+</body>
+</html> 

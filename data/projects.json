@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Behavioral Health Disorder Detection",
+    "description": "Detecting behavioural health disorders of older adults using self supervised learning and causal reasoning.",
+    "full_description" : "project-details",
+    "details": "Role: Co-PI | Cost: Rs. 69.90 Lakhs | Sponsor: NSF-TIH Indo-USA Joint Collaboration (TIH ISI Kolkata)",
+    "image": "img/placeholder.png",
+    "status": "Completed"
+  },
+  {
+    "title": "Smart Water Supply Grid",
+    "description": "Demonstration Centre for Smart Graded-Water Supply Grid.",
+    "full_description" : "project-details",
+    "details": "Role: Co-PI | Cost: Rs. 40 Lakhs | Sponsor: JCKIC",
+    "image": "img/placeholder.png",
+    "status": "Completed"
+  },
+  {
+    "title": "Campus Wildlife Inventorization",
+    "description": "Inventorization of the wildlife towards a sustainable campus.",
+    "full_description" : "project-details",
+    "details": "Role: PI | Cost: Rs. 2 Lakhs | Sponsor: CETSD Campus Sustainability Program, IIT Jodhpur (JCKIC) 2021-2022",
+    "image": "img/placeholder.png",
+    "status": "Completed"
+  },
+  {
+    "title": "Adaptive Middleware for Smart Buildings",
+    "description": "Design and Development of an Adaptive Middleware for Smart Building Monitoring.",
+    "full_description" : "project-details",
+    "details": "Role: PI | Cost: Rs. 21.84 Lakhs | Sponsor: SERB, DST (2017-2020)",
+    "image": "img/placeholder.png",
+    "status": "Completed"
+  },
+  {
+    "title": "AIOT Bed Occupancy Detection",
+    "description": "AIOT based Bed Occupancy Detection in a Hospital Setup.",
+    "full_description" : "project-details",
+    "details": "Role: Co-PI | Cost: Rs. 10 Lakhs | Sponsor: JCKIC (Govt. of India) June-Aug 2021",
+    "image": "img/placeholder.png",
+    "status": "Completed"
+  },
+  {
+    "title": "Cuffless BP Monitoring Device",
+    "description": "Design of a Cuffless Continuous BP Monitoring Device.",
+    "full_description" : "project-details",
+    "details": "Role: Co-PI | Cost: Rs. 9 Lakhs | Sponsor: Johari Digital Healthcare Ltd. (2021-2022)",
+    "image": "img/placeholder.png",
+    "status": "Completed"
+  },
+  {
+    "title": "Behavioral Disorder Monitoring & Intervention",
+    "description": "Pervasive and Personalized Aid for Continuous Monitoring of Behavioral Disorders and Timely Intervention Toward Addressing Special Needs in Child Education.",
+    "full_description" : "project-details",
+    "details": "Role: PI | Cost: USD 60,000 | Sponsor: Google Academic Research Award 2024",
+    "image": "img/placeholder.png",
+    "status": "Ongoing/Approved"
+  },
+  {
+    "title": "Next-gen Wargaming Interface",
+    "description": "Seamless Man-Machine Interface for Next-generation Wargaming.",
+    "full_description" : "project-details",
+    "details": "Role: PI | Cost: Rs. 5.38 Crore | Sponsor: DRDO, DIA-COE IIT Jodhpur",
+    "image": "img/placeholder.png",
+    "status": "Ongoing/Approved"
+  },
+  {
+    "title": "Smart Heritage Management",
+    "description": "Comprehensive Risk Assessment Data for Heritage Sites and Development of Smart Heritage Management Systems.",
+    "full_description" : "project-details",
+    "details": "Role: Co-PI | Cost: Rs. 56 Lakhs | Sponsor: DST",
+    "image": "img/placeholder.png",
+    "status": "Ongoing/Approved"
+  },
+  {
+    "title": "AI Strategist for Wargames",
+    "description": "Developing Multiagent System based AI Strategist for Wargames.",
+    "full_description" : "project-details",
+    "details": "Role: Co-PI | Cost: Rs. 5.69 Crore | Sponsor: DRDO, DIA-COE IIT Jodhpur",
+    "image": "img/placeholder.png",
+    "status": "Ongoing/Approved"
+  },
+  {
+    "title": "ConSenseHAR",
+    "description": "Decentralized collaborative context sensing towards pervasive Human Activity Recognition.",
+    "full_description" : "project-details",
+    "details": "Role: PI | Cost: Rs. 29 Lakhs | Sponsor: Core Research Grant, SERB, DST",
+    "image": "img/placeholder.png",
+    "status": "Ongoing/Approved"
+  },
+  {
+    "title": "SensePod",
+    "description": "An AIoT based testbed to promote Sensing as a Service for ambient living.",
+    "full_description" : "project-details",
+    "details": "Role: PI | Cost: Rs. 41.9 Lakhs | Sponsor: SEED Grant, IIT Jodhpur, 2022",
+    "image": "img/placeholder.png",
+    "status": "Ongoing/Approved"
+  },
+  {
+    "title": "Cyber Physical Systems Security",
+    "description": "Centre for Advanced Security Technology Development in Cyber Physical Systems.",
+    "full_description" : "project-details",
+    "details": "Role: Co-PI | Cost: Rs. 642.18 Lakhs | Sponsor: MeitY (2022-2025)",
+    "image": "img/placeholder.png",
+    "status": "Ongoing/Approved"
+  }
+]

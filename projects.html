@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | UbiSys Research Group</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS Animate‑On‑Scroll CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="fade-down">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">UbiSys Lab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="join.html">Join Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-dark text-white py-5 text-center" data-aos="fade-up">
+    <div class="container">
+      <h1 class="display-5 fw-bold">Our Projects & Research</h1>
+      <p class="lead">Solving real-world challenges through interdisciplinary innovation</p>
+    </div>
+  </header>
+
+  <!-- Projects Section -->
+  <section class="py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+
+      <!-- Completed Projects -->
+      <h2 class="mb-4 text-center" data-aos="fade-up">Completed Projects</h2>
+      <div class="row gy-4 mb-5" id="completed-projects-container">
+        <!-- Completed projects will be loaded here -->
+      </div>
+
+      <!-- Ongoing/Approved Projects -->
+      <h2 class="mb-4 text-center" data-aos="fade-up">Ongoing/Approved Projects</h2>
+      <div class="row gy-4" id="ongoing-projects-container">
+        <!-- Ongoing projects will be loaded here -->
+      </div>
+
+      <!-- Ongoing Research Efforts -->
+      <h2 class="mb-4 text-center" data-aos="fade-up">Ongoing Research Efforts</h2>
+      <ul class="list-group list-group-flush mb-5" data-aos="fade-up" data-aos-delay="100">
+        <li class="list-group-item bg-light">Understanding user behavior through inertial sensing</li>
+        <li class="list-group-item bg-light">Task offloading and microservices management in MEC</li>
+        <li class="list-group-item bg-light">Decentralized trust computation and reputation system in IoT and CPS</li>
+        <li class="list-group-item bg-light">Context aware data sourcing from extreme edge</li>
+        <li class="list-group-item bg-light">Situation-awareness in Connected and Autonomous vehicles</li>
+        <li class="list-group-item bg-light">IoT intervention in wild habitat monitoring</li>
+        <li class="list-group-item bg-light">Sensing as a service middleware for applications of human sensing</li>
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center">
+    <div class="container">
+      <p class="mb-0 py-3">© 2025 UbiSys Lab, Department of CSE, IIT Jodhpur</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS Animate‑On‑Scroll JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, // values from 0 to 3000, with step 50ms
+      once: true, // whether animation should happen only once - while scrolling down
+    });
+
+    // Function to create project card HTML
+    function createProjectCard(project, index, overallIndex) {
+      const delay = (index % 3 + 1) * 100; // Staggered delay for animation
+      // Wrap the card content in an anchor tag linking to project-details.html
+      return `
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${delay}">
+          <a href="project-details.html?index=${overallIndex}" class="text-decoration-none text-dark">
+            <div class="card shadow-sm h-100 project-card">
+              <img src="${project.image}" class="card-img-top" alt="${project.title} Image">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">${project.title}</h5>
+                <p class="card-text flex-grow-1">${project.description}</p>
+                <p class="card-text"><small class="text-muted">${project.details}</small></p>
+              </div>
+            </div>
+          </a>
+        </div>
+      `;
+    }
+
+    // Fetch project data and populate containers
+    fetch('data/projects.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(projects => {
+        const completedContainer = document.getElementById('completed-projects-container');
+        const ongoingContainer = document.getElementById('ongoing-projects-container');
+        let completedIndex = 0;
+        let ongoingIndex = 0;
+
+        // Pass the overall index to createProjectCard
+        projects.forEach((project, overallIndex) => {
+          let cardHtml;
+          if (project.status === 'Completed') {
+            cardHtml = createProjectCard(project, completedIndex++, overallIndex);
+            completedContainer.innerHTML += cardHtml;
+          } else if (project.status === 'Ongoing/Approved') {
+            cardHtml = createProjectCard(project, ongoingIndex++, overallIndex);
+            ongoingContainer.innerHTML += cardHtml;
+          }
+        });
+
+        // Re-initialize AOS after adding dynamic content
+        AOS.refresh();
+      })
+      .catch(error => {
+        console.error('Error fetching or processing projects:', error);
+        // Optionally display an error message to the user
+        const completedContainer = document.getElementById('completed-projects-container');
+        const ongoingContainer = document.getElementById('ongoing-projects-container');
+        completedContainer.innerHTML = '<p class="text-danger text-center">Could not load completed projects.</p>';
+        ongoingContainer.innerHTML = '<p class="text-danger text-center">Could not load ongoing projects.</p>';
+      });
+  </script>
+</body>
+</html>
