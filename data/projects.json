@@ -93,7 +93,9 @@
     "full_description" : "project-details",
     "details": "Role: PI | Cost: Rs. 41.9 Lakhs | Sponsor: SEED Grant, IIT Jodhpur, 2022",
     "image": "img/placeholder.png",
-    "status": "Ongoing/Approved"
+    "status": "Ongoing/Approved",
+    
+    "page": "sensepod.html"
   },
   {
     "title": "Cyber Physical Systems Security",
