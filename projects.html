@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <meta name="description" content="Research projects at UbiSys Lab — funded and ongoing work in AIoT, edge computing, health sensing, and vehicular networks.">
+  <meta name="keywords" content="UbiSys projects, IoT research, edge computing, AIoT, IIT Jodhpur funded projects, SensePod">
+  <meta property="og:title" content="Projects | UbiSys Research Group">
+  <meta property="og:description" content="Solving real-world challenges through interdisciplinary innovation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ubisysresearch.github.io/projects.html">
+  <meta property="og:image" content="https://ubisysresearch.github.io/assets/img/logo.png">
   <title>Projects | UbiSys Research Group</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,26 +19,7 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="fade-down">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">UbiSys Lab</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-          <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-          <li class="nav-item"><a class="nav-link" href="join.html">Join Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div id="navbar-placeholder"></div>
 
   <!-- Header -->
   <header class="bg-dark text-white py-5 text-center" data-aos="fade-up">
@@ -44,24 +33,37 @@
   <section class="py-5 bg-light" data-aos="fade-up">
     <div class="container">
 
-      <!-- Ongoing/Approved Projects -->
-      <h2 class="mb-4 text-center" data-aos="fade-up">Ongoing/Approved Projects</h2>
-      <div class="row gy-4" id="ongoing-projects-container">
-        <!-- Ongoing projects will be loaded here -->
-      </div>
-
       <!-- Ongoing Research Efforts -->
       <h2 class="mb-4 text-center" data-aos="fade-up">Ongoing Research Efforts</h2>
-      <ul class="list-group list-group-flush mb-5" data-aos="fade-up" data-aos-delay="100">
-        <li class="list-group-item bg-light">Understanding user behavior through inertial sensing</li>
-        <li class="list-group-item bg-light">Task offloading and microservices management in MEC</li>
-        <li class="list-group-item bg-light">Decentralized trust computation and reputation system in IoT and CPS</li>
-        <li class="list-group-item bg-light">Context aware data sourcing from extreme edge</li>
-        <li class="list-group-item bg-light">Situation-awareness in Connected and Autonomous vehicles</li>
-        <li class="list-group-item bg-light">IoT intervention in wild habitat monitoring</li>
-        <li class="list-group-item bg-light">Sensing as a service middleware for applications of human sensing</li>
-      </ul>
+      <div class="row gy-3 mb-5">
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border-start border-dark border-3 rounded shadow-sm h-100">Understanding user behavior through inertial sensing</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border-start border-dark border-3 rounded shadow-sm h-100">Task offloading and microservices management in MEC</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border-start border-dark border-3 rounded shadow-sm h-100">Decentralized trust computation and reputation system in IoT and CPS</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border-start border-dark border-3 rounded shadow-sm h-100">Context aware data sourcing from extreme edge</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border-start border-dark border-3 rounded shadow-sm h-100">Situation-awareness in Connected and Autonomous vehicles</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border-start border-dark border-3 rounded shadow-sm h-100">IoT intervention in wild habitat monitoring</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border-start border-dark border-3 rounded shadow-sm h-100">Sensing as a service middleware for applications of human sensing</div>
+        </div>
+      </div>
 
+      <!-- Ongoing/Approved Projects -->
+      <h2 class="mb-4 text-center" data-aos="fade-up">Ongoing/Approved Projects</h2>
+      <div class="row gy-4 mb-5" id="ongoing-projects-container">
+        <!-- Ongoing projects will be loaded here -->
+      </div>
 
       <!-- Completed Projects -->
       <h2 class="mb-4 text-center" data-aos="fade-up">Completed Projects</h2>
@@ -74,12 +76,7 @@
 
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center">
-    <div class="container">
-      <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AOS Animate‑On‑Scroll JS -->
@@ -89,7 +86,6 @@
       duration: 800, // values from 0 to 3000, with step 50ms
       once: true, // whether animation should happen only once - while scrolling down
     });
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
     // Function to create project card HTML
 
@@ -123,70 +119,43 @@
 
 
 
-  //   function createProjectCard(project, index, overallIndex) {
-  //   const delay = (index % 3 + 1) * 100;
-  //   // use project.image if set, otherwise default to projectbg.jpeg
-  //   const imgSrc = project.image || 'assets/img/projectbg.jpeg';
 
-  //   return `
-  //     <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${delay}">
-  //       <a href="project-details.html?index=${overallIndex}" class="text-decoration-none text-dark">
-  //         <div class="card shadow-sm h-100 project-card">
-  //           <img
-  //             src="${imgSrc}"
-  //             class="card-img-top"
-  //             alt="${project.title} Image"
-  //             onerror="this.onerror=null;this.src='assets/img/projectbg.jpeg';"
-  //           >
-  //           <div class="card-body d-flex flex-column">
-  //             <h5 class="card-title">${project.title}</h5>
-  //             <p class="card-text flex-grow-1">${project.description}</p>
-  //             <p class="card-text"><small class="text-muted">${project.details}</small></p>
-  //           </div>
-  //         </div>
-  //       </a>
-  //     </div>
-  //   `;
-  // }
+    // Project data (inline to work with file:// protocol for local development)
+    var projects = [
+      {"title":"Behavioral Health Disorder Detection","description":"Detecting behavioural health disorders of older adults using self supervised learning and causal reasoning.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 69.90 Lakhs | Sponsor: NSF-TIH Indo-USA Joint Collaboration (TIH ISI Kolkata)","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Smart Water Supply Grid","description":"Demonstration Centre for Smart Graded-Water Supply Grid.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 40 Lakhs | Sponsor: JCKIC","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Campus Wildlife Inventorization","description":"Inventorization of the wildlife towards a sustainable campus.","full_description":"project-details","details":"Role: PI | Cost: Rs. 2 Lakhs | Sponsor: CETSD Campus Sustainability Program, IIT Jodhpur (JCKIC) 2021-2022","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Adaptive Middleware for Smart Buildings","description":"Design and Development of an Adaptive Middleware for Smart Building Monitoring.","full_description":"project-details","details":"Role: PI | Cost: Rs. 21.84 Lakhs | Sponsor: SERB, DST (2017-2020)","image":"img/placeholder.png","status":"Completed"},
+      {"title":"AIOT Bed Occupancy Detection","description":"AIOT based Bed Occupancy Detection in a Hospital Setup.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 10 Lakhs | Sponsor: JCKIC (Govt. of India) June-Aug 2021","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Cuffless BP Monitoring Device","description":"Design of a Cuffless Continuous BP Monitoring Device.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 9 Lakhs | Sponsor: Johari Digital Healthcare Ltd. (2021-2022)","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Behavioral Disorder Monitoring & Intervention","description":"Pervasive and Personalized Aid for Continuous Monitoring of Behavioral Disorders and Timely Intervention Toward Addressing Special Needs in Child Education.","full_description":"project-details","details":"Role: PI | Cost: USD 60,000 | Sponsor: Google Academic Research Award 2024","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"Next-gen Wargaming Interface","description":"Seamless Man-Machine Interface for Next-generation Wargaming.","full_description":"project-details","details":"Role: PI | Cost: Rs. 5.38 Crore | Sponsor: DRDO, DIA-COE IIT Jodhpur","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"Smart Heritage Management","description":"Comprehensive Risk Assessment Data for Heritage Sites and Development of Smart Heritage Management Systems.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 56 Lakhs | Sponsor: DST","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"AI Strategist for Wargames","description":"Developing Multiagent System based AI Strategist for Wargames.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 5.69 Crore | Sponsor: DRDO, DIA-COE IIT Jodhpur","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"ConSenseHAR","description":"Decentralized collaborative context sensing towards pervasive Human Activity Recognition.","full_description":"project-details","details":"Role: PI | Cost: Rs. 29 Lakhs | Sponsor: Core Research Grant, SERB, DST","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"SensePod","description":"An AIoT based testbed to promote Sensing as a Service for ambient living.","full_description":"project-details","details":"Role: PI | Cost: Rs. 41.9 Lakhs | Sponsor: SEED Grant, IIT Jodhpur, 2022","image":"img/placeholder.png","status":"Ongoing/Approved","page":"sensepod.html"},
+      {"title":"Cyber Physical Systems Security","description":"Centre for Advanced Security Technology Development in Cyber Physical Systems.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 642.18 Lakhs | Sponsor: MeitY (2022-2025)","image":"img/placeholder.png","status":"Ongoing/Approved"}
+    ];
 
+    // Populate project containers
+    var completedContainer = document.getElementById('completed-projects-container');
+    var ongoingContainer = document.getElementById('ongoing-projects-container');
+    var completedIndex = 0;
+    var ongoingIndex = 0;
 
-    // Fetch project data and populate containers
-    fetch('data/projects.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(projects => {
-        const completedContainer = document.getElementById('completed-projects-container');
-        const ongoingContainer = document.getElementById('ongoing-projects-container');
-        let completedIndex = 0;
-        let ongoingIndex = 0;
+    projects.forEach(function(project, overallIndex) {
+      var cardHtml;
+      if (project.status === 'Completed') {
+        cardHtml = createProjectCard(project, completedIndex++, overallIndex);
+        completedContainer.innerHTML += cardHtml;
+      } else if (project.status === 'Ongoing/Approved') {
+        cardHtml = createProjectCard(project, ongoingIndex++, overallIndex);
+        ongoingContainer.innerHTML += cardHtml;
+      }
+    });
 
-        // Pass the overall index to createProjectCard
-        projects.forEach((project, overallIndex) => {
-          let cardHtml;
-          if (project.status === 'Completed') {
-            cardHtml = createProjectCard(project, completedIndex++, overallIndex);
-            completedContainer.innerHTML += cardHtml;
-          } else if (project.status === 'Ongoing/Approved') {
-            cardHtml = createProjectCard(project, ongoingIndex++, overallIndex);
-            ongoingContainer.innerHTML += cardHtml;
-          }
-        });
-
-        // Re-initialize AOS after adding dynamic content
-        AOS.refresh();
-      })
-      .catch(error => {
-        console.error('Error fetching or processing projects:', error);
-        // Optionally display an error message to the user
-        const completedContainer = document.getElementById('completed-projects-container');
-        const ongoingContainer = document.getElementById('ongoing-projects-container');
-        completedContainer.innerHTML = '<p class="text-danger text-center">Could not load completed projects.</p>';
-        ongoingContainer.innerHTML = '<p class="text-danger text-center">Could not load ongoing projects.</p>';
-      });
+    AOS.refresh();
   </script>
+  <script src="assets/js/includes.js"></script>
 </body>
 </html>

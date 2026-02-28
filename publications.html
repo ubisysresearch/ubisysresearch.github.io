@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <meta name="description" content="Publications from UbiSys Research Group — conferences, journals, and book chapters in ubiquitous computing, health sensing, and AI.">
+  <meta name="keywords" content="UbiSys publications, earable sensing, HCI, IoT research papers, PerCom, CHI, SenSys, IIT Jodhpur">
+  <meta property="og:title" content="Publications | UbiSys Research Group">
+  <meta property="og:description" content="Research published at top-tier venues across ubiquitous computing, health sensing, and AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ubisysresearch.github.io/publications.html">
+  <meta property="og:image" content="https://ubisysresearch.github.io/assets/img/logo.png">
   <title>Publications | UbiSys Research Group</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,26 +29,7 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="fade-down">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">UbiSys Lab</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-        <li class="nav-item"><a class="nav-link active" href="publications.html">Publications</a></li>
-        <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="join.html">Join Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div id="navbar-placeholder"></div>
 
 <!-- Header -->
 <header class="bg-dark text-white py-5 text-center" data-aos="fade-up">
@@ -510,12 +499,7 @@
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-dark text-white text-center">
-  <div class="container">
-    <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- AOS Animate‑On‑Scroll JS -->
@@ -525,8 +509,6 @@
     duration: 800, // values from 0 to 3000, with step 50ms
     once: true, // whether animation should happen only once - while scrolling down
   });
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
-
   let currentTypeFilter = 'all';
   let currentFieldFilter = 'all';
 
@@ -604,5 +586,6 @@
   });
 
 </script>
+<script src="assets/js/includes.js"></script>
 </body>
 </html>

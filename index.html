@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <meta name="description" content="UbiSys Research Group at IIT Jodhpur — exploring ubiquitous sensing, AIoT, edge computing, and human-machine interfaces.">
+  <meta name="keywords" content="UbiSys, IIT Jodhpur, ubiquitous computing, AIoT, edge computing, wearables, IoT, research group">
+  <meta property="og:title" content="UbiSys Research Group | Home">
+  <meta property="og:description" content="Exploring ubiquitous sensing, AIoT, and human-machine interfaces at IIT Jodhpur.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ubisysresearch.github.io/">
+  <meta property="og:image" content="https://ubisysresearch.github.io/assets/img/logo.png">
   <title>UbiSys Research Group | Home</title>
 
   <!-- Core CSS -->
@@ -14,7 +22,7 @@
 
   <style>
     .carousel-item {
-      height: 300px;
+      height: 450px;
       background-size: cover;
       background-position: center;
     }
@@ -47,30 +55,10 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="fade-down">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">UbiSys Lab</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-          <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-          <li class="nav-item"><a class="nav-link" href="join.html">Join Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div id="navbar-placeholder"></div>
 
   <!-- Slider -->
-  <div id="ubisysCarousel" class="carousel slide" data-bs-ride="carousel"
-       data-aos="fade-up" data-aos-duration="1000">
+  <div id="ubisysCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#ubisysCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
       <button type="button" data-bs-target="#ubisysCarousel" data-bs-slide-to="1"></button>
@@ -119,15 +107,16 @@
   </div>
 
   <!-- Hero Banner -->
-  <header class="bg-dark text-white py-5 text-center" data-aos="fade-down">
+  <header class="bg-light text-dark py-5 text-center" data-aos="fade-down">
     <div class="container">
+      <img src="assets/img/logo.png" alt="UbiSys Logo" style="height:100px;" class="mb-3">
       <h1 class="display-5 fw-bold">Welcome to UbiSys Research Group</h1>
-      <p class="lead">Exploring ubiquitous sensing, AIoT, and human‑machine interfaces at IIT Jodhpur</p>
+      <p class="lead text-muted">Exploring ubiquitous sensing, AIoT, and human‑machine interfaces at IIT Jodhpur</p>
     </div>
   </header>
 
   <!-- Urgent Hiring Banner -->
-  <section class="py-3" data-aos="fade-up" style="background: linear-gradient(90deg, #e8a838, #d4912a); color: white;">
+  <section class="py-3" style="background: linear-gradient(90deg, #e8a838, #d4912a); color: white;">
     <div class="container text-center">
       <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
         <span><strong>We're Hiring!</strong> Multiple SRF &amp; Senior Research Associate positions available with immediate joining.</span>
@@ -143,6 +132,8 @@
         <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
           <h2>Latest Achievements</h2>
           <ul>
+            <li>📄 Triple acceptance at ICDCN 2026 (2 Full + 1 Short), Nara, Japan</li>
+            <li>📄 IEEE HiPC 2025 Poster Presentation by Sukitha K.</li>
             <li>📄 Full paper at ACM CHI 2026 Main Track [Core A*]</li>
             <li>📄 Full paper at ACM SenSys 2026 Main Track [Core A*]</li>
             <li>📄 Full paper + 2 WiP at IEEE PerCom 2026 [Core A*]</li>
@@ -248,52 +239,68 @@
       <h2 class="text-center mb-4">National & International Collaborators</h2>
       <div class="row g-4 text-center">
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
-          <div class="logo-card">
-            <img src="assets/img/collab_iitkgp.png" alt="IIT Kharagpur" class="logo-img">
-            <div class="logo-text">IIT Kharagpur</div>
-          </div>
+          <a href="https://www.iitkgp.ac.in/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_iitkgp.png" alt="IIT Kharagpur" class="logo-img">
+              <div class="logo-text">IIT Kharagpur</div>
+            </div>
+          </a>
         </div>
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
-          <div class="logo-card">
-            <img src="assets/img/collab_iiitg.png" alt="IIIT Guwahati" class="logo-img">
-            <div class="logo-text">IIIT Guwahati</div>
-          </div>
+          <a href="https://www.iiitg.ac.in/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_iiitg.png" alt="IIIT Guwahati" class="logo-img">
+              <div class="logo-text">IIIT Guwahati</div>
+            </div>
+          </a>
         </div>
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
-          <div class="logo-card">
-            <img src="assets/img/collab_aiims.png" alt="AIIMS Jodhpur" class="logo-img">
-            <div class="logo-text">AIIMS Jodhpur</div>
-          </div>
+          <a href="https://www.aiimsjodhpur.edu.in/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_aiims.png" alt="AIIMS Jodhpur" class="logo-img">
+              <div class="logo-text">AIIMS Jodhpur</div>
+            </div>
+          </a>
         </div>
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
-          <div class="logo-card">
-            <img src="assets/img/collab_umbc.png" alt="UMBC USA" class="logo-img">
-            <div class="logo-text">UMBC, USA</div>
-          </div>
+          <a href="https://www.umbc.edu/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_umbc.png" alt="UMBC USA" class="logo-img">
+              <div class="logo-text">UMBC, USA</div>
+            </div>
+          </a>
         </div>
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="500">
-          <div class="logo-card">
-            <img src="assets/img/collab_unsw.png" alt="UNSW Australia" class="logo-img">
-            <div class="logo-text">UNSW, Australia</div>
-          </div>
+          <a href="https://www.unsw.edu.au/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_unsw.png" alt="UNSW Australia" class="logo-img">
+              <div class="logo-text">UNSW, Australia</div>
+            </div>
+          </a>
         </div>
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="600">
-          <div class="logo-card">
-            <img src="assets/img/collab_mst.png" alt="Missouri S&T USA" class="logo-img">
-            <div class="logo-text">Missouri S&T, USA</div>
-          </div>
+          <a href="https://www.mst.edu/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_mst.png" alt="Missouri S&T USA" class="logo-img">
+              <div class="logo-text">Missouri S&T, USA</div>
+            </div>
+          </a>
         </div>
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="700">
-          <div class="logo-card">
-            <img src="assets/img/collab_bamberg.png" alt="Univ. of Bamberg" class="logo-img">
-            <div class="logo-text">Univ. of Bamberg</div>
-          </div>
+          <a href="https://www.uni-bamberg.de/en/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_bamberg.png" alt="Univ. of Bamberg" class="logo-img">
+              <div class="logo-text">Univ. of Bamberg</div>
+            </div>
+          </a>
         </div>
         <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="800">
-          <div class="logo-card">
-            <img src="assets/img/collab_deakin.png" alt="Deakin University" class="logo-img">
-            <div class="logo-text">Deakin University</div>
-          </div>
+          <a href="https://www.deakin.edu.au/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-card">
+              <img src="assets/img/collab_deakin.png" alt="Deakin University" class="logo-img">
+              <div class="logo-text">Deakin University</div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -340,12 +347,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center" data-aos="fade-up">
-    <div class="container">
-      <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <!-- Core JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -356,7 +358,7 @@
       duration: 800,
       once: true
     });
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
+  <script src="assets/js/includes.js"></script>
 </body>
 </html>

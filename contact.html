@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <meta name="description" content="Contact UbiSys Research Group at IIT Jodhpur — email, address, and map directions.">
+  <meta name="keywords" content="UbiSys contact, IIT Jodhpur CSE, suchetana@iitj.ac.in, research group contact">
+  <meta property="og:title" content="Contact | UbiSys Lab">
+  <meta property="og:description" content="Get in touch with the UbiSys Research Group at IIT Jodhpur.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ubisysresearch.github.io/contact.html">
+  <meta property="og:image" content="https://ubisysresearch.github.io/assets/img/logo.png">
   <title>Contact | UbiSys Lab</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,26 +37,7 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="fade-down">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">UbiSys Lab</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-        <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-        <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="join.html">Join Us</a></li>
-        <li class="nav-item"><a class="nav-link active" href="#">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div id="navbar-placeholder"></div>
 
 <main>
 <!-- Header -->
@@ -106,6 +95,9 @@
                 <!-- Google Maps -->
                 <div class="map-container h-100">
                   <div class="border rounded shadow h-100">
+                    <!-- SECURITY: Restrict this Maps Embed API key in Google Cloud Console
+                         (https://console.cloud.google.com/apis/credentials)
+                         Set HTTP referrer to ubisysresearch.github.io and restrict to Maps Embed API only. -->
                     <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Department+of+CSE,+IITJ&zoom=16&maptype=roadmap" 
                       width="100%" height="100%" style="border:0; min-height: 300px;" allowfullscreen="" loading="lazy"></iframe>
                   </div>
@@ -121,12 +113,7 @@
 </section>
 </main>
 
-<!-- Footer -->
-<footer class="bg-dark text-white text-center">
-  <div class="container">
-    <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- AOS Animate‑On‑Scroll JS -->
@@ -136,7 +123,7 @@
     duration: 800, // values from 0 to 3000, with step 50ms
     once: true, // whether animation should happen only once - while scrolling down
   });
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
 </script>
+<script src="assets/js/includes.js"></script>
 </body>
 </html>

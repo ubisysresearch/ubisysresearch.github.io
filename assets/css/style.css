@@ -31,10 +31,23 @@ section {
 .navbar {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   font-weight: 500;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 .navbar-brand {
   font-weight: 700;
+  font-size: 1.35rem;
   letter-spacing: 0.5px;
+}
+.navbar-brand img {
+  height: 44px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.navbar-nav .nav-link {
+  font-size: 1.05rem;
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
 }
 
 /* Hero Slider */
@@ -130,4 +143,20 @@ a:hover {
     position: relative;
     z-index: 2;
   }
-  
+
+/* Shared includes: prevent layout flash while navbar loads */
+#navbar-placeholder:empty {
+  min-height: 56px;
+  background: #212529;
+}
+
+/* Collaborator logo links */
+a.logo-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+a.logo-link:hover .logo-card {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease;
+}

@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <meta name="description" content="Detailed view of a UbiSys Research Group project at IIT Jodhpur.">
+  <meta name="keywords" content="UbiSys project details, IIT Jodhpur research, IoT, edge computing">
+  <meta property="og:title" content="Project Details | UbiSys Research Group">
+  <meta property="og:description" content="In-depth information about a UbiSys Lab research project.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ubisysresearch.github.io/project-details.html">
+  <meta property="og:image" content="https://ubisysresearch.github.io/assets/img/logo.png">
   <title>Project Details | UbiSys Research Group</title> <!-- Title will be updated dynamically -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,26 +19,7 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="fade-down">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">UbiSys Lab</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li> <!-- Make this active? Decide later -->
-          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-          <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-          <li class="nav-item"><a class="nav-link" href="join.html">Join Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div id="navbar-placeholder"></div>
 
   <!-- Project Image Container -->
   <div id="project-image-container" class="container-fluid p-0"> 
@@ -57,12 +46,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center">
-    <div class="container">
-      <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AOS Animate‑On‑Scroll JS -->
@@ -72,7 +56,6 @@
       duration: 800,
       once: true,
     });
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
     // Function to display project details
     function displayProjectDetails(project) {
@@ -136,45 +119,29 @@
     const urlParams = new URLSearchParams(window.location.search);
     const projectIndex = parseInt(urlParams.get('index'), 10); // Using index as identifier
 
-    if (isNaN(projectIndex) || projectIndex < 0) {
+    // Project data (inline to work with file:// protocol for local development)
+    var projects = [
+      {"title":"Behavioral Health Disorder Detection","description":"Detecting behavioural health disorders of older adults using self supervised learning and causal reasoning.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 69.90 Lakhs | Sponsor: NSF-TIH Indo-USA Joint Collaboration (TIH ISI Kolkata)","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Smart Water Supply Grid","description":"Demonstration Centre for Smart Graded-Water Supply Grid.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 40 Lakhs | Sponsor: JCKIC","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Campus Wildlife Inventorization","description":"Inventorization of the wildlife towards a sustainable campus.","full_description":"project-details","details":"Role: PI | Cost: Rs. 2 Lakhs | Sponsor: CETSD Campus Sustainability Program, IIT Jodhpur (JCKIC) 2021-2022","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Adaptive Middleware for Smart Buildings","description":"Design and Development of an Adaptive Middleware for Smart Building Monitoring.","full_description":"project-details","details":"Role: PI | Cost: Rs. 21.84 Lakhs | Sponsor: SERB, DST (2017-2020)","image":"img/placeholder.png","status":"Completed"},
+      {"title":"AIOT Bed Occupancy Detection","description":"AIOT based Bed Occupancy Detection in a Hospital Setup.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 10 Lakhs | Sponsor: JCKIC (Govt. of India) June-Aug 2021","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Cuffless BP Monitoring Device","description":"Design of a Cuffless Continuous BP Monitoring Device.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 9 Lakhs | Sponsor: Johari Digital Healthcare Ltd. (2021-2022)","image":"img/placeholder.png","status":"Completed"},
+      {"title":"Behavioral Disorder Monitoring & Intervention","description":"Pervasive and Personalized Aid for Continuous Monitoring of Behavioral Disorders and Timely Intervention Toward Addressing Special Needs in Child Education.","full_description":"project-details","details":"Role: PI | Cost: USD 60,000 | Sponsor: Google Academic Research Award 2024","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"Next-gen Wargaming Interface","description":"Seamless Man-Machine Interface for Next-generation Wargaming.","full_description":"project-details","details":"Role: PI | Cost: Rs. 5.38 Crore | Sponsor: DRDO, DIA-COE IIT Jodhpur","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"Smart Heritage Management","description":"Comprehensive Risk Assessment Data for Heritage Sites and Development of Smart Heritage Management Systems.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 56 Lakhs | Sponsor: DST","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"AI Strategist for Wargames","description":"Developing Multiagent System based AI Strategist for Wargames.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 5.69 Crore | Sponsor: DRDO, DIA-COE IIT Jodhpur","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"ConSenseHAR","description":"Decentralized collaborative context sensing towards pervasive Human Activity Recognition.","full_description":"project-details","details":"Role: PI | Cost: Rs. 29 Lakhs | Sponsor: Core Research Grant, SERB, DST","image":"img/placeholder.png","status":"Ongoing/Approved"},
+      {"title":"SensePod","description":"An AIoT based testbed to promote Sensing as a Service for ambient living.","full_description":"project-details","details":"Role: PI | Cost: Rs. 41.9 Lakhs | Sponsor: SEED Grant, IIT Jodhpur, 2022","image":"img/placeholder.png","status":"Ongoing/Approved","page":"sensepod.html"},
+      {"title":"Cyber Physical Systems Security","description":"Centre for Advanced Security Technology Development in Cyber Physical Systems.","full_description":"project-details","details":"Role: Co-PI | Cost: Rs. 642.18 Lakhs | Sponsor: MeitY (2022-2025)","image":"img/placeholder.png","status":"Ongoing/Approved"}
+    ];
+
+    if (isNaN(projectIndex) || projectIndex < 0 || projectIndex >= projects.length) {
         displayNotFound();
     } else {
-      // Fetch project data
-      fetch('data/projects.json')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(projects => {
-          if (projectIndex >= 0 && projectIndex < projects.length) {
-            const project = projects[projectIndex];
-            displayProjectDetails(project);
-          } else {
-            displayNotFound(); // Index out of bounds
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching or processing project details:', error);
-          // Hide Hero Banner and Image Container on error
-          const heroBanner = document.getElementById('project-hero-banner');
-          const imageContainer = document.getElementById('project-image-container');
-          if(heroBanner) heroBanner.style.display = 'none';
-          if(imageContainer) imageContainer.style.display = 'none';
-
-          const container = document.getElementById('project-detail-container');
-          container.innerHTML = `
-             <div class="text-center text-danger" data-aos="fade-up">
-                <h2>Error Loading Project</h2>
-                <p>Could not load project details. Please try again later.</p>
-                 <a href="projects.html" class="btn btn-primary mt-3">Back to Projects</a>
-             </div>
-          `;
-           // Re-initialize AOS after adding dynamic content
-           AOS.refresh();
-        });
+        displayProjectDetails(projects[projectIndex]);
     }
   </script>
+  <script src="assets/js/includes.js"></script>
 </body>
 </html> 
