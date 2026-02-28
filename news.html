@@ -81,6 +81,7 @@
   <div class="container text-center">
     <div class="mb-3">
       <button class="btn btn-outline-dark filter-btn active" onclick="filterYear('all', event)">All Years</button>
+      <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2026', event)">2026</button>
       <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2025', event)">2025</button>
       <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2024', event)">2024</button>
       <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2023', event)">2023</button>
@@ -91,6 +92,61 @@
 <!-- News Section -->
 <section class="py-5 bg-light" data-aos="fade-up">
   <div class="container">
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[2026] Full paper accepted at CHI 2026 Main Track!</div>
+      <div class="news-date">Congratulations to Garvit for a full paper acceptance at CHI 2026!</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[2026] Full paper accepted at PerCom 2026 Main Track!</div>
+      <div class="news-date">Congratulations to Garvit for a full paper at PerCom 2026!</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[2026] 2 papers accepted at PerCom 2026 WiP Track!</div>
+      <div class="news-date">Two Work-in-Progress papers accepted at PerCom 2026.</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[2026] ACM IARCS Grant Recipient for PerCom 2026!</div>
+      <div class="news-date">Garvit received the ACM IARCS Grant for attending PerCom 2026.</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[2026] LRNF International Student Travel Grant for SenSys 2026!</div>
+      <div class="news-date">Garvit received the LRNF International Student Travel Grant for SenSys 2026.</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[2026] Full paper acceptance at SenSys 2026!</div>
+      <div class="news-date">Congratulations to Garvit for a full paper acceptance at ACM SenSys 2026!</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[2026] Full paper acceptance at EICS 2026!</div>
+      <div class="news-date">Congratulations to Garvit for a full paper acceptance at ACM EICS 2026!</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[Feb 2026] Poster on BiteSense at ARCS 2026</div>
+      <div class="news-date">Garvit was invited to present a poster on BiteSense at ARCS 2026, 11th Feb 2026, IIT Hyderabad.</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[Jan 2026] Full paper accepted at COMSNETS 2026 Main Track!</div>
+      <div class="news-date">Congratulations to Garvit, Ananya and Osho for a full paper acceptance at COMSNETS 2026!</div>
+    </div>
+
+    <div class="news-card news-2026" data-aos="fade-up">
+      <div class="news-title">[Jan 2026] COMSNETS 2026 Travel Grant Awardee!</div>
+      <div class="news-date">Garvit received the COMSNETS 2026 Travel Grant.</div>
+    </div>
+
+    <div class="news-card news-2025" data-aos="fade-up">
+      <div class="news-title">[Jun 2025] Garvit selected to receive OmniBuds earable platform</div>
+      <div class="news-date">Garvit was selected from among global applicants to receive OmniBuds, a cutting-edge earable platform with integrated biosensors and on-device machine learning.</div>
+    </div>
 
     <div class="news-card news-2025" data-aos="fade-up">
       <div class="news-title">[Mar 2025] Garvit received multiple Travel Grants for PerCom 2025</div>
@@ -183,7 +239,7 @@
 <!-- Footer -->
 <footer class="bg-dark text-white text-center">
   <div class="container">
-    <p class="mb-0 py-3">© 2025 UbiSys Lab, Department of CSE, IIT Jodhpur</p>
+    <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
   </div>
 </footer>
 
@@ -214,6 +270,7 @@ function filterYear(year, event) {
     duration: 800, // values from 0 to 3000, with step 50ms
     once: true, // whether animation should happen only once - while scrolling down
   });
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 </script>
 
 </body>

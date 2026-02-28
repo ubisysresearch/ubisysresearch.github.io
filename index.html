@@ -133,15 +133,16 @@
         <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
           <h2>Latest Achievements</h2>
           <ul>
-            <li>📄 3 Papers accepted at IEEE PerCom 2025</li>
-            <li>📄 Full Paper at IEEE VTC 2024 Fall</li>
-            <li>📄 Papers at Top Conferences like IEEE PerCom, ACM BuildSys, CHASE</li>
+            <li>📄 Full paper at ACM CHI 2026 Main Track [Core A*]</li>
+            <li>📄 Full paper at ACM SenSys 2026 Main Track [Core A*]</li>
+            <li>📄 Full paper + 2 WiP at IEEE PerCom 2026 [Core A*]</li>
+            <li>📄 Full paper at COMSNETS 2026 &amp; EICS 2026</li>
+            <li>✈️ ACM IARCS, LRNF &amp; COMSNETS Travel Grants (2026)</li>
             <li>🏆 Google Research Academic Award 2024</li>
+            <li>📄 3 Papers at IEEE PerCom 2025</li>
             <li>🥇 Finalist at Stanford EPIC Challenge (Top 5 of 61)</li>
-            <li>🌏 Internships at UMBC and UNSW</li>
             <li>🎓 PMRF and TCS Fellowship recipients</li>
-            <li>✈️ Travel grants from IEEE CS TCCC, ACM IARCS, etc.</li>
-            <li>🏠 Completion of 3D‑printed Smart Home & Ambient Lab</li>
+            <li>🏠 Completion of 3D‑printed Smart Home &amp; Ambient Lab</li>
           </ul>
           <a href="news.html" class="btn btn-outline-primary btn-sm">View All News</a>
           <div class="mt-3"></div>
@@ -332,7 +333,7 @@
   <!-- Footer -->
   <footer class="bg-dark text-white text-center" data-aos="fade-up">
     <div class="container">
-      <p class="mb-0 py-3">© 2025 UbiSys Lab, Department of CSE, IIT Jodhpur</p>
+      <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
     </div>
   </footer>
 
@@ -345,6 +346,7 @@
       duration: 800,
       once: true
     });
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

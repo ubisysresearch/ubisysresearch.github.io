@@ -60,7 +60,7 @@
   <!-- Footer -->
   <footer class="bg-dark text-white text-center">
     <div class="container">
-      <p class="mb-0 py-3">© 2025 UbiSys Lab, Department of CSE, IIT Jodhpur</p>
+      <p class="mb-0 py-3"><span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
     </div>
   </footer>
 
@@ -72,6 +72,7 @@
       duration: 800,
       once: true,
     });
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
     // Function to display project details
     function displayProjectDetails(project) {

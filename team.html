@@ -31,6 +31,58 @@
       color: #000 !important;
     }
 
+    /* CSS initial avatars for members without photos */
+    .avatar-initials {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+    }
+    .avatar-initials span {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 2px;
+    }
+
+    /* Compact mini-cards for interns, alumni, volunteers */
+    .mini-card {
+      background: white;
+      border: 1px solid #e9ecef;
+      border-left: 4px solid #343a40;
+      border-radius: 0.375rem;
+      padding: 0.75rem 1rem;
+      height: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .mini-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .mini-card h6 {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+    .mini-card .text-muted {
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+
+    /* Section heading accent underline */
+    section h2 {
+      display: inline-block;
+      padding-bottom: 0.4rem;
+      border-bottom: 4px solid #343a40;
+    }
+
   </style>
 </head>
 
@@ -159,17 +211,14 @@
             </div>
           </div>
         </div>
-        <!-- Akhil Bhatia -->
+        <!-- Projat Banerjee -->
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
           <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/akhilbhatia.jpeg" class="card-img-top" alt="Akhil Bhatia">
+            <div class="avatar-initials"><span style="background-color: #4A6FA5;">PB</span></div>
             <div class="card-body">
-              <h5 class="card-title">Akhil Bhatia</h5>
+              <h5 class="card-title">Projat Banerjee</h5>
               <h6 class="text-info">Part‑Time PhD Scholar</h6>
-              <p class="mb-2">Cloud &amp; Distributed Computing</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://www.linkedin.com/in/akhilbhatia18/" class="btn btn-outline-dark btn-sm"><i class="fab fa-linkedin"></i></a>
+              <p class="mb-2"></p>
             </div>
           </div>
         </div>
@@ -212,20 +261,6 @@
       <!-- MTech Scholars -->
       <h2 class="mb-4" data-aos="fade-up">MTech Scholars</h2>
       <div class="row gy-4 mb-5">
-        <!-- Sameeran Zingre -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/sameeran.jpg" class="card-img-top" alt="Sameeran Zingre">
-            <div class="card-body">
-              <h5 class="card-title">Sameeran Zingre</h5>
-              <h6 class="text-info">MTech Scholar</h6>
-              <p class="mb-2">Earable Sensing</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://www.linkedin.com/in/sameeran-zingre-6b741b1b6/" class="btn btn-outline-dark btn-sm mx-1"><i class="fab fa-linkedin"></i></a>
-            </div>  
-          </div>
-        </div>
         <!-- Alok Dutta -->
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
           <div class="card card-profile shadow-sm h-100">
@@ -254,31 +289,47 @@
             </div>
           </div>
         </div>
-        <!-- Vishwwanath Singh -->
+        <!-- Faraz Ahmed -->
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
           <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/vishwanath.png" class="card-img-top" alt="Vishwwanath Singh">
+            <div class="avatar-initials"><span style="background-color: #6B8E6B;">FA</span></div>
             <div class="card-body">
-              <h5 class="card-title">Vishwwanath Singh</h5>
+              <h5 class="card-title">Faraz Ahmed</h5>
               <h6 class="text-info">MTech Scholar</h6>
-              <p class="mb-2">Pervasive Systems</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="#" class="btn btn-outline-dark btn-sm mx-1"><i class="fab fa-linkedin"></i></a>
+              <p class="mb-2"></p>
             </div>
           </div>
         </div>
-        <!-- Monik Raj Behera -->
+        <!-- Ashish Kumar -->
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
           <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/monikraj.jpeg" class="card-img-top" alt="Monik Raj Behera">
+            <div class="avatar-initials"><span style="background-color: #8B6F8E;">AK</span></div>
             <div class="card-body">
-              <h5 class="card-title">Monik Raj Behera</h5>
-              <h6 class="text-info">Executive MTech Scholar</h6>
-              <p class="mb-2">Federated Learning</p>
+              <h5 class="card-title">Ashish Kumar</h5>
+              <h6 class="text-info">MTech Scholar, AR/VR</h6>
+              <p class="mb-2"></p>
             </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://www.linkedin.com/in/bmonikraj/" class="btn btn-outline-dark btn-sm"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <!-- Kompal Layal -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+          <div class="card card-profile shadow-sm h-100">
+            <div class="avatar-initials"><span style="background-color: #C07850;">KL</span></div>
+            <div class="card-body">
+              <h5 class="card-title">Kompal Layal</h5>
+              <h6 class="text-info">MTech Scholar, AR/VR</h6>
+              <p class="mb-2"></p>
+            </div>
+          </div>
+        </div>
+        <!-- Shubham Roy -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
+          <div class="card card-profile shadow-sm h-100">
+            <div class="avatar-initials"><span style="background-color: #5B8A8A;">SR</span></div>
+            <div class="card-body">
+              <h5 class="card-title">Shubham Roy</h5>
+              <h6 class="text-info">MTech Scholar, AR/VR</h6>
+              <p class="mb-2"></p>
             </div>
           </div>
         </div>
@@ -286,86 +337,264 @@
 
       <!-- BTech Final Year Project -->
       <h2 class="mb-4" data-aos="fade-up">BTech Final Year Project</h2>
-      <div class="row gy-4 mb-5">
-        <!-- Abhishek Raghav -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="h-100">
-            <div class="d-flex">
-              <h5 class="card-title">Abhishek Raghav</h5>
-              <p>&nbsp; | &nbsp;</p>
-              <p class="mb-2">Prakriti App Development</p>
-            </div>
+      <div class="row gy-3 mb-5">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card">
+            <h6>Abhishek Raghav</h6>
+            <p class="text-muted mb-0">Prakriti App Development</p>
           </div>
         </div>
-        <!-- Mohammad Zaid Shamshad -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="h-100">
-            <div class="d-flex">
-              <h5 class="card-title">Mohammad Zaid Shamshad</h5>
-              <p>&nbsp; | &nbsp;</p>
-              <p class="mb-2">Prakriti App Development</p>
-            </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card">
+            <h6>Mohammad Zaid Shamshad</h6>
+            <p class="text-muted mb-0">Prakriti App Development</p>
           </div>
         </div>
       </div>
 
       <!-- Interns -->
       <h2 class="mb-4" data-aos="fade-up">Interns</h2>
-      <div class="row gy-4 mb-5">
-        <!-- Martin Kaushal -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="h-100">
-            <div class="d-flex">
-              <h5 class="card-title">Martin Kaushal</h5>
-              <p>&nbsp; | &nbsp;</p>
-              <p class="mb-2">Android Development</p>
-            </div>
-          </div>
+
+      <h4 class="mb-3" data-aos="fade-up">2025</h4>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Anushka Gupta</h6><p class="text-muted mb-0">Banasthali Vidyapith, Jaipur</p></div>
         </div>
-        <!-- Tanmay Bajaj -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="h-100">
-            <div class="d-flex">
-              <h5 class="card-title">Tanmay Bajaj</h5>
-              <p>&nbsp; | &nbsp;</p>
-              <p class="mb-2">Sensing as a Service</p>
-            </div>
-          </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Arnav Gupta</h6><p class="text-muted mb-0">Thapar Institute</p></div>
         </div>
-        <!-- Sheral Singla -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="h-100">
-            <div class="d-flex">
-              <h5 class="card-title">Sheral Singla</h5>
-              <p>&nbsp; | &nbsp;</p>
-              <p class="mb-2">Human Activity Recognition</p>
-            </div>
-          </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Sharmad Kalpande</h6><p class="text-muted mb-0">IISER Bhopal</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Amber Bansal</h6><p class="text-muted mb-0">Thapar Institute</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Saksham Mishra</h6><p class="text-muted mb-0">Thapar Institute</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Tanmay Mutha</h6><p class="text-muted mb-0">College of Engineering, Pune</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Mohd Anas Ansari</h6><p class="text-muted mb-0">MNIT Jaipur</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Shailendra Mandal</h6><p class="text-muted mb-0">MNIT Jaipur</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Mohit Kumar</h6><p class="text-muted mb-0">IIT Jodhpur</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Leela Venkata Sai Kumar Annadasu</h6><p class="text-muted mb-0">VIT</p></div>
+        </div>
+      </div>
+
+      <h4 class="mb-3" data-aos="fade-up">2023</h4>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Martin Kaushal</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">Thapar Institute</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Arihant Tanwar</h6><p class="text-muted mb-0">Trajectory Prediction</p><p class="text-muted mb-0">Thapar Institute</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Pratham Garg</h6><p class="text-muted mb-0">Object Recognition</p><p class="text-muted mb-0">Thapar Institute</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Sheral Singla</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">Thapar Institute</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Raghav Garg</h6><p class="text-muted mb-0">Communication Protocol</p><p class="text-muted mb-0">Thapar Institute</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Ravindra</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">IIIT Vadodara</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Tanmay Bajaj</h6><p class="text-muted mb-0">Sensing as a Service</p><p class="text-muted mb-0">IIT Roorkee</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Swarup Kumar Mondal</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">Heritage Institute of Technology</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Azhar Khan</h6><p class="text-muted mb-0">Embedded Systems</p><p class="text-muted mb-0">IIT Jodhpur</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Kartik Chhipa</h6><p class="text-muted mb-0">Sensing as a Service</p><p class="text-muted mb-0">IIT Jodhpur</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Ankur Kumar Shukla</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">IIIT Vadodara</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Jaysukh</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">IIT Jodhpur</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Naman Labhsetwar</h6><p class="text-muted mb-0">Wifi Sensing &amp; ML</p><p class="text-muted mb-0">PICT Pune</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Aditya Deshpande</h6><p class="text-muted mb-0">Wifi Sensing &amp; ML</p><p class="text-muted mb-0">PICT Pune</p></div>
+        </div>
+      </div>
+
+      <h4 class="mb-3" data-aos="fade-up">2022</h4>
+      <div class="row gy-3 mb-5">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Avijit Das</h6><p class="text-muted mb-0">Smartphone Sensory Data</p><p class="text-muted mb-0">IIT Madras</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Yaman Saraswat</h6><p class="text-muted mb-0">Multi Modal Data Analysis</p><p class="text-muted mb-0">NIT Agartala</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Saksham Gautam</h6><p class="text-muted mb-0">IMU Based Sensing</p><p class="text-muted mb-0">IIIT Prayagraj</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Khushbu Bijawat</h6><p class="text-muted mb-0">Smartwatch Sensory Data</p><p class="text-muted mb-0">MBM Jodhpur</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Anushka Agarwal</h6><p class="text-muted mb-0">Smartwatch Sensory Data</p><p class="text-muted mb-0">RV College</p></div>
+        </div>
+      </div>
+
+      <!-- Undergrad Research Volunteers -->
+      <h2 class="mb-4" data-aos="fade-up">Undergrad Research Volunteers</h2>
+
+      <h5 class="mb-3" data-aos="fade-up">Prakriti App Development</h5>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Abhishek Raghav</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Abhinav Kashyap</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Hriday Kondru</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Akriti Gupta</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Khushi Parikh</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Mohammad Zaid Shamshad</h6></div>
+        </div>
+      </div>
+
+      <h5 class="mb-3" data-aos="fade-up">Web Development for SaaS Middleware</h5>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Naman Goyal</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Aakash Maheshwari</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Vansh Agarwal</h6></div>
+        </div>
+      </div>
+
+      <h5 class="mb-3" data-aos="fade-up">IoT Device Development</h5>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Rachit Agnihotri</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Sneha Gupta</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Uppala Giridhar</h6></div>
+        </div>
+      </div>
+
+      <h5 class="mb-3" data-aos="fade-up">Multimodal Data Analysis for HAR</h5>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Shubh Goyal</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Sukriti Goyal</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Ashish Cherukuri</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Kartik Choudhary</h6></div>
+        </div>
+      </div>
+
+      <h5 class="mb-3" data-aos="fade-up">Wargaming UX/UI</h5>
+      <div class="row gy-3 mb-5">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Rankireddy Sai Mani Akarsh</h6></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Shivam Kumar</h6></div>
         </div>
       </div>
 
       <!-- Alumni -->
       <h2 class="mb-4" data-aos="fade-up">Alumni</h2>
-      <div class="row gy-4 mb-5">
-        <!-- Priyal Jain -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="h-100">
-            <div class="d-flex">
-              <h5 class="card-title">Priyal Jain</h5>
-              <p>&nbsp; | &nbsp;</p>
-              <p class="mb-2">CPS Security</p>
-            </div>
-          </div>
+
+      <h4 class="mb-3" data-aos="fade-up">MTech</h4>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Priyal Jain</h6><p class="text-muted mb-0">CPS Security</p></div>
         </div>
-        <!-- Nayanita Saha -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="h-100">
-            <div class="d-flex">
-              <h5 class="card-title">Nayanita Saha</h5>
-              <p>&nbsp; | &nbsp;</p>
-              <p class="mb-2">IoT &amp; Sensing‑as‑a‑Service</p>
-            </div>
-          </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Nayanita Saha</h6><p class="text-muted mb-0">IoT &amp; Sensing&#8209;as&#8209;a&#8209;Service</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Vishwwanath Singh</h6><p class="text-muted mb-0">Pervasive Systems</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Monik Raj Behera</h6><p class="text-muted mb-0">Federated Learning</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Sameeran Zingre</h6><p class="text-muted mb-0">Earable Sensing</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Ankit Modi</h6></div>
+        </div>
+      </div>
+
+      <h4 class="mb-3" data-aos="fade-up">BTech</h4>
+      <h5 class="mb-3" data-aos="fade-up">2025</h5>
+      <div class="row gy-3 mb-4">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Adarsh Raj</h6><p class="text-muted mb-0">Lightweight Consensus in Blockchain&#8209;IoT</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Jatin Lohar</h6><p class="text-muted mb-0">Lightweight Consensus in Blockchain&#8209;IoT</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Samyak Vikrant Haribhakta</h6><p class="text-muted mb-0">Trust in Upstream IoT Data using Blockchain</p></div>
+        </div>
+      </div>
+
+      <h5 class="mb-3" data-aos="fade-up">2024</h5>
+      <div class="row gy-3 mb-5">
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Harsh Kumar</h6><p class="text-muted mb-0">Leakage Detection from Smart Water Grid Data</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Shubham Kumar</h6><p class="text-muted mb-0">Leakage Detection from Smart Water Grid Data</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Likith Biyani</h6><p class="text-muted mb-0">Traffic Simulation Using SUMO Simulator</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Keshav Mundra</h6><p class="text-muted mb-0">Traffic Simulation Using SUMO Simulator</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Niharika Manhar</h6><p class="text-muted mb-0">Lightweight Consensus for Blockchain at the Extreme Edge</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+          <div class="mini-card"><h6>Paras</h6><p class="text-muted mb-0">Smart Home Realization at the Edge</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+          <div class="mini-card"><h6>Dhruv</h6><p class="text-muted mb-0">Enhanced Complex HAR Using IMU Data from Multiple Wearables</p></div>
+        </div>
+        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="mini-card"><h6>Haardik Ravat</h6><p class="text-muted mb-0">Enhanced Complex HAR Using IMU Data from Multiple Wearables</p></div>
         </div>
       </div>
 
@@ -375,7 +604,7 @@
   <!-- Footer -->
   <footer class="bg-dark text-white text-center">
     <div class="container">
-      <p class="mb-0 py-3">© 2025 UbiSys Lab, Department of CSE, IIT Jodhpur</p>
+      <p class="mb-0 py-3">© <span id="footer-year"></span> UbiSys Lab, Department of CSE, IIT Jodhpur</p>
     </div>
   </footer>
 
@@ -387,6 +616,7 @@
       duration: 800,
       once: true,
     });
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 </body>
 
