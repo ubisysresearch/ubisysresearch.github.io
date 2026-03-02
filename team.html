@@ -15,44 +15,93 @@
   <title>Team | UbiSys Research Group</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- AOS Animate‑On‑Scroll CSS -->
+  <!-- AOS Animate-On-Scroll CSS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
-    .card-img-top {
-      height: 200px;
-      object-fit: contain;
-      object-position: center;
-      background-color: #f8f9fa;
-      padding: 0rem;
-    }
-    /* Force all .text-info inside card-profile back to black */
-    .card-profile .card-body .text-info {
-      color: #000 !important;
-    }
-
-    /* CSS initial avatars for members without photos */
-    .avatar-initials {
-      height: 200px;
+    /* ── Horizontal profile card ── */
+    .profile-card {
       display: flex;
       align-items: center;
-      justify-content: center;
-      background-color: #f8f9fa;
+      gap: 1.1rem;
+      background: #fff;
+      border: 1px solid #e9ecef;
+      border-left: 4px solid var(--accent);
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+      height: 100%;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .avatar-initials span {
-      width: 110px;
-      height: 110px;
+    .profile-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Circular photo */
+    .profile-card .profile-photo {
+      width: 90px;
+      height: 90px;
+      min-width: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid #f0f0f0;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .profile-card:hover .profile-photo {
+      transform: scale(1.05);
+      border-color: var(--accent);
+    }
+
+    /* Circular avatar initials */
+    .profile-card .profile-initials {
+      width: 90px;
+      height: 90px;
+      min-width: 90px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
+      font-size: 1.6rem;
       font-weight: 600;
       color: white;
       letter-spacing: 2px;
+      background-color: var(--accent);
+      border: 3px solid #f0f0f0;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .profile-card:hover .profile-initials {
+      transform: scale(1.05);
+      border-color: var(--accent);
     }
 
-    /* Compact mini-cards for interns, alumni, volunteers */
+    /* Text area */
+    .profile-card .profile-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .profile-card .profile-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+      color: #212529;
+    }
+    .profile-card .profile-role {
+      font-size: 0.88rem;
+      color: #555;
+      margin-bottom: 0.2rem;
+    }
+    .profile-card .profile-area {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 0.4rem;
+    }
+    .profile-card .profile-links a {
+      font-size: 0.8rem;
+      margin-right: 0.4rem;
+    }
+
+    /* ── Compact mini-cards ── */
     .mini-card {
       background: white;
       border: 1px solid #e9ecef;
@@ -76,13 +125,121 @@
       line-height: 1.3;
     }
 
-    /* Section heading accent underline */
-    section h2 {
-      display: inline-block;
+    /* ── Section heading with icon ── */
+    .team-section-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       padding-bottom: 0.4rem;
       border-bottom: 4px solid var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .team-section-title .section-icon {
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+    .team-section-title .badge {
+      font-size: 0.75rem;
+      font-weight: 500;
+      vertical-align: middle;
     }
 
+    /* ── Tab styling ── */
+    .team-tabs .nav-link {
+      color: #495057;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-bottom: 3px solid transparent;
+      border-radius: 0;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .team-tabs .nav-link:hover {
+      color: var(--accent);
+      border-bottom-color: rgba(26, 111, 168, 0.3);
+    }
+    .team-tabs .nav-link.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: transparent;
+    }
+
+    /* ── Accordion timeline ── */
+    .team-accordion {
+      position: relative;
+      padding-left: 28px;
+    }
+    .team-accordion::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, #e0e0e0 100%);
+    }
+    .team-accordion .accordion-item {
+      position: relative;
+      border: none;
+      border-bottom: 1px solid #e9ecef;
+      background: transparent;
+    }
+    .team-accordion .accordion-item::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--accent);
+      z-index: 1;
+    }
+    .team-accordion .accordion-button {
+      background: transparent;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 1rem 1.25rem;
+      box-shadow: none;
+    }
+    .team-accordion .accordion-button:not(.collapsed) {
+      color: var(--accent);
+      background: rgba(26, 111, 168, 0.04);
+    }
+    .team-accordion .accordion-button::after {
+      filter: none;
+    }
+    .team-accordion .accordion-body {
+      padding: 0.75rem 1.25rem 1.25rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 576px) {
+      .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.25rem 1rem;
+      }
+      .profile-card .profile-links {
+        justify-content: center;
+        display: flex;
+      }
+      .team-tabs .nav-link {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+      .team-accordion {
+        padding-left: 22px;
+      }
+      .team-accordion .accordion-item::before {
+        left: -18px;
+        width: 10px;
+        height: 10px;
+      }
+    }
   </style>
 </head>
 
@@ -100,478 +257,524 @@
   <section class="py-5">
     <div class="container">
 
-      <!-- Faculty -->
-      <h2 class="mb-4" data-aos="fade-up">Faculty</h2>
-      <div class="row gy-4 mb-5">
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/suchetana_profile.png" class="card-img-top" loading="lazy" alt="Dr. Suchetana Chakraborty">
-            <div class="card-body">
-              <h5 class="card-title">Dr. Suchetana Chakraborty</h5>
-              <p class="card-text">Associate Professor, CSE, IIT Jodhpur<br>PI, UbiSys Lab. Research in ubiquitous computing, edge sensing, smart health.</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://sites.google.com/site/suchetana0116/home" class="btn btn-outline-dark btn-sm mx-1" target="_blank">Profile</a>
-              <a href="https://www.linkedin.com/in/suchetana/" class="btn btn-outline-dark btn-sm mx-1" aria-label="Dr. Suchetana Chakraborty LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <!-- Tab Navigation -->
+      <ul class="nav team-tabs justify-content-center mb-4" role="tablist" data-aos="fade-up">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="current-tab" data-bs-toggle="tab" data-bs-target="#current-team" type="button" role="tab" aria-controls="current-team" aria-selected="true">
+            <i class="fa-solid fa-users me-2"></i>Current Team
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="alumni-tab" data-bs-toggle="tab" data-bs-target="#alumni-panel" type="button" role="tab" aria-controls="alumni-panel" aria-selected="false">
+            <i class="fa-solid fa-graduation-cap me-2"></i>Alumni &amp; Past Members
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- ============ CURRENT TEAM TAB ============ -->
+        <div class="tab-pane fade show active" id="current-team" role="tabpanel" aria-labelledby="current-tab">
+
+          <!-- Faculty -->
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-user-tie section-icon"></i> Faculty
+            <span class="badge bg-secondary bg-opacity-25 text-dark">1</span>
+          </h2>
+          <div class="row gy-3 mb-5">
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <img src="assets/img/team/suchetana_profile.png" class="profile-photo" loading="lazy" alt="Dr. Suchetana Chakraborty">
+                <div class="profile-info">
+                  <div class="profile-name">Dr. Suchetana Chakraborty</div>
+                  <div class="profile-role">Associate Professor, CSE, IIT Jodhpur</div>
+                  <div class="profile-area">PI, UbiSys Lab &mdash; Ubiquitous computing, edge sensing, smart health</div>
+                  <div class="profile-links">
+                    <a href="https://sites.google.com/site/suchetana0116/home" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
+                    <a href="https://www.linkedin.com/in/suchetana/" class="btn btn-outline-dark btn-sm" aria-label="Dr. Suchetana Chakraborty LinkedIn"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- PhD Scholars -->
-      <h2 class="mb-4" data-aos="fade-up">PhD Scholars</h2>
-      <div class="row gy-4 mb-5">
-        <!-- Garvit Chugh -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/garvitchugh.png" class="card-img-top" loading="lazy" alt="Garvit Chugh">
-            <div class="card-body">
-              <h5 class="card-title">Garvit Chugh</h5>
-              <h6 class="text-info">PMRF Scholar, Dual MTech‑PhD</h6>
-              <p class="mb-2">Mobile &amp; Pervasive Computing</p>
+          <!-- PhD Scholars -->
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-user-graduate section-icon"></i> PhD Scholars
+            <span class="badge bg-secondary bg-opacity-25 text-dark">8</span>
+          </h2>
+          <div class="row gy-3 mb-5">
+            <!-- Garvit Chugh -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <img src="assets/img/team/garvitchugh.png" class="profile-photo" loading="lazy" alt="Garvit Chugh">
+                <div class="profile-info">
+                  <div class="profile-name">Garvit Chugh</div>
+                  <div class="profile-role">PMRF Scholar, Dual MTech-PhD</div>
+                  <div class="profile-area">Mobile &amp; Pervasive Computing</div>
+                  <div class="profile-links">
+                    <a href="https://garvitchugh.com" class="btn btn-outline-dark btn-sm" target="_blank">Website</a>
+                    <a href="https://www.linkedin.com/in/garvitchugh/" class="btn btn-outline-dark btn-sm" aria-label="Garvit Chugh LinkedIn"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://garvitchugh.com" class="btn btn-outline-dark btn-sm mx-1" target="_blank">Website</a>
-              <a href="https://www.linkedin.com/in/garvitchugh/" class="btn btn-outline-dark btn-sm mx-1" aria-label="Garvit Chugh LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <!-- Ananya Mondal -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+              <div class="profile-card">
+                <img src="assets/img/team/ananyamondal.png" class="profile-photo" loading="lazy" alt="Ananya Mondal">
+                <div class="profile-info">
+                  <div class="profile-name">Ananya Mondal</div>
+                  <div class="profile-role">SRF, PhD Scholar</div>
+                  <div class="profile-area">IoT &amp; Sensing-as-a-Service</div>
+                  <div class="profile-links">
+                    <a href="https://sites.google.com/iitj.ac.in/ananya-mondal/home" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Osho -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <img src="assets/img/team/osho.jpeg" class="profile-photo" loading="lazy" alt="Osho">
+                <div class="profile-info">
+                  <div class="profile-name">Osho</div>
+                  <div class="profile-role">SRF, PhD Scholar</div>
+                  <div class="profile-area">Vehicular Network Intelligence</div>
+                  <div class="profile-links">
+                    <a href="https://sites.google.com/iitj.ac.in/osho/about" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Kondagurle Sukitha -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+              <div class="profile-card">
+                <img src="assets/img/team/kondagurlesukitha.jpg" class="profile-photo" loading="lazy" alt="Kondagurle Sukitha">
+                <div class="profile-info">
+                  <div class="profile-name">Kondagurle Sukitha</div>
+                  <div class="profile-role">PhD Scholar</div>
+                  <div class="profile-area">Sensor Reliability &amp; Trust Modeling</div>
+                  <div class="profile-links">
+                    <a href="https://sites.google.com/view/sukitha/home" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Susmita Mondal -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <img src="assets/img/team/Susmita.jpeg" class="profile-photo" loading="lazy" alt="Susmita Mondal">
+                <div class="profile-info">
+                  <div class="profile-name">Susmita Mondal</div>
+                  <div class="profile-role">PhD Scholar</div>
+                  <div class="profile-area">Blockchain in CPS &amp; IoT</div>
+                  <div class="profile-links">
+                    <a href="https://www.linkedin.com/in/susmita-mondal-378949143/" class="btn btn-outline-dark btn-sm" aria-label="Susmita Mondal LinkedIn"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Manjeet Yadav -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+              <div class="profile-card">
+                <img src="assets/img/team/manjeetyadav.jpeg" class="profile-photo" loading="lazy" alt="Manjeet Yadav">
+                <div class="profile-info">
+                  <div class="profile-name">Manjeet Yadav</div>
+                  <div class="profile-role">PhD Scholar</div>
+                  <div class="profile-area">Digital Well-being &amp; Healthcare Applications</div>
+                  <div class="profile-links">
+                    <a href="https://mjyadav7.github.io/Manjeet/" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Projat Banerjee -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <div class="profile-initials">PB</div>
+                <div class="profile-info">
+                  <div class="profile-name">Projat Banerjee</div>
+                  <div class="profile-role">Part-Time PhD Scholar</div>
+                </div>
+              </div>
+            </div>
+            <!-- Kamal Kumar Gola -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+              <div class="profile-card">
+                <img src="assets/img/team/kamalgola.jpeg" class="profile-photo" loading="lazy" alt="Kamal Kumar Gola">
+                <div class="profile-info">
+                  <div class="profile-name">Kamal Kumar Gola</div>
+                  <div class="profile-role">Part-Time PhD Scholar</div>
+                  <div class="profile-area">Underwater WSN</div>
+                  <div class="profile-links">
+                    <a href="https://www.linkedin.com/in/kamal-kumar-gola-886692143/" class="btn btn-outline-dark btn-sm" aria-label="Kamal Kumar Gola LinkedIn"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Ananya Mondal -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/ananyamondal.png" class="card-img-top" loading="lazy" alt="Ananya Mondal">
-            <div class="card-body">
-              <h5 class="card-title">Ananya Mondal</h5>
-              <h6 class="text-info">SRF, PhD Scholar</h6>
-              <p class="mb-2">IoT &amp; Sensing‑as‑a‑Service</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://sites.google.com/iitj.ac.in/ananya-mondal/home" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
+
+          <!-- Research Assistants -->
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-flask section-icon"></i> Research Assistants
+            <span class="badge bg-secondary bg-opacity-25 text-dark">1</span>
+          </h2>
+          <div class="row gy-3 mb-5">
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <img src="assets/img/team/mayankkumar.webp" class="profile-photo" loading="lazy" alt="Mayank Kumar">
+                <div class="profile-info">
+                  <div class="profile-name">Mayank Kumar</div>
+                  <div class="profile-role">Research Assistant</div>
+                  <div class="profile-area">Next-Gen Wargaming Integration</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Osho -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/osho.jpeg" class="card-img-top" loading="lazy" alt="Osho">
-            <div class="card-body">
-              <h5 class="card-title">Osho</h5>
-              <h6 class="text-info">SRF, PhD Scholar</h6>
-              <p class="mb-2">Vehicular Network Intelligence</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://sites.google.com/iitj.ac.in/osho/about" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
-            </div>
-          </div>
-        </div>
-        <!-- Kondagurle Sukitha -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/kondagurlesukitha.jpg" class="card-img-top" loading="lazy" alt="Kondagurle Sukitha">
-            <div class="card-body">
-              <h5 class="card-title">Kondagurle Sukitha</h5>
-              <h6 class="text-info">PhD Scholar</h6>
-              <p class="mb-2">Sensor Reliability &amp; Trust Modeling</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://sites.google.com/view/sukitha/home" class="btn btn-outline-dark btn-sm" target="_blank">Profile</a>
-            </div>
-          </div>
-        </div>
-        <!-- Susmita Mondal -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/Susmita.jpeg" class="card-img-top" loading="lazy" alt="Susmita Mondal">
-            <div class="card-body">
-              <h5 class="card-title">Susmita Mondal</h5>
-              <h6 class="text-info">PhD Scholar</h6>
-              <p class="mb-2">Blockchain in CPS &amp; IoT</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://www.linkedin.com/in/susmita-mondal-378949143/" class="btn btn-outline-dark btn-sm" aria-label="Susmita Mondal LinkedIn"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Projat Banerjee -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
-          <div class="card card-profile shadow-sm h-100">
-            <div class="avatar-initials"><span style="background-color: #4A6FA5;">PB</span></div>
-            <div class="card-body">
-              <h5 class="card-title">Projat Banerjee</h5>
-              <h6 class="text-info">Part‑Time PhD Scholar</h6>
-              <p class="mb-2"></p>
-            </div>
-          </div>
-        </div>
-        <!-- Kamal Kumar Gola -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/kamalgola.jpeg" class="card-img-top" loading="lazy" alt="Kamal Kumar Gola">
-            <div class="card-body">
-              <h5 class="card-title">Kamal Kumar Gola</h5>
-              <h6 class="text-info">Part‑Time PhD Scholar</h6>
-              <p class="mb-2">Underwater WSN</p>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://www.linkedin.com/in/kamal-kumar-gola-886692143/" class="btn btn-outline-dark btn-sm" aria-label="Kamal Kumar Gola LinkedIn"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Research Assistants -->
-      <h2 class="mb-4" data-aos="fade-up">Research Assistants</h2>
-      <div class="row gy-4 mb-5">
-       
-        <!-- Mayank Kumar -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/mayankkumar.webp" class="card-img-top" loading="lazy" alt="Mayank Kumar">
-            <div class="card-body">
-              <h5 class="card-title">Mayank Kumar</h5>
-              <h6 class="text-info">Research Assistant</h6>
-              <p class="mb-2">Next‑Gen Wargaming Integration</p>
+          <!-- MTech Scholars -->
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-laptop-code section-icon"></i> MTech Scholars
+            <span class="badge bg-secondary bg-opacity-25 text-dark">6</span>
+          </h2>
+          <div class="row gy-3 mb-5">
+            <!-- Alok Dutta -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <img src="assets/img/team/alokdutta.webp" class="profile-photo" loading="lazy" alt="Alok Dutta">
+                <div class="profile-info">
+                  <div class="profile-name">Alok Dutta</div>
+                  <div class="profile-role">MTech Scholar</div>
+                  <div class="profile-area">Wearable Behavior Detection</div>
+                  <div class="profile-links">
+                    <a href="https://www.linkedin.com/in/alok-dutta-97a900222/" class="btn btn-outline-dark btn-sm" aria-label="Alok Dutta LinkedIn"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Himanshu -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+              <div class="profile-card">
+                <img src="assets/img/team/himanshu.webp" class="profile-photo" loading="lazy" alt="Himanshu">
+                <div class="profile-info">
+                  <div class="profile-name">Himanshu</div>
+                  <div class="profile-role">MTech Scholar</div>
+                  <div class="profile-area">Automatic Speech Recognition</div>
+                </div>
+              </div>
+            </div>
+            <!-- Faraz Ahmed -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <div class="profile-initials">FA</div>
+                <div class="profile-info">
+                  <div class="profile-name">Faraz Ahmed</div>
+                  <div class="profile-role">MTech Scholar</div>
+                </div>
+              </div>
+            </div>
+            <!-- Ashish Kumar -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+              <div class="profile-card">
+                <div class="profile-initials">AK</div>
+                <div class="profile-info">
+                  <div class="profile-name">Ashish Kumar</div>
+                  <div class="profile-role">MTech Scholar, AR/VR</div>
+                </div>
+              </div>
+            </div>
+            <!-- Kompal Layal -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="profile-card">
+                <div class="profile-initials">KL</div>
+                <div class="profile-info">
+                  <div class="profile-name">Kompal Layal</div>
+                  <div class="profile-role">MTech Scholar, AR/VR</div>
+                </div>
+              </div>
+            </div>
+            <!-- Shubham Roy -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+              <div class="profile-card">
+                <div class="profile-initials">SR</div>
+                <div class="profile-info">
+                  <div class="profile-name">Shubham Roy</div>
+                  <div class="profile-role">MTech Scholar, AR/VR</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- MTech Scholars -->
-      <h2 class="mb-4" data-aos="fade-up">MTech Scholars</h2>
-      <div class="row gy-4 mb-5">
-        <!-- Alok Dutta -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/alokdutta.webp" class="card-img-top" loading="lazy" alt="Alok Dutta">
-            <div class="card-body">
-              <h5 class="card-title">Alok Dutta</h5>
-              <h6 class="text-info">MTech Scholar</h6>
-              <p class="mb-2">Wearable Behavior Detection</p>
+          <!-- BTech Final Year Project -->
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-code section-icon"></i> BTech Final Year Project
+            <span class="badge bg-secondary bg-opacity-25 text-dark">2</span>
+          </h2>
+          <div class="row gy-3 mb-5">
+            <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="mini-card">
+                <h6>Abhishek Raghav</h6>
+                <p class="text-muted mb-0">Prakriti App Development</p>
+              </div>
             </div>
-            <div class="card-footer bg-white d-flex justify-content-center">
-              <a href="https://www.linkedin.com/in/alok-dutta-97a900222/" class="btn btn-outline-dark btn-sm mx-1" aria-label="Alok Dutta LinkedIn"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Himanshu -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="card card-profile shadow-sm h-100">
-            <img src="assets/img/team/himanshu.webp" class="card-img-top" loading="lazy" alt="Himanshu">
-            <div class="card-body">
-              <h5 class="card-title">Himanshu</h5>
-              <h6 class="text-info">MTech Scholar</h6>
-              <p class="mb-2">Automatic Speech Recognition</p>
+            <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+              <div class="mini-card">
+                <h6>Mohammad Zaid Shamshad</h6>
+                <p class="text-muted mb-0">Prakriti App Development</p>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Faraz Ahmed -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-          <div class="card card-profile shadow-sm h-100">
-            <div class="avatar-initials"><span style="background-color: #6B8E6B;">FA</span></div>
-            <div class="card-body">
-              <h5 class="card-title">Faraz Ahmed</h5>
-              <h6 class="text-info">MTech Scholar</h6>
-              <p class="mb-2"></p>
+
+          <!-- Interns (Accordion by Year) -->
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-briefcase section-icon"></i> Interns
+            <span class="badge bg-secondary bg-opacity-25 text-dark">29</span>
+          </h2>
+          <div class="accordion team-accordion mb-5" id="internAccordion" data-aos="fade-up">
+            <!-- 2025 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="intern2025-head">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#intern2025" aria-expanded="true" aria-controls="intern2025">
+                  2025 <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">10</span>
+                </button>
+              </h2>
+              <div id="intern2025" class="accordion-collapse collapse show" aria-labelledby="intern2025-head" data-bs-parent="#internAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Anushka Gupta</h6><p class="text-muted mb-0">Banasthali Vidyapith, Jaipur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Arnav Gupta</h6><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Sharmad Kalpande</h6><p class="text-muted mb-0">IISER Bhopal</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Amber Bansal</h6><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Saksham Mishra</h6><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Tanmay Mutha</h6><p class="text-muted mb-0">College of Engineering, Pune</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Mohd Anas Ansari</h6><p class="text-muted mb-0">MNIT Jaipur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Shailendra Mandal</h6><p class="text-muted mb-0">MNIT Jaipur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Mohit Kumar</h6><p class="text-muted mb-0">IIT Jodhpur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Leela Venkata Sai Kumar Annadasu</h6><p class="text-muted mb-0">VIT</p></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 2023 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="intern2023-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#intern2023" aria-expanded="false" aria-controls="intern2023">
+                  2023 <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">14</span>
+                </button>
+              </h2>
+              <div id="intern2023" class="accordion-collapse collapse" aria-labelledby="intern2023-head" data-bs-parent="#internAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Martin Kaushal</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Arihant Tanwar</h6><p class="text-muted mb-0">Trajectory Prediction</p><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Pratham Garg</h6><p class="text-muted mb-0">Object Recognition</p><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Sheral Singla</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Raghav Garg</h6><p class="text-muted mb-0">Communication Protocol</p><p class="text-muted mb-0">Thapar Institute</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Ravindra</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">IIIT Vadodara</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Tanmay Bajaj</h6><p class="text-muted mb-0">Sensing as a Service</p><p class="text-muted mb-0">IIT Roorkee</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Swarup Kumar Mondal</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">Heritage Institute of Technology</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Azhar Khan</h6><p class="text-muted mb-0">Embedded Systems</p><p class="text-muted mb-0">IIT Jodhpur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Kartik Chhipa</h6><p class="text-muted mb-0">Sensing as a Service</p><p class="text-muted mb-0">IIT Jodhpur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Ankur Kumar Shukla</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">IIIT Vadodara</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Jaysukh</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">IIT Jodhpur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Naman Labhsetwar</h6><p class="text-muted mb-0">Wifi Sensing &amp; ML</p><p class="text-muted mb-0">PICT Pune</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Aditya Deshpande</h6><p class="text-muted mb-0">Wifi Sensing &amp; ML</p><p class="text-muted mb-0">PICT Pune</p></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 2022 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="intern2022-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#intern2022" aria-expanded="false" aria-controls="intern2022">
+                  2022 <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">5</span>
+                </button>
+              </h2>
+              <div id="intern2022" class="accordion-collapse collapse" aria-labelledby="intern2022-head" data-bs-parent="#internAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Avijit Das</h6><p class="text-muted mb-0">Smartphone Sensory Data</p><p class="text-muted mb-0">IIT Madras</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Yaman Saraswat</h6><p class="text-muted mb-0">Multi Modal Data Analysis</p><p class="text-muted mb-0">NIT Agartala</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Saksham Gautam</h6><p class="text-muted mb-0">IMU Based Sensing</p><p class="text-muted mb-0">IIIT Prayagraj</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Khushbu Bijawat</h6><p class="text-muted mb-0">Smartwatch Sensory Data</p><p class="text-muted mb-0">MBM Jodhpur</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Anushka Agarwal</h6><p class="text-muted mb-0">Smartwatch Sensory Data</p><p class="text-muted mb-0">RV College</p></div></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Ashish Kumar -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-          <div class="card card-profile shadow-sm h-100">
-            <div class="avatar-initials"><span style="background-color: #8B6F8E;">AK</span></div>
-            <div class="card-body">
-              <h5 class="card-title">Ashish Kumar</h5>
-              <h6 class="text-info">MTech Scholar, AR/VR</h6>
-              <p class="mb-2"></p>
+
+          <!-- Undergrad Research Volunteers (Accordion by Project) -->
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-hand-holding-heart section-icon"></i> Undergrad Research Volunteers
+            <span class="badge bg-secondary bg-opacity-25 text-dark">18</span>
+          </h2>
+          <div class="accordion team-accordion mb-5" id="volunteerAccordion" data-aos="fade-up">
+            <!-- Prakriti App Development -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="vol-prakriti-head">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#vol-prakriti" aria-expanded="true" aria-controls="vol-prakriti">
+                  Prakriti App Development <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">6</span>
+                </button>
+              </h2>
+              <div id="vol-prakriti" class="accordion-collapse collapse show" aria-labelledby="vol-prakriti-head" data-bs-parent="#volunteerAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Abhishek Raghav</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Abhinav Kashyap</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Hriday Kondru</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Akriti Gupta</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Khushi Parikh</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Mohammad Zaid Shamshad</h6></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Web Development for SaaS Middleware -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="vol-saas-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vol-saas" aria-expanded="false" aria-controls="vol-saas">
+                  Web Development for SaaS Middleware <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">3</span>
+                </button>
+              </h2>
+              <div id="vol-saas" class="accordion-collapse collapse" aria-labelledby="vol-saas-head" data-bs-parent="#volunteerAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Naman Goyal</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Aakash Maheshwari</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Vansh Agarwal</h6></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- IoT Device Development -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="vol-iot-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vol-iot" aria-expanded="false" aria-controls="vol-iot">
+                  IoT Device Development <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">3</span>
+                </button>
+              </h2>
+              <div id="vol-iot" class="accordion-collapse collapse" aria-labelledby="vol-iot-head" data-bs-parent="#volunteerAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Rachit Agnihotri</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Sneha Gupta</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Uppala Giridhar</h6></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Multimodal Data Analysis for HAR -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="vol-har-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vol-har" aria-expanded="false" aria-controls="vol-har">
+                  Multimodal Data Analysis for HAR <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">4</span>
+                </button>
+              </h2>
+              <div id="vol-har" class="accordion-collapse collapse" aria-labelledby="vol-har-head" data-bs-parent="#volunteerAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Shubh Goyal</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Sukriti Goyal</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Ashish Cherukuri</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Kartik Choudhary</h6></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Wargaming UX/UI -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="vol-war-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vol-war" aria-expanded="false" aria-controls="vol-war">
+                  Wargaming UX/UI <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">2</span>
+                </button>
+              </h2>
+              <div id="vol-war" class="accordion-collapse collapse" aria-labelledby="vol-war-head" data-bs-parent="#volunteerAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Rankireddy Sai Mani Akarsh</h6></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Shivam Kumar</h6></div></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Kompal Layal -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
-          <div class="card card-profile shadow-sm h-100">
-            <div class="avatar-initials"><span style="background-color: #C07850;">KL</span></div>
-            <div class="card-body">
-              <h5 class="card-title">Kompal Layal</h5>
-              <h6 class="text-info">MTech Scholar, AR/VR</h6>
-              <p class="mb-2"></p>
+
+        </div><!-- /current-team tab -->
+
+        <!-- ============ ALUMNI TAB ============ -->
+        <div class="tab-pane fade" id="alumni-panel" role="tabpanel" aria-labelledby="alumni-tab">
+
+          <h2 class="team-section-title" data-aos="fade-up">
+            <i class="fa-solid fa-graduation-cap section-icon"></i> Alumni
+            <span class="badge bg-secondary bg-opacity-25 text-dark">17</span>
+          </h2>
+          <div class="accordion team-accordion mb-5" id="alumniAccordion" data-aos="fade-up">
+            <!-- MTech Alumni -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="alumni-mtech-head">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#alumni-mtech" aria-expanded="true" aria-controls="alumni-mtech">
+                  MTech Alumni <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">6</span>
+                </button>
+              </h2>
+              <div id="alumni-mtech" class="accordion-collapse collapse show" aria-labelledby="alumni-mtech-head" data-bs-parent="#alumniAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Priyal Jain</h6><p class="text-muted mb-0">CPS Security</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Nayanita Saha</h6><p class="text-muted mb-0">IoT &amp; Sensing&#8209;as&#8209;a&#8209;Service</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Vishwwanath Singh</h6><p class="text-muted mb-0">Pervasive Systems</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Monik Raj Behera</h6><p class="text-muted mb-0">Federated Learning</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Sameeran Zingre</h6><p class="text-muted mb-0">Earable Sensing</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Ankit Modi</h6></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- BTech 2025 Alumni -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="alumni-btech25-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#alumni-btech25" aria-expanded="false" aria-controls="alumni-btech25">
+                  BTech 2025 <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">3</span>
+                </button>
+              </h2>
+              <div id="alumni-btech25" class="accordion-collapse collapse" aria-labelledby="alumni-btech25-head" data-bs-parent="#alumniAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Adarsh Raj</h6><p class="text-muted mb-0">Lightweight Consensus in Blockchain&#8209;IoT</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Jatin Lohar</h6><p class="text-muted mb-0">Lightweight Consensus in Blockchain&#8209;IoT</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Samyak Vikrant Haribhakta</h6><p class="text-muted mb-0">Trust in Upstream IoT Data using Blockchain</p></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- BTech 2024 Alumni -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="alumni-btech24-head">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#alumni-btech24" aria-expanded="false" aria-controls="alumni-btech24">
+                  BTech 2024 <span class="badge bg-secondary bg-opacity-25 text-dark ms-2">8</span>
+                </button>
+              </h2>
+              <div id="alumni-btech24" class="accordion-collapse collapse" aria-labelledby="alumni-btech24-head" data-bs-parent="#alumniAccordion">
+                <div class="accordion-body">
+                  <div class="row gy-3">
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Harsh Kumar</h6><p class="text-muted mb-0">Leakage Detection from Smart Water Grid Data</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Shubham Kumar</h6><p class="text-muted mb-0">Leakage Detection from Smart Water Grid Data</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Likith Biyani</h6><p class="text-muted mb-0">Traffic Simulation Using SUMO Simulator</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Keshav Mundra</h6><p class="text-muted mb-0">Traffic Simulation Using SUMO Simulator</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Niharika Manhar</h6><p class="text-muted mb-0">Lightweight Consensus for Blockchain at the Extreme Edge</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Paras</h6><p class="text-muted mb-0">Smart Home Realization at the Edge</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Dhruv</h6><p class="text-muted mb-0">Enhanced Complex HAR Using IMU Data from Multiple Wearables</p></div></div>
+                    <div class="col-md-4 col-lg-3"><div class="mini-card"><h6>Haardik Ravat</h6><p class="text-muted mb-0">Enhanced Complex HAR Using IMU Data from Multiple Wearables</p></div></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Shubham Roy -->
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
-          <div class="card card-profile shadow-sm h-100">
-            <div class="avatar-initials"><span style="background-color: #5B8A8A;">SR</span></div>
-            <div class="card-body">
-              <h5 class="card-title">Shubham Roy</h5>
-              <h6 class="text-info">MTech Scholar, AR/VR</h6>
-              <p class="mb-2"></p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- BTech Final Year Project -->
-      <h2 class="mb-4" data-aos="fade-up">BTech Final Year Project</h2>
-      <div class="row gy-3 mb-5">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card">
-            <h6>Abhishek Raghav</h6>
-            <p class="text-muted mb-0">Prakriti App Development</p>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card">
-            <h6>Mohammad Zaid Shamshad</h6>
-            <p class="text-muted mb-0">Prakriti App Development</p>
-          </div>
-        </div>
-      </div>
+        </div><!-- /alumni tab -->
 
-      <!-- Interns -->
-      <h2 class="mb-4" data-aos="fade-up">Interns</h2>
-
-      <h4 class="mb-3" data-aos="fade-up">2025</h4>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Anushka Gupta</h6><p class="text-muted mb-0">Banasthali Vidyapith, Jaipur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Arnav Gupta</h6><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Sharmad Kalpande</h6><p class="text-muted mb-0">IISER Bhopal</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Amber Bansal</h6><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Saksham Mishra</h6><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Tanmay Mutha</h6><p class="text-muted mb-0">College of Engineering, Pune</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Mohd Anas Ansari</h6><p class="text-muted mb-0">MNIT Jaipur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Shailendra Mandal</h6><p class="text-muted mb-0">MNIT Jaipur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Mohit Kumar</h6><p class="text-muted mb-0">IIT Jodhpur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Leela Venkata Sai Kumar Annadasu</h6><p class="text-muted mb-0">VIT</p></div>
-        </div>
-      </div>
-
-      <h4 class="mb-3" data-aos="fade-up">2023</h4>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Martin Kaushal</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Arihant Tanwar</h6><p class="text-muted mb-0">Trajectory Prediction</p><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Pratham Garg</h6><p class="text-muted mb-0">Object Recognition</p><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Sheral Singla</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Raghav Garg</h6><p class="text-muted mb-0">Communication Protocol</p><p class="text-muted mb-0">Thapar Institute</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Ravindra</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">IIIT Vadodara</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Tanmay Bajaj</h6><p class="text-muted mb-0">Sensing as a Service</p><p class="text-muted mb-0">IIT Roorkee</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Swarup Kumar Mondal</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">Heritage Institute of Technology</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Azhar Khan</h6><p class="text-muted mb-0">Embedded Systems</p><p class="text-muted mb-0">IIT Jodhpur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Kartik Chhipa</h6><p class="text-muted mb-0">Sensing as a Service</p><p class="text-muted mb-0">IIT Jodhpur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Ankur Kumar Shukla</h6><p class="text-muted mb-0">HAR</p><p class="text-muted mb-0">IIIT Vadodara</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Jaysukh</h6><p class="text-muted mb-0">Android Development</p><p class="text-muted mb-0">IIT Jodhpur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Naman Labhsetwar</h6><p class="text-muted mb-0">Wifi Sensing &amp; ML</p><p class="text-muted mb-0">PICT Pune</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Aditya Deshpande</h6><p class="text-muted mb-0">Wifi Sensing &amp; ML</p><p class="text-muted mb-0">PICT Pune</p></div>
-        </div>
-      </div>
-
-      <h4 class="mb-3" data-aos="fade-up">2022</h4>
-      <div class="row gy-3 mb-5">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Avijit Das</h6><p class="text-muted mb-0">Smartphone Sensory Data</p><p class="text-muted mb-0">IIT Madras</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Yaman Saraswat</h6><p class="text-muted mb-0">Multi Modal Data Analysis</p><p class="text-muted mb-0">NIT Agartala</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Saksham Gautam</h6><p class="text-muted mb-0">IMU Based Sensing</p><p class="text-muted mb-0">IIIT Prayagraj</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Khushbu Bijawat</h6><p class="text-muted mb-0">Smartwatch Sensory Data</p><p class="text-muted mb-0">MBM Jodhpur</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Anushka Agarwal</h6><p class="text-muted mb-0">Smartwatch Sensory Data</p><p class="text-muted mb-0">RV College</p></div>
-        </div>
-      </div>
-
-      <!-- Undergrad Research Volunteers -->
-      <h2 class="mb-4" data-aos="fade-up">Undergrad Research Volunteers</h2>
-
-      <h5 class="mb-3" data-aos="fade-up">Prakriti App Development</h5>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Abhishek Raghav</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Abhinav Kashyap</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Hriday Kondru</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Akriti Gupta</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Khushi Parikh</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Mohammad Zaid Shamshad</h6></div>
-        </div>
-      </div>
-
-      <h5 class="mb-3" data-aos="fade-up">Web Development for SaaS Middleware</h5>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Naman Goyal</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Aakash Maheshwari</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Vansh Agarwal</h6></div>
-        </div>
-      </div>
-
-      <h5 class="mb-3" data-aos="fade-up">IoT Device Development</h5>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Rachit Agnihotri</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Sneha Gupta</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Uppala Giridhar</h6></div>
-        </div>
-      </div>
-
-      <h5 class="mb-3" data-aos="fade-up">Multimodal Data Analysis for HAR</h5>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Shubh Goyal</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Sukriti Goyal</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Ashish Cherukuri</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Kartik Choudhary</h6></div>
-        </div>
-      </div>
-
-      <h5 class="mb-3" data-aos="fade-up">Wargaming UX/UI</h5>
-      <div class="row gy-3 mb-5">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Rankireddy Sai Mani Akarsh</h6></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Shivam Kumar</h6></div>
-        </div>
-      </div>
-
-      <!-- Alumni -->
-      <h2 class="mb-4" data-aos="fade-up">Alumni</h2>
-
-      <h4 class="mb-3" data-aos="fade-up">MTech</h4>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Priyal Jain</h6><p class="text-muted mb-0">CPS Security</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Nayanita Saha</h6><p class="text-muted mb-0">IoT &amp; Sensing&#8209;as&#8209;a&#8209;Service</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Vishwwanath Singh</h6><p class="text-muted mb-0">Pervasive Systems</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Monik Raj Behera</h6><p class="text-muted mb-0">Federated Learning</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Sameeran Zingre</h6><p class="text-muted mb-0">Earable Sensing</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Ankit Modi</h6></div>
-        </div>
-      </div>
-
-      <h4 class="mb-3" data-aos="fade-up">BTech</h4>
-      <h5 class="mb-3" data-aos="fade-up">2025</h5>
-      <div class="row gy-3 mb-4">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Adarsh Raj</h6><p class="text-muted mb-0">Lightweight Consensus in Blockchain&#8209;IoT</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Jatin Lohar</h6><p class="text-muted mb-0">Lightweight Consensus in Blockchain&#8209;IoT</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Samyak Vikrant Haribhakta</h6><p class="text-muted mb-0">Trust in Upstream IoT Data using Blockchain</p></div>
-        </div>
-      </div>
-
-      <h5 class="mb-3" data-aos="fade-up">2024</h5>
-      <div class="row gy-3 mb-5">
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Harsh Kumar</h6><p class="text-muted mb-0">Leakage Detection from Smart Water Grid Data</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Shubham Kumar</h6><p class="text-muted mb-0">Leakage Detection from Smart Water Grid Data</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Likith Biyani</h6><p class="text-muted mb-0">Traffic Simulation Using SUMO Simulator</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Keshav Mundra</h6><p class="text-muted mb-0">Traffic Simulation Using SUMO Simulator</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Niharika Manhar</h6><p class="text-muted mb-0">Lightweight Consensus for Blockchain at the Extreme Edge</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
-          <div class="mini-card"><h6>Paras</h6><p class="text-muted mb-0">Smart Home Realization at the Edge</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="50">
-          <div class="mini-card"><h6>Dhruv</h6><p class="text-muted mb-0">Enhanced Complex HAR Using IMU Data from Multiple Wearables</p></div>
-        </div>
-        <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="mini-card"><h6>Haardik Ravat</h6><p class="text-muted mb-0">Enhanced Complex HAR Using IMU Data from Multiple Wearables</p></div>
-        </div>
-      </div>
+      </div><!-- /tab-content -->
 
     </div>
   </section>
@@ -579,7 +782,7 @@
   <div id="footer-placeholder"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- AOS Animate‑On‑Scroll JS -->
+  <!-- AOS Animate-On-Scroll JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({

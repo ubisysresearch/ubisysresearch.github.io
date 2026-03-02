@@ -244,4 +244,78 @@
 
   // Re-trigger AOS on injected elements
   if (typeof AOS !== 'undefined') AOS.refresh();
+
+  // --- Team member profile linking ---
+  // Maps names to profile URLs (longest names first to avoid partial matches)
+  var teamProfiles = [
+    { n: 'Suchetana Chakraborty', u: 'https://sites.google.com/site/suchetana0116/home' },
+    { n: 'Kamal Kumar Gola', u: 'https://www.linkedin.com/in/kamal-kumar-gola-886692143/' },
+    { n: 'Kondagurle Sukitha', u: 'https://sites.google.com/view/sukitha/home' },
+    { n: 'Ananya Mondal', u: 'https://sites.google.com/iitj.ac.in/ananya-mondal/home' },
+    { n: 'Susmita Mondal', u: 'https://www.linkedin.com/in/susmita-mondal-378949143/' },
+    { n: 'Manjeet Yadav', u: 'https://mjyadav7.github.io/Manjeet/' },
+    { n: 'Garvit Chugh', u: 'https://garvitchugh.com' },
+    { n: 'Alok Dutta', u: 'https://www.linkedin.com/in/alok-dutta-97a900222/' },
+    { n: 'Sukitha K.', u: 'https://sites.google.com/view/sukitha/home' },
+    { n: 'Osho', u: 'https://sites.google.com/iitj.ac.in/osho/about' },
+    { n: 'Garvit', u: 'https://garvitchugh.com', first: true },
+    { n: 'Ananya', u: 'https://sites.google.com/iitj.ac.in/ananya-mondal/home', first: true },
+    { n: 'Susmita', u: 'https://www.linkedin.com/in/susmita-mondal-378949143/', first: true },
+    { n: 'Sukitha', u: 'https://sites.google.com/view/sukitha/home', first: true }
+  ];
+
+  /**
+   * Walks text nodes inside `selector` and wraps team member names in profile links.
+   * Uses TreeWalker + DOM splitting (no innerHTML).
+   */
+  window.linkTeamNames = function (selector) {
+    var root = document.querySelector(selector);
+    if (!root) return;
+
+    function processNode(node) {
+      if (!node.nodeValue || !node.nodeValue.trim()) return;
+      // Skip if already inside an anchor
+      if (node.parentElement && node.parentElement.closest('a')) return;
+
+      var text = node.nodeValue;
+
+      for (var i = 0; i < teamProfiles.length; i++) {
+        var p = teamProfiles[i];
+        var idx = text.indexOf(p.n);
+        if (idx === -1) continue;
+
+        // For first-name-only entries, require word boundary after name
+        if (p.first) {
+          var after = text[idx + p.n.length];
+          if (after && /[a-zA-Z]/.test(after)) continue;
+        }
+
+        var parent = node.parentNode;
+        // Text before the name — split off and recursively process
+        if (idx > 0) {
+          var beforeNode = document.createTextNode(text.substring(0, idx));
+          parent.insertBefore(beforeNode, node);
+          processNode(beforeNode);
+        }
+        // The linked name
+        var link = document.createElement('a');
+        link.href = p.u;
+        link.target = '_blank';
+        link.textContent = p.n;
+        link.style.cssText = 'color:var(--accent);text-decoration:none;font-weight:inherit;';
+        parent.insertBefore(link, node);
+
+        // Update remaining text and restart search
+        var remaining = text.substring(idx + p.n.length);
+        node.nodeValue = remaining;
+        text = remaining;
+        i = -1; // restart loop for remaining text
+      }
+    }
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(processNode);
+  };
 })();
