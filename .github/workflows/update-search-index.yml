@@ -1,0 +1,47 @@
+name: Update Search Index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'publications.html'
+      - 'news.html'
+      - 'team.html'
+      - 'projects.html'
+  schedule:
+    # Every Monday at 6:00 AM UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install cheerio
+
+      - name: Build search index
+        run: node scripts/build-search-index.js
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet assets/js/search-data.js && echo "changed=false" >> "$GITHUB_OUTPUT" || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/search-data.js
+          git commit -m "Auto-update search index [skip ci]"
+          git push
