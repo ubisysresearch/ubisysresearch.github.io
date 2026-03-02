@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
+/* Brand accent */
+:root {
+  --accent: #1a6fa8;
+  --accent-dark: #145a8a;
+}
+
+/* Page fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -9,6 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  animation: fadeIn 0.3s ease-in;
 }
 
 /* Make main content area grow */
@@ -48,6 +61,26 @@ section {
   font-size: 1.05rem;
   padding-left: 0.85rem;
   padding-right: 0.85rem;
+}
+
+/* Navbar active link underline */
+.navbar-nav .nav-link.active {
+  position: relative;
+}
+.navbar-nav .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.85rem;
+  right: 0.85rem;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Gradient page headers */
+header.bg-dark {
+  background: linear-gradient(135deg, #1a1a2e 0%, #343a40 100%) !important;
 }
 
 /* Hero Slider */
@@ -98,20 +131,31 @@ section {
   object-fit: cover;
 }
 
+/* Project card hover */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
 /* Footer */
 footer {
   background: #001f3f;
   color: #fff;
   font-size: 0.9rem;
-  padding: 20px 0;
+}
+footer a.text-white-50:hover {
+  color: #fff !important;
 }
 
 /* Links */
 a {
-  color: #0056b3;
+  color: var(--accent);
 }
 a:hover {
-  color: #003d80;
+  color: var(--accent-dark);
   text-decoration: none;
 }
 

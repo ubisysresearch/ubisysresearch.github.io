@@ -18,12 +18,49 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
     .filter-btn.active {
-      background-color: #343a40;
+      background-color: var(--accent);
+      border-color: var(--accent);
       color: white;
     }
     .accordion-button:not(.collapsed) {
-      background-color: #343a40;
+      background-color: var(--accent);
       color: #fff;
+    }
+    /* Timeline decoration */
+    #pubAccordion {
+      position: relative;
+      padding-left: 2rem;
+    }
+    #pubAccordion::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), #e0e0e0);
+      border-radius: 2px;
+    }
+    .accordion-item {
+      position: relative;
+    }
+    .accordion-item::before {
+      content: '';
+      position: absolute;
+      left: -1.625rem;
+      top: 1.1rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--accent);
+      z-index: 1;
+    }
+    @media (max-width: 576px) {
+      #pubAccordion { padding-left: 1.5rem; }
+      #pubAccordion::before { left: 0.5rem; }
+      .accordion-item::before { left: -1.375rem; width: 10px; height: 10px; }
     }
   </style>
 </head>

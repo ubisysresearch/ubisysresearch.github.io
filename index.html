@@ -22,14 +22,55 @@
 
   <style>
     .carousel-item {
-      height: 300px;
+      height: 500px;
       background-size: cover;
       background-position: center;
+      position: relative;
+    }
+    .carousel-item::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%);
     }
     .carousel-caption {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 1rem;
-      border-radius: 10px;
+      background: none;
+      padding: 1.5rem;
+      border-radius: 0;
+      z-index: 2;
+      bottom: 2rem;
+    }
+    .carousel-caption h5 {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+    .carousel-caption p {
+      font-size: 1.1rem;
+    }
+    @media (max-width: 768px) {
+      .carousel-item { height: 350px; }
+      .carousel-caption h5 { font-size: 1.25rem; }
+    }
+    .research-icon {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #111;
+    }
+    .achievement-icon {
+      color: var(--accent);
+      width: 1.2em;
+      text-align: center;
+      margin-right: 0.5rem;
     }
     .logo-card {
       background-color: white;
@@ -131,19 +172,19 @@
       <div class="row">
         <div class="col-lg-6">
           <h2>Latest Achievements</h2>
-          <ul>
-            <li>📄 Triple acceptance at ICDCN 2026 (2 Full + 1 Short), Nara, Japan</li>
-            <li>📄 IEEE HiPC 2025 Poster Presentation by Sukitha K.</li>
-            <li>📄 Full paper at ACM CHI 2026 Main Track [Core A*]</li>
-            <li>📄 Full paper at ACM SenSys 2026 Main Track [Core A*]</li>
-            <li>📄 Full paper + 2 WiP at IEEE PerCom 2026 [Core A*]</li>
-            <li>📄 Full paper at COMSNETS 2026 &amp; EICS 2026</li>
-            <li>✈️ ACM IARCS, LRNF &amp; COMSNETS Travel Grants (2026)</li>
-            <li>🏆 Google Research Academic Award 2024</li>
-            <li>📄 3 Papers at IEEE PerCom 2025</li>
-            <li>🥇 Finalist at Stanford EPIC Challenge (Top 5 of 61)</li>
-            <li>🎓 PMRF and TCS Fellowship recipients</li>
-            <li>🏠 Completion of 3D‑printed Smart Home &amp; Ambient Lab</li>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Triple acceptance at ICDCN 2026 (2 Full + 1 Short), Nara, Japan</li>
+            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>IEEE HiPC 2025 Poster Presentation by Sukitha K.</li>
+            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper at ACM CHI 2026 Main Track [Core A*]</li>
+            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper at ACM SenSys 2026 Main Track [Core A*]</li>
+            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper + 2 WiP at IEEE PerCom 2026 [Core A*]</li>
+            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper at COMSNETS 2026 &amp; EICS 2026</li>
+            <li class="mb-2"><i class="fas fa-plane achievement-icon"></i>ACM IARCS, LRNF &amp; COMSNETS Travel Grants (2026)</li>
+            <li class="mb-2"><i class="fas fa-trophy achievement-icon"></i>Google Research Academic Award 2024</li>
+            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>3 Papers at IEEE PerCom 2025</li>
+            <li class="mb-2"><i class="fas fa-medal achievement-icon"></i>Finalist at Stanford EPIC Challenge (Top 5 of 61)</li>
+            <li class="mb-2"><i class="fas fa-graduation-cap achievement-icon"></i>PMRF and TCS Fellowship recipients</li>
+            <li class="mb-2"><i class="fas fa-house achievement-icon"></i>Completion of 3D&#8209;printed Smart Home &amp; Ambient Lab</li>
           </ul>
           <a href="news.html" class="btn btn-outline-primary btn-sm">View All News</a>
           <div class="mt-3"></div>
@@ -168,38 +209,44 @@
       <div class="row g-4 text-center">
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
           <div class="p-4 border rounded shadow-sm h-100">
+            <i class="fas fa-house-laptop research-icon"></i>
             <h5>Ubiquitous Computing</h5>
             <p>Systems that blend seamlessly into daily life environments.</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
           <div class="p-4 border rounded shadow-sm h-100">
+            <i class="fas fa-microchip research-icon"></i>
             <h5>Edge Computing & AIoT</h5>
-            <p>Low‑latency intelligence at the network edge using sensors and embedded AI.</p>
+            <p>Low&#8209;latency intelligence at the network edge using sensors and embedded AI.</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
           <div class="p-4 border rounded shadow-sm h-100">
-            <h5>Human‑Centered Interfaces</h5>
-            <p>Interfaces for wearable tech, accessibility, and human‑sensing.</p>
+            <i class="fas fa-hand-pointer research-icon"></i>
+            <h5>Human&#8209;Centered Interfaces</h5>
+            <p>Interfaces for wearable tech, accessibility, and human&#8209;sensing.</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
           <div class="p-4 border rounded shadow-sm h-100">
+            <i class="fas fa-heart-pulse research-icon"></i>
             <h5>Smart Health</h5>
             <p>Assistive and diagnostic technologies for personalized healthcare.</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="500">
           <div class="p-4 border rounded shadow-sm h-100">
+            <i class="fas fa-robot research-icon"></i>
             <h5>Autonomous Systems</h5>
-            <p>Sensor‑fused platforms for mobility, drones, and intelligent monitoring.</p>
+            <p>Sensor&#8209;fused platforms for mobility, drones, and intelligent monitoring.</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="600">
           <div class="p-4 border rounded shadow-sm h-100">
+            <i class="fas fa-tower-broadcast research-icon"></i>
             <h5>Wireless & Sensor Networks</h5>
-            <p>Communication, synchronization, and power‑efficiency in embedded systems.</p>
+            <p>Communication, synchronization, and power&#8209;efficiency in embedded systems.</p>
           </div>
         </div>
       </div>
@@ -207,25 +254,31 @@
   </section>
 
   <!-- Lab Highlights -->
-  <section class="py-5" data-aos="fade-up">
+  <section class="py-5" data-aos="fade-up" id="lab-highlights">
     <div class="container">
       <h2 class="text-center mb-4">Lab Highlights</h2>
       <div class="row text-center g-4">
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
           <div class="p-4 border rounded shadow-sm h-100">
-            <h4>60+ Publications</h4>
+            <i class="fas fa-file-lines stat-icon"></i>
+            <div class="stat-number" data-target="60" data-suffix="+">0</div>
+            <h5 class="mt-2">Publications</h5>
             <p>In top conferences including PerCom, COMSNETS, BuildSys, CHASE</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
           <div class="p-4 border rounded shadow-sm h-100">
-            <h4>7+ Funded Projects</h4>
+            <i class="fas fa-diagram-project stat-icon"></i>
+            <div class="stat-number" data-target="7" data-suffix="+">0</div>
+            <h5 class="mt-2">Funded Projects</h5>
             <p>With Google, DRDO, SERB, NSF, TIH, and Johari Digital</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
           <div class="p-4 border rounded shadow-sm h-100">
-            <h4>15+ Researchers</h4>
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-number" data-target="15" data-suffix="+">0</div>
+            <h5 class="mt-2">Researchers</h5>
             <p>Including PhD, MTech, BTP, and RA members</p>
           </div>
         </div>
@@ -339,11 +392,14 @@
     </div>
   </section>
 
-  <!-- Thank You Section -->
+  <!-- Call to Action -->
   <section class="py-5 bg-light" data-aos="fade-up">
     <div class="container text-center">
-      <h2 class="mb-4">Thank You for Visiting!</h2>
-      <!-- <p class="lead">We appreciate your interest in our research group. Feel free to explore our work and reach out to us.</p> -->
+      <h2 class="mb-3">Interested in Our Research?</h2>
+      <p class="lead text-muted mb-4">We are always looking for motivated students and collaborators to push the boundaries of ubiquitous computing.</p>
+      <a href="join.html" class="btn btn-lg text-white" style="background-color: var(--accent); padding: 0.75rem 2rem; border-radius: 8px;">
+        <i class="fas fa-arrow-right me-2"></i>Join Us
+      </a>
     </div>
   </section>
 
@@ -360,5 +416,42 @@
     });
   </script>
   <script src="assets/js/includes.js"></script>
+  <!-- Stat counter animation -->
+  <script>
+  (function () {
+    var counters = document.querySelectorAll('.stat-number');
+    var animated = false;
+    function animateCounters() {
+      if (animated) return;
+      animated = true;
+      counters.forEach(function (counter) {
+        var target = parseInt(counter.getAttribute('data-target'), 10);
+        var suffix = counter.getAttribute('data-suffix') || '';
+        var duration = 1500;
+        var startTime = null;
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - (1 - progress) * (1 - progress);
+          counter.textContent = Math.floor(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else counter.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+      });
+    }
+    if ('IntersectionObserver' in window) {
+      var section = document.getElementById('lab-highlights');
+      if (section) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { animateCounters(); observer.disconnect(); }
+          });
+        }, { threshold: 0.3 });
+        observer.observe(section);
+      }
+    } else { animateCounters(); }
+  })();
+  </script>
 </body>
 </html>
