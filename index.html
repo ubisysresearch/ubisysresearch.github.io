@@ -66,11 +66,39 @@
       font-weight: 700;
       color: #111;
     }
-    .achievement-icon {
+    /* Achievement cards */
+    .achieve-card {
+      background: white;
+      border-left: 4px solid var(--accent);
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      height: 100%;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .achieve-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .achieve-card-icon {
       color: var(--accent);
-      width: 1.2em;
-      text-align: center;
-      margin-right: 0.5rem;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .achieve-card-title {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #111;
+      margin-bottom: 0.2rem;
+    }
+    .achieve-card-sub {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 500;
     }
     .logo-card {
       background-color: white;
@@ -166,36 +194,101 @@
     </div>
   </section>
 
-  <!-- About & Achievements -->
+  <!-- Latest Achievements -->
   <section class="py-5 bg-light">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <h2>Latest Achievements</h2>
-          <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Triple acceptance at ICDCN 2026 (2 Full + 1 Short), Nara, Japan</li>
-            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>IEEE HiPC 2025 Poster Presentation by Sukitha K.</li>
-            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper at ACM CHI 2026 Main Track [Core A*]</li>
-            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper at ACM SenSys 2026 Main Track [Core A*]</li>
-            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper + 2 WiP at IEEE PerCom 2026 [Core A*]</li>
-            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>Full paper at COMSNETS 2026 &amp; EICS 2026</li>
-            <li class="mb-2"><i class="fas fa-plane achievement-icon"></i>ACM IARCS, LRNF &amp; COMSNETS Travel Grants (2026)</li>
-            <li class="mb-2"><i class="fas fa-trophy achievement-icon"></i>Google Research Academic Award 2024</li>
-            <li class="mb-2"><i class="fas fa-file-lines achievement-icon"></i>3 Papers at IEEE PerCom 2025</li>
-            <li class="mb-2"><i class="fas fa-medal achievement-icon"></i>Finalist at Stanford EPIC Challenge (Top 5 of 61)</li>
-            <li class="mb-2"><i class="fas fa-graduation-cap achievement-icon"></i>PMRF and TCS Fellowship recipients</li>
-            <li class="mb-2"><i class="fas fa-house achievement-icon"></i>Completion of 3D&#8209;printed Smart Home &amp; Ambient Lab</li>
-          </ul>
-          <a href="news.html" class="btn btn-outline-primary btn-sm">View All News</a>
-          <div class="mt-3"></div>
+      <h2 class="text-center mb-4">Latest Achievements</h2>
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-file-lines"></i></div>
+            <div>
+              <div class="achieve-card-title">Full paper at ACM CHI 2026 [Core A*]</div>
+              <div class="achieve-card-sub">Congratulations to Garvit!</div>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <h2>About Us</h2>
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-file-lines"></i></div>
+            <div>
+              <div class="achieve-card-title">Full paper at ACM SenSys 2026 [Core A*]</div>
+              <div class="achieve-card-sub">Congratulations to Garvit!</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-file-lines"></i></div>
+            <div>
+              <div class="achieve-card-title">Triple acceptance at ICDCN 2026, Nara, Japan</div>
+              <div class="achieve-card-sub">Congratulations to Ananya, Susmita &amp; Osho!</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-file-lines"></i></div>
+            <div>
+              <div class="achieve-card-title">Full paper + 2 WiP at IEEE PerCom 2026 [Core A*]</div>
+              <div class="achieve-card-sub">Congratulations to Garvit!</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-file-lines"></i></div>
+            <div>
+              <div class="achieve-card-title">Full papers at COMSNETS 2026 &amp; EICS 2026</div>
+              <div class="achieve-card-sub">Congratulations to Garvit, Ananya &amp; Osho!</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-plane"></i></div>
+            <div>
+              <div class="achieve-card-title">ACM IARCS, LRNF &amp; COMSNETS Travel Grants (2026)</div>
+              <div class="achieve-card-sub">Congratulations to Garvit!</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-trophy"></i></div>
+            <div>
+              <div class="achieve-card-title">Google Research Academic Award 2024</div>
+              <div class="achieve-card-sub">Supporting UbiSys research at IIT Jodhpur</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="achieve-card">
+            <div class="achieve-card-icon"><i class="fas fa-chalkboard-user"></i></div>
+            <div>
+              <div class="achieve-card-title">Poster presented at IEEE HiPC 2025!</div>
+              <div class="achieve-card-sub">Congratulations to Sukitha K.!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="news.html" class="btn btn-outline-primary btn-sm">View All News &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="mb-3">About Us</h2>
           <p style="text-align: justify;">
-            The UbiSys Research Group, led by Dr. Suchetana Chakraborty, explores core areas of ubiquitous computing, activity recognition, health sensing, and low‑power embedded systems.
+            The UbiSys Research Group, led by Dr. Suchetana Chakraborty, explores core areas of ubiquitous computing, activity recognition, health sensing, and low&#8209;power embedded systems.
           </p>
           <p style="text-align: justify;">
-            <strong>Lab Facilities:</strong> Sensepod++ testbed, Smartwatches, Earables, Smartphones, Embedded Boards (Arduino, Raspberry Pi, ESP32), Wireless Modules (BLE, LoRa), Prototyping Kits, Edge‑AI Devices, MEMS & Biomedical Sensors, Environmental Sensors, High‑Performance Workstations, Audio Interfaces, mm‑Wave Tools, Cameras, Touch Displays, Mechanical Toolkits, Network Infrastructure.
+            <strong>Lab Facilities:</strong> Sensepod++ testbed, Smartwatches, Earables, Smartphones, Embedded Boards (Arduino, Raspberry Pi, ESP32), Wireless Modules (BLE, LoRa), Prototyping Kits, Edge&#8209;AI Devices, MEMS &amp; Biomedical Sensors, Environmental Sensors, High&#8209;Performance Workstations, Audio Interfaces, mm&#8209;Wave Tools, Cameras, Touch Displays, Mechanical Toolkits, Network Infrastructure.
           </p>
         </div>
       </div>
