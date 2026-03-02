@@ -14,43 +14,97 @@
   <title>News | UbiSys Research Group</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- AOS Animate‑On‑Scroll CSS -->
+  <!-- AOS Animate-On-Scroll CSS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
-    .filter-btn.active {
-      background-color: var(--accent);
-      border-color: var(--accent);
-      color: white;
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #343a40 100%);
     }
-
+    .accordion-button:not(.collapsed) {
+      background-color: var(--accent);
+      color: #fff;
+    }
+    /* Timeline */
+    #newsAccordion {
+      position: relative;
+      padding-left: 2rem;
+    }
+    #newsAccordion::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), #e0e0e0);
+      border-radius: 2px;
+    }
+    #newsAccordion .accordion-item {
+      position: relative;
+    }
+    #newsAccordion .accordion-item::before {
+      content: '';
+      position: absolute;
+      left: -1.625rem;
+      top: 1.1rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--accent);
+      z-index: 1;
+    }
+    /* News cards inside accordion */
     .news-card {
       background-color: white;
-      border-left: 5px solid var(--accent);
+      border-left: 4px solid var(--accent);
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0.375rem;
       transition: all 0.3s ease;
     }
-
     .news-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
-
+    .news-card:last-child {
+      margin-bottom: 0;
+    }
     .news-title {
-      font-weight: bold;
-      font-size: 1.1rem;
+      font-weight: 600;
+      font-size: 1.05rem;
       margin-bottom: 0.2rem;
     }
-
-    .news-date {
-      color: #666;
+    .news-icon {
+      color: var(--accent);
+      width: 1.2em;
+      text-align: center;
+      margin-right: 0.5rem;
       font-size: 0.95rem;
     }
-
-    header {
-      background: linear-gradient(135deg, #1a1a2e 0%, #343a40 100%);
+    .news-desc {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+      padding-left: 1.7rem;
+    }
+    .news-badge {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(26, 111, 168, 0.1);
+      padding: 0.15rem 0.6rem;
+      border-radius: 1rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    @media (max-width: 576px) {
+      #newsAccordion { padding-left: 1.5rem; }
+      #newsAccordion::before { left: 0.5rem; }
+      #newsAccordion .accordion-item::before { left: -1.375rem; width: 10px; height: 10px; }
     }
   </style>
 </head>
@@ -66,215 +120,327 @@
   </div>
 </header>
 
-<!-- Year Filter Buttons -->
-<section class="py-4" data-aos="fade-up">
-  <div class="container text-center">
-    <div class="mb-3">
-      <button class="btn btn-outline-dark filter-btn active" onclick="filterYear('all', event)">All Years</button>
-      <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2026', event)">2026</button>
-      <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2025', event)">2025</button>
-      <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2024', event)">2024</button>
-      <button class="btn btn-outline-dark filter-btn" onclick="filterYear('2023', event)">2023</button>
-    </div>
-  </div>
-</section>
-
 <!-- News Section -->
 <section class="py-5 bg-light" data-aos="fade-up">
   <div class="container">
+    <div class="accordion" id="newsAccordion">
 
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] Urgent Hiring: SRF &amp; Senior Research Associate Positions!</div>
-      <div class="news-date">Multiple open positions (2 SRF + 1 Senior Research Associate) with immediate joining for a Systems &amp; ML project. <a href="join.html#urgent-hiring">View details and apply</a>.</div>
+      <!-- 2026 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNews2026">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNews2026" aria-expanded="true">
+            2026
+          </button>
+        </h2>
+        <div id="collapseNews2026" class="accordion-collapse collapse show" data-bs-parent="#newsAccordion">
+          <div class="accordion-body">
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-user-plus news-icon"></i>Urgent Hiring: SRF &amp; Senior Research Associate Positions!</div>
+              </div>
+              <div class="news-desc">Multiple open positions (2 SRF + 1 Senior Research Associate) with immediate joining for a Systems &amp; ML project. <a href="join.html#urgent-hiring">View details and apply</a>.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Full paper accepted at CHI 2026 Main Track!</div>
+              </div>
+              <div class="news-desc">Congratulations to Garvit for a full paper acceptance at CHI 2026!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Full paper accepted at PerCom 2026 Main Track!</div>
+              </div>
+              <div class="news-desc">Congratulations to Garvit for a full paper at PerCom 2026!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>2 papers accepted at PerCom 2026 WiP Track!</div>
+              </div>
+              <div class="news-desc">Two Work-in-Progress papers accepted at PerCom 2026.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>ACM IARCS Grant Recipient for PerCom 2026!</div>
+              </div>
+              <div class="news-desc">Garvit received the ACM IARCS Grant for attending PerCom 2026.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>IEEE CS TCCC and TCPP STG Travel Grant for PerCom 2026!</div>
+              </div>
+              <div class="news-desc">Garvit received the IEEE CS TCCC and TCPP STG Travel Grant for PerCom 2026.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>LRNF International Student Travel Grant for SenSys 2026!</div>
+              </div>
+              <div class="news-desc">Garvit received the LRNF International Student Travel Grant for SenSys 2026.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Full paper acceptance at SenSys 2026!</div>
+              </div>
+              <div class="news-desc">Congratulations to Garvit for a full paper acceptance at ACM SenSys 2026!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Full paper acceptance at EICS 2026!</div>
+              </div>
+              <div class="news-desc">Congratulations to Garvit for a full paper acceptance at ACM EICS 2026!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-chalkboard-user news-icon"></i>Poster on BiteSense at ARCS 2026</div>
+                <span class="news-badge">Feb</span>
+              </div>
+              <div class="news-desc">Garvit was invited to present a poster on BiteSense at ARCS 2026, 11th Feb 2026, IIT Hyderabad.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Triple acceptance at ICDCN 2026 in Nara, Japan!</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">UbiSys secured 3 paper acceptances (2 Full Papers and 1 Short Paper) at the 27th International Conference on Distributed Computing and Networking (ICDCN 2026). Congratulations to Ananya, Susmita, Osho, and all co-authors!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Full paper accepted at COMSNETS 2026 Main Track!</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">Congratulations to Garvit, Ananya and Osho for a full paper acceptance at COMSNETS 2026!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>COMSNETS 2026 Travel Grant Awardee!</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">Garvit received the COMSNETS 2026 Travel Grant.</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 2025 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNews2025">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNews2025" aria-expanded="false">
+            2025
+          </button>
+        </h2>
+        <div id="collapseNews2025" class="accordion-collapse collapse" data-bs-parent="#newsAccordion">
+          <div class="accordion-body">
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-chalkboard-user news-icon"></i>Poster presented at IEEE HiPC 2025!</div>
+                <span class="news-badge">Dec</span>
+              </div>
+              <div class="news-desc">Sukitha K. presented a poster on "Lightweight Ensemble Framework for Reliable Multi-Fault Detection in Cyber-Physical Systems" at IEEE HiPC 2025, Hyderabad. Congratulations to Sukitha and Dr. Suchetana Chakraborty!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>Garvit selected to receive OmniBuds earable platform</div>
+                <span class="news-badge">Jun</span>
+              </div>
+              <div class="news-desc">Garvit was selected from among global applicants to receive OmniBuds, a cutting-edge earable platform with integrated biosensors and on-device machine learning.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>Garvit received multiple Travel Grants for PerCom 2025</div>
+                <span class="news-badge">Mar</span>
+              </div>
+              <div class="news-desc">ACM/IARCS Travel Grant and IEEE CS TCCC and TCPP STG Travel Grant awarded to Garvit for PerCom 2025.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Multiple Acceptances at PerCom 2025</div>
+                <span class="news-badge">Mar</span>
+              </div>
+              <div class="news-desc">Congratulations to Garvit for a full paper, 1 WiP and 1 Artefact, and to Sameeran for a WiP at PerCom 2025!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-chalkboard-user news-icon"></i>COMSNETS 2025 Presentations</div>
+                <span class="news-badge">Feb</span>
+              </div>
+              <div class="news-desc">Osho, Garvit and Susmita presented their posters at COMSNETS 2025.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-user-plus news-icon"></i>New funded projects and open positions</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">Join our team! Open positions for BTP, MTP, PhD, Postdoc and intern roles available now.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-flask news-icon"></i>Smart Home and Ambient Sensing Lab Completed</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">Our 3-D printed smart home and ambient sensing lab is now fully operational!</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 2024 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNews2024">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNews2024" aria-expanded="false">
+            2024
+          </button>
+        </h2>
+        <div id="collapseNews2024" class="accordion-collapse collapse" data-bs-parent="#newsAccordion">
+          <div class="accordion-body">
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Paper Accepted at VTC Fall 2024</div>
+                <span class="news-badge">Oct</span>
+              </div>
+              <div class="news-desc">Congratulations to Osho for having a full paper accepted at VTC Fall 2024!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-plane news-icon"></i>International Research Visit</div>
+                <span class="news-badge">Jul</span>
+              </div>
+              <div class="news-desc">Osho visited UNSW, Sydney as a Junior Research Fellow.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-chalkboard-user news-icon"></i>COMSNETS 2024 Poster Presentation</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">Monik presented a poster at COMSNETS 2024!</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNews2023">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNews2023" aria-expanded="false">
+            2023
+          </button>
+        </h2>
+        <div id="collapseNews2023" class="accordion-collapse collapse" data-bs-parent="#newsAccordion">
+          <div class="accordion-body">
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-chalkboard-user news-icon"></i>ACM BuildSys 2023 Attendance</div>
+                <span class="news-badge">Nov</span>
+              </div>
+              <div class="news-desc">Ananya attended ACM BuildSys 2023 to present her work.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Paper Accepted at IEEE/ACM BuildSys 2023</div>
+                <span class="news-badge">Oct</span>
+              </div>
+              <div class="news-desc">Congratulations to Ananya for having a full paper accepted at IEEE/ACM BuildSys 2023!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-plane news-icon"></i>Research Internship at UMBC, USA</div>
+                <span class="news-badge">Sep</span>
+              </div>
+              <div class="news-desc">Garvit received a funded 6-month Research Internship at UMBC, USA (September 2023 - February 2024).</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-medal news-icon"></i>Stanford EPIC Data Challenge Finalist</div>
+                <span class="news-badge">Aug</span>
+              </div>
+              <div class="news-desc">Garvit was a finalist in the Stanford EPIC Data Challenge, USA, placing in the Top 5 out of 61 participants.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-file-lines news-icon"></i>Paper Accepted at IEEE/ACM CHASE 2023</div>
+                <span class="news-badge">Jul</span>
+              </div>
+              <div class="news-desc">Congratulations to Garvit for having a full paper accepted at IEEE/ACM CHASE 2023!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>SERB CRG Grant</div>
+                <span class="news-badge">Jun</span>
+              </div>
+              <div class="news-desc">Our lab received the Core Research Grant from SERB (2023-2026).</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-award news-icon"></i>IRMG 2023</div>
+                <span class="news-badge">May</span>
+              </div>
+              <div class="news-desc">Successfully secured the IRMG 2023 grant.</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-graduation-cap news-icon"></i>Prestigious Fellowships</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">Garvit received the TCS Fellowship and Prime Minister Research Fellowship. Congratulations!</div>
+            </div>
+
+            <div class="news-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="news-title"><i class="fas fa-chalkboard-user news-icon"></i>COMSNETS Service</div>
+                <span class="news-badge">Jan</span>
+              </div>
+              <div class="news-desc">Garvit served as Web Chair and Social Media Chair at COMSNETS.</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] Full paper accepted at CHI 2026 Main Track!</div>
-      <div class="news-date">Congratulations to Garvit for a full paper acceptance at CHI 2026!</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] Full paper accepted at PerCom 2026 Main Track!</div>
-      <div class="news-date">Congratulations to Garvit for a full paper at PerCom 2026!</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] 2 papers accepted at PerCom 2026 WiP Track!</div>
-      <div class="news-date">Two Work-in-Progress papers accepted at PerCom 2026.</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] ACM IARCS Grant Recipient for PerCom 2026!</div>
-      <div class="news-date">Garvit received the ACM IARCS Grant for attending PerCom 2026.</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] IEEE CS TCCC and TCPP STG Travel Grant for PerCom 2026!</div>
-      <div class="news-date">Garvit received the IEEE CS TCCC and TCPP STG Travel Grant for PerCom 2026.</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] LRNF International Student Travel Grant for SenSys 2026!</div>
-      <div class="news-date">Garvit received the LRNF International Student Travel Grant for SenSys 2026.</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] Full paper acceptance at SenSys 2026!</div>
-      <div class="news-date">Congratulations to Garvit for a full paper acceptance at ACM SenSys 2026!</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[2026] Full paper acceptance at EICS 2026!</div>
-      <div class="news-date">Congratulations to Garvit for a full paper acceptance at ACM EICS 2026!</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[Feb 2026] Poster on BiteSense at ARCS 2026</div>
-      <div class="news-date">Garvit was invited to present a poster on BiteSense at ARCS 2026, 11th Feb 2026, IIT Hyderabad.</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[Jan 2026] Triple acceptance at ICDCN 2026 in Nara, Japan!</div>
-      <div class="news-date">UbiSys secured 3 paper acceptances (2 Full Papers and 1 Short Paper) at the 27th International Conference on Distributed Computing and Networking (ICDCN 2026). Congratulations to Ananya, Susmita, Osho, and all co-authors!</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[Jan 2026] Full paper accepted at COMSNETS 2026 Main Track!</div>
-      <div class="news-date">Congratulations to Garvit, Ananya and Osho for a full paper acceptance at COMSNETS 2026!</div>
-    </div>
-
-    <div class="news-card news-2026">
-      <div class="news-title">[Jan 2026] COMSNETS 2026 Travel Grant Awardee!</div>
-      <div class="news-date">Garvit received the COMSNETS 2026 Travel Grant.</div>
-    </div>
-
-    <div class="news-card news-2025">
-      <div class="news-title">[Dec 2025] Poster presented at IEEE HiPC 2025!</div>
-      <div class="news-date">Sukitha K. presented a poster on "Lightweight Ensemble Framework for Reliable Multi-Fault Detection in Cyber-Physical Systems" at the 32nd IEEE International Conference on High Performance Computing, Data, and Analytics (IEEE HiPC 2025), Hyderabad. Congratulations to Sukitha and Dr. Suchetana Chakraborty!</div>
-    </div>
-
-    <div class="news-card news-2025">
-      <div class="news-title">[Jun 2025] Garvit selected to receive OmniBuds earable platform</div>
-      <div class="news-date">Garvit was selected from among global applicants to receive OmniBuds, a cutting-edge earable platform with integrated biosensors and on-device machine learning.</div>
-    </div>
-
-    <div class="news-card news-2025">
-      <div class="news-title">[Mar 2025] Garvit received multiple Travel Grants for PerCom 2025</div>
-      <div class="news-date">ACM/IARCS Travel Grant and IEEE CS TCCC and TCPP STG Travel Grant awarded to Garvit for PerCom 2025.</div>
-    </div>
-
-    <div class="news-card news-2025">
-      <div class="news-title">[Mar 2025] Multiple Acceptances at PerCom 2025</div>
-      <div class="news-date">Congratulations to Garvit for a full paper, 1 WiP and 1 Artefact, and to Sameeran for a WiP at PerCom 2025!</div>
-    </div>
-
-    <div class="news-card news-2025">
-      <div class="news-title">[Feb 2025] COMSNETS 2025 Presentations</div>
-      <div class="news-date">Osho, Garvit and Susmita presented their posters at COMSNETS 2025.</div>
-    </div>
-
-    <div class="news-card news-2025">
-      <div class="news-title">[Jan 2025] New funded projects and open positions</div>
-      <div class="news-date">Join our team! Open positions for BTP, MTP, PhD, Postdoc and intern roles available now.</div>
-    </div>
-
-    <div class="news-card news-2025">
-      <div class="news-title">[Jan 2025] Smart Home and Ambient Sensing Lab Completed</div>
-      <div class="news-date">Our 3-D printed smart home and ambient sensing lab is now fully operational!</div>
-    </div>
-
-    <div class="news-card news-2024">
-      <div class="news-title">[Oct 2024] Paper Accepted at VTC Fall 2024</div>
-      <div class="news-date">Congratulations to Osho for having a full paper accepted at VTC Fall 2024!</div>
-    </div>
-
-    <div class="news-card news-2024">
-      <div class="news-title">[Jul 2024] International Research Visit</div>
-      <div class="news-date">Osho visited UNSW, Sydney as a Junior Research Fellow.</div>
-    </div>
-
-    <div class="news-card news-2024">
-      <div class="news-title">[Jan 2024] COMSNETS 2024 Poster Presentation</div>
-      <div class="news-date">Monik presented a poster at COMSNETS 2024!</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Nov 2023] ACM BuildSys 2023 Attendance</div>
-      <div class="news-date">Ananya attended ACM BUILDSYS 2023 to present her work.</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Oct 2023] Paper Accepted at IEEE/ACM BuildSys 2023</div>
-      <div class="news-date">Congratulations to Ananya for having a full paper accepted at IEEE/ACM BuildSys 2023!</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Sep 2023] Research Internship at UMBC, USA</div>
-      <div class="news-date">Garvit received a funded 6-month Research Internship at UMBC, USA (September 2023 - February 2024).</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Aug 2023] Stanford EPIC Data Challenge Finalist</div>
-      <div class="news-date">Garvit was a finalist in the Stanford EPIC Data Challenge, USA, placing in the Top 5 out of 61 participants.</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Jul 2023] Paper Accepted at IEEE/ACM CHASE 2023</div>
-      <div class="news-date">Congratulations to Garvit for having a full paper accepted at IEEE/ACM CHASE 2023!</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Jun 2023] SERB CRG Grant</div>
-      <div class="news-date">Our lab received the Core Research Grant from SERB (2023-2026).</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[May 2023] IRMG 2023</div>
-      <div class="news-date">Successfully secured the IRMG 2023 grant.</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Jan 2023] Prestigious Fellowships</div>
-      <div class="news-date">Garvit received the TCS Fellowship and Prime Minister Research Fellowship. Congratulations!</div>
-    </div>
-
-    <div class="news-card news-2023">
-      <div class="news-title">[Jan 2023] COMSNETS Service</div>
-      <div class="news-date">Garvit served as Web Chair and Social Media Chair at COMSNETS.</div>
-    </div>
-
   </div>
 </section>
 
 <div id="footer-placeholder"></div>
 
-<!-- Scripts -->
-<script>
-function filterYear(year, event) {
-  const cards = document.getElementsByClassName("news-card");
-  const buttons = document.getElementsByClassName("filter-btn");
-
-  for (let btn of buttons) btn.classList.remove("active");
-  if (event) event.target.classList.add("active");
-
-  for (let card of cards) {
-    if (year === 'all' || card.classList.contains(`news-${year}`)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  }
-  AOS.refresh();
-}
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AOS Animate‑On‑Scroll JS -->
+<!-- AOS Animate-On-Scroll JS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init({
-    duration: 800, // values from 0 to 3000, with step 50ms
-    once: true, // whether animation should happen only once - while scrolling down
+    duration: 800,
+    once: true,
   });
 </script>
 <script src="assets/js/includes.js"></script>
