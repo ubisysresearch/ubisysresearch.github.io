@@ -3,38 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sensepod: AIoT-Based Testbed for Sensing as a Service in Smart Homes</title>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <meta name="description" content="SensePod — an AIoT-based testbed for Sensing as a Service (SaaS) in smart homes, developed at UbiSys Lab, IIT Jodhpur.">
+  <meta name="keywords" content="SensePod, AIoT testbed, smart home sensing, UbiSys, IIT Jodhpur, IoT sensors">
+  <meta property="og:title" content="SensePod | UbiSys Research Group">
+  <meta property="og:description" content="An AIoT-based testbed for Sensing as a Service in smart homes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ubisysresearch.github.io/sensepod.html">
+  <meta property="og:image" content="https://ubisysresearch.github.io/assets/img/logo.png">
+  <title>SensePod | UbiSys Research Group</title>
 
-  <!-- Main CSS (Academic style, if you have it) -->
-  <link rel="stylesheet" href="academic.css" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome and Fancybox CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- AOS Animate-On-Scroll CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <!-- Fancybox CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
 
   <style>
-    /* BODY & TYPOGRAPHY */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      color: #333;
-      background-color: #f7f7f7;
-      line-height: 1.6;
-    }
-    h1, h2, h3 {
-      font-family: 'Montserrat', sans-serif;
-    }
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px 0;
-    }
-    /* HERO SECTION WITH SEMI-TRANSPARENT TEXT CONTAINER */
+    /* HERO SECTION */
     .hero {
       position: relative;
       background: url("sensepodimg/2.jpg") center center/cover no-repeat;
@@ -62,7 +50,7 @@
       margin: 0;
     }
     /* SECTION BASE */
-    .section {
+    .sensepod-section {
       padding: 60px 0;
     }
     .section-title {
@@ -79,21 +67,13 @@
       bottom: -5px;
       width: 60px;
       height: 3px;
-      background: #007BFF;
+      background: #343a40;
     }
     /* Background colors for sections */
     .overview { background: #ffffff; }
     .features { background: #fff5f5; }
     .nodes { background: #f5fff5; }
     .gallery-section { background: #f5faff; }
-    /* List styles */
-    ul, ol {
-      margin: 0;
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 10px;
-    }
     /* GALLERY */
     .gallery {
       display: grid;
@@ -106,146 +86,139 @@
       display: block;
       border-radius: 8px;
     }
-    /* FOOTER */
-    footer {
-      background: #e9e9e9;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.9em;
-      margin-top: 30px;
-    }
-    footer a {
-      color: #007BFF;
-      text-decoration: none;
-    }
   </style>
 </head>
 <body>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>SensePod</h1>
+<div id="navbar-placeholder"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>SensePod</h1>
+  </div>
+</section>
+
+<!-- OVERVIEW SECTION -->
+<section class="sensepod-section overview">
+  <div class="container">
+    <h2 class="section-title">Sensepod: AIoT-Based Testbed for Sensing as a Service (SaaS) in Smart Homes</h2>
+    <p>
+      Sensepod, an AIoT-based testbed designed to promote Sensing as a Service (SaaS) for ambient living, is engineered to support the continuous collection and preprocessing of multimodal sensory data within a smart home environment. This platform is specifically tailored to meet the needs of ambient intelligence applications and offers a dynamic, flexible approach to data collection, allowing researchers to tailor the acquisition process to their specific objectives.
+    </p>
+    <p>
+      Funding Source: SEED Grant, IIT JODHPUR
+    </p>
+  </div>
+</section>
+
+<!-- KEY FEATURES SECTION -->
+<section class="sensepod-section features">
+  <div class="container">
+    <h2 class="section-title">Key Features of Sensepod</h2>
+
+    <h3>Continuous and Multimodal Data Collection</h3>
+    <p>
+      Sensepod is designed to collect real-time sensory data from multiple sources within a smart home. The platform supports the integration of various smart sensors that monitor environmental conditions, occupancy, and user interactions.
+    </p>
+
+    <h3>Application-Centric Approach</h3>
+    <p>
+      Sensepod enables applications such as:
+    </p>
+    <ul>
+      <li><strong>Fire Alarm Systems</strong> – Monitoring temperature, smoke, and air quality for fire detection.</li>
+      <li><strong>Human Occupancy Monitoring</strong> – Detecting user presence and movements in different home environments.</li>
+      <li><strong>Environmental Sensing</strong> – Tracking indoor air quality, humidity, and lighting conditions.</li>
+    </ul>
+
+    <h3>Human-Centric Data Processing</h3>
+    <p>
+      Many smart home applications are user-driven, requiring systems to understand human behaviors and patterns. Sensepod is designed to capture human activities and interactions, making it valuable for research in behavior analysis, smart healthcare, and home automation.
+    </p>
+  </div>
+</section>
+
+<!-- SENSOR NODES SECTION -->
+<section class="sensepod-section nodes">
+  <div class="container">
+    <h2 class="section-title">Sensepod Sensor Nodes</h2>
+    <p>
+      Sensepod consists of various sensor nodes strategically placed throughout the smart home to ensure comprehensive data collection:
+    </p>
+    <ol>
+      <li>
+        <strong>Room Nodes (Ceiling-Mounted Sensors):</strong>
+        <p>Installed on the ceiling of bedrooms and living rooms, these nodes measure:</p>
+        <ul>
+          <li><strong>Temperature</strong> – Monitors room temperature to detect environmental changes.</li>
+          <li><strong>Humidity</strong> – Tracks moisture levels to assess comfort and air quality.</li>
+          <li><strong>CO₂ Levels</strong> – Measures carbon dioxide concentration for air quality assessment.</li>
+          <li><strong>Light Intensity</strong> – Detects ambient lighting conditions to optimize smart lighting solutions.</li>
+          <li><strong>MM-Wave Sensors</strong> – Determines occupancy levels by detecting human presence and movement.</li>
+          <li><strong>Noise Levels</strong> – Monitors sound levels for ambient noise analysis and activity recognition.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Washroom Nodes (Water Level Monitoring):</strong>
+        <p>Installed on water tanks to monitor the water level.</p>
+      </li>
+      <li>
+        <strong>Window Nodes (Motion Detection for Windows):</strong>
+        <p>Placed on windows to detect window movements.</p>
+      </li>
+      <li>
+        <strong>Chair Nodes (Occupancy Detection for Seating Areas):</strong>
+        <p>Installed on chairs, beds, and sofas to detect whether they are occupied.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- IMAGE GALLERY SECTION -->
+<section class="sensepod-section gallery-section">
+  <div class="container">
+    <h2 class="section-title">Sensepod Gallery</h2>
+    <div class="gallery">
+      <a href="sensepodimg/1.png" data-fancybox="gallery">
+        <img src="sensepodimg/1.png" alt="SensePod testbed overview" loading="lazy">
+      </a>
+      <a href="sensepodimg/2.jpg" data-fancybox="gallery">
+        <img src="sensepodimg/2.jpg" alt="SensePod smart home setup" loading="lazy">
+      </a>
+      <a href="sensepodimg/3.jpg" data-fancybox="gallery">
+        <img src="sensepodimg/3.jpg" alt="SensePod sensor node" loading="lazy">
+      </a>
+      <a href="sensepodimg/4.png" data-fancybox="gallery">
+        <img src="sensepodimg/4.png" alt="SensePod ceiling-mounted sensor" loading="lazy">
+      </a>
+      <a href="sensepodimg/5.png" data-fancybox="gallery">
+        <img src="sensepodimg/5.png" alt="SensePod data collection interface" loading="lazy">
+      </a>
+      <a href="sensepodimg/6.png" data-fancybox="gallery">
+        <img src="sensepodimg/6.png" alt="SensePod environmental monitoring" loading="lazy">
+      </a>
+      <a href="sensepodimg/7.png" data-fancybox="gallery">
+        <img src="sensepodimg/7.png" alt="SensePod deployment layout" loading="lazy">
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- OVERVIEW SECTION -->
-  <section class="section overview">
-    <div class="container">
-      <h2 class="section-title">Sensepod: AIoT-Based Testbed for Sensing as a Service (SaaS) in Smart Homes</h2>
-      <p>
-        Sensepod, an AIoT-based testbed designed to promote Sensing as a Service (SaaS) for ambient living, is engineered to support the continuous collection and preprocessing of multimodal sensory data within a smart home environment. This platform is specifically tailored to meet the needs of ambient intelligence applications and offers a dynamic, flexible approach to data collection, allowing researchers to tailor the acquisition process to their specific objectives.
-      </p>
-      <p>
-        Funding Source: SEED Grant, IIT JODHPUR
-      </p>
-    </div>
-  </section>
+<div id="footer-placeholder"></div>
 
-  <!-- KEY FEATURES SECTION -->
-  <section class="section features">
-    <div class="container">
-      <h2 class="section-title">Key Features of Sensepod</h2>
-
-      <h3>Continuous and Multimodal Data Collection</h3>
-      <p>
-        Sensepod is designed to collect real-time sensory data from multiple sources within a smart home. The platform supports the integration of various smart sensors that monitor environmental conditions, occupancy, and user interactions.
-      </p>
-
-      <h3>Application-Centric Approach</h3>
-      <p>
-        Sensepod enables applications such as:
-      </p>
-      <ul>
-        <li><strong>Fire Alarm Systems</strong> – Monitoring temperature, smoke, and air quality for fire detection.</li>
-        <li><strong>Human Occupancy Monitoring</strong> – Detecting user presence and movements in different home environments.</li>
-        <li><strong>Environmental Sensing</strong> – Tracking indoor air quality, humidity, and lighting conditions.</li>
-      </ul>
-
-      <h3>Human-Centric Data Processing</h3>
-      <p>
-        Many smart home applications are user-driven, requiring systems to understand human behaviors and patterns. Sensepod is designed to capture human activities and interactions, making it valuable for research in behavior analysis, smart healthcare, and home automation.
-      </p>
-    </div>
-  </section>
-
-  <!-- SENSOR NODES SECTION -->
-  <section class="section nodes">
-    <div class="container">
-      <h2 class="section-title">Sensepod Sensor Nodes</h2>
-      <p>
-        Sensepod consists of various sensor nodes strategically placed throughout the smart home to ensure comprehensive data collection:
-      </p>
-      <ol>
-        <li>
-          <strong>Room Nodes (Ceiling-Mounted Sensors):</strong>
-          <p>Installed on the ceiling of bedrooms and living rooms, these nodes measure:</p>
-          <ul>
-            <li><strong>Temperature</strong> – Monitors room temperature to detect environmental changes.</li>
-            <li><strong>Humidity</strong> – Tracks moisture levels to assess comfort and air quality.</li>
-            <li><strong>CO₂ Levels</strong> – Measures carbon dioxide concentration for air quality assessment.</li>
-            <li><strong>Light Intensity</strong> – Detects ambient lighting conditions to optimize smart lighting solutions.</li>
-            <li><strong>MM-Wave Sensors</strong> – Determines occupancy levels by detecting human presence and movement.</li>
-            <li><strong>Noise Levels</strong> – Monitors sound levels for ambient noise analysis and activity recognition.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Washroom Nodes (Water Level Monitoring):</strong>
-          <p>Installed on water tanks to monitor the water level.</p>
-        </li>
-        <li>
-          <strong>Window Nodes (Motion Detection for Windows):</strong>
-          <p>Placed on windows to detect window movements.</p>
-        </li>
-        <li>
-          <strong>Chair Nodes (Occupancy Detection for Seating Areas):</strong>
-          <p>Installed on chairs, beds, and sofas to detect whether they are occupied.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- IMAGE GALLERY SECTION -->
-  <section class="section gallery-section">
-    <div class="container">
-      <h2 class="section-title">Sensepod Gallery</h2>
-      <div class="gallery">
-        <!-- Ensure these file paths match your images in the 'sensepodimg' folder -->
-        <a href="sensepodimg/1.png" data-fancybox="gallery">
-          <img src="sensepodimg/1.png" alt="Sensepod Image 1">
-        </a>
-        <a href="sensepodimg/2.jpg" data-fancybox="gallery">
-          <img src="sensepodimg/2.jpg" alt="Sensepod Image 2">
-        </a>
-        <a href="sensepodimg/3.jpg" data-fancybox="gallery">
-          <img src="sensepodimg/3.jpg" alt="Sensepod Image 3">
-        </a>
-        <a href="sensepodimg/4.png" data-fancybox="gallery">
-          <img src="sensepodimg/4.png" alt="Sensepod Image 4">
-        </a>
-        <a href="sensepodimg/5.png" data-fancybox="gallery">
-          <img src="sensepodimg/5.png" alt="Sensepod Image 5">
-        </a>
-        <a href="sensepodimg/6.png" data-fancybox="gallery">
-          <img src="sensepodimg/6.png" alt="Sensepod Image 6">
-        </a>
-        <a href="sensepodimg/7.png" data-fancybox="gallery">
-          <img src="sensepodimg/7.png" alt="Sensepod Image 7">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 UbiSys Research Group. All rights reserved.</p>
-      <p><a href="index.html">Back to Home</a></p>
-    </div>
-  </footer>
-
-  <!-- JS for Fancybox -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS Animate-On-Scroll JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+  });
+</script>
+<!-- JS for Fancybox -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" crossorigin="anonymous"></script>
+<script src="assets/js/includes.js"></script>
 </body>
 </html>
