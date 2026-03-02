@@ -59,6 +59,21 @@
     ul.appendChild(li);
   });
 
+  // Search button in navbar
+  var searchLi = document.createElement('li');
+  searchLi.className = 'nav-item ms-lg-2 d-flex align-items-center';
+  var searchBtn = document.createElement('button');
+  searchBtn.className = 'search-btn';
+  searchBtn.type = 'button';
+  searchBtn.setAttribute('aria-label', 'Search');
+  searchBtn.setAttribute('data-bs-toggle', 'modal');
+  searchBtn.setAttribute('data-bs-target', '#searchModal');
+  var searchBtnIcon = document.createElement('i');
+  searchBtnIcon.className = 'fas fa-search';
+  searchBtn.appendChild(searchBtnIcon);
+  searchLi.appendChild(searchBtn);
+  ul.appendChild(searchLi);
+
   collapse.appendChild(ul);
   container.appendChild(brand);
   container.appendChild(toggler);
