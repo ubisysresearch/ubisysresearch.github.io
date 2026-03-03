@@ -62,6 +62,138 @@
       #pubAccordion::before { left: 0.5rem; }
       .accordion-item::before { left: -1.375rem; width: 10px; height: 10px; }
     }
+    /* Publication entry styling */
+    .publication {
+      position: relative;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-left: 3px solid transparent;
+      border-radius: 0.375rem;
+      transition: all 0.2s ease;
+    }
+    .publication:hover {
+      background: rgba(26, 111, 168, 0.03);
+      border-left-color: var(--accent);
+    }
+    .pub-icon {
+      color: var(--accent);
+      width: 1.2em;
+      text-align: center;
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .pub-venue {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(26, 111, 168, 0.1);
+      padding: 0.1rem 0.5rem;
+      border-radius: 1rem;
+      white-space: nowrap;
+      margin-left: 0.25rem;
+      vertical-align: middle;
+    }
+    .pub-year-count {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(26, 111, 168, 0.1);
+      padding: 0.15rem 0.55rem;
+      border-radius: 1rem;
+      margin-left: 0.5rem;
+    }
+    .pub-meta {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .pub-content {
+      flex: 1;
+    }
+    .pub-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .bibtex-btn {
+      background: none;
+      border: 1px solid #ddd;
+      color: #888;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .bibtex-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(26, 111, 168, 0.05);
+    }
+    .bibtex-btn.copied {
+      border-color: #28a745;
+      color: #28a745;
+      background: rgba(40, 167, 69, 0.05);
+    }
+    /* Search box */
+    .pub-search {
+      max-width: 400px;
+      margin: 0 auto 1rem;
+    }
+    .pub-search input {
+      border: 1px solid #ddd;
+      border-radius: 2rem;
+      padding: 0.5rem 1rem 0.5rem 2.5rem;
+      width: 100%;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .pub-search input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(26, 111, 168, 0.1);
+    }
+    .pub-search-wrapper {
+      position: relative;
+    }
+    .pub-search-wrapper i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    #pub-result-count {
+      font-size: 0.85rem;
+      color: #888;
+      min-height: 1.25rem;
+    }
+    .scholar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.35rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-top: 0.75rem;
+    }
+    .scholar-btn:hover {
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -73,12 +205,22 @@
   <div class="container">
     <h1 class="display-5 fw-bold">Publications</h1>
     <p class="lead">Research published at top-tier venues across ubiquitous computing, health sensing, and AI</p>
+    <p class="mt-2" style="opacity:0.85;">We publish in top venues such as CHI, PerCom, SenSys, EICS, BuildSys, and more</p>
+    <a href="https://scholar.google.co.in/citations?hl=en&user=sLnKodYAAAAJ" target="_blank" rel="noopener noreferrer" class="scholar-btn">
+      <i class="fas fa-graduation-cap"></i> Google Scholar
+    </a>
   </div>
 </header>
 
 <!-- Filter Controls -->
 <section class="py-4" data-aos="fade-up">
   <div class="container text-center">
+    <div class="pub-search">
+      <div class="pub-search-wrapper">
+        <i class="fas fa-search"></i>
+        <input type="text" id="pubSearchInput" placeholder="Search by author, title, or venue...">
+      </div>
+    </div>
     <div class="mb-3">
       <button class="btn btn-outline-dark filter-btn" onclick="filterSelection('all')">All</button>
       <button class="btn btn-outline-dark filter-btn" onclick="filterSelection('conference')">Conference</button>
@@ -95,6 +237,7 @@
       <button class="btn btn-outline-secondary filter-btn" onclick="fieldFilter('embedded')">Embedded</button>
       <button class="btn btn-outline-secondary filter-btn" onclick="fieldFilter('networking')">Networking</button>
     </div>
+    <div id="pub-result-count"></div>
   </div>
 </section>
 
@@ -107,44 +250,122 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2026">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2026" aria-expanded="true">
-            2026 Publications
+            2026 Publications <span class="pub-year-count" data-year="2026"></span>
           </button>
         </h2>
         <div id="collapse2026" class="accordion-collapse collapse show" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2026 hci sensing">
-              <p><strong>Garvit Chugh, Indrajeet Ghosh, Nirmalya Roy, Sandip Chakraborty, and Suchetana Chakraborty.</strong> <em>"MorsEar: Toward Generalizable Low-Resource Covert Messaging via Earable-Based Inertial Sensing."</em> to appear in the proc. of ACM CHI Conference on Human Factors in Computing Systems (CHI) 2026 [Main Track] [Core A*].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Indrajeet Ghosh, Nirmalya Roy, Sandip Chakraborty, and Suchetana Chakraborty.</strong> <em>"MorsEar: Toward Generalizable Low-Resource Covert Messaging via Earable-Based Inertial Sensing."</em> to appear in the proc. of ACM CHI Conference on Human Factors in Computing Systems (CHI) 2026 [Main Track] [Core A*]. <span class="pub-venue">CHI</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 hci sensing">
-              <p><strong>Kompal Layal, Ashish Kumar, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"VectionSense: Multimodal Inertial-Physiological Cybersickness Detection in Consumer VR."</em> to appear in the proc. of SAXR 2026: Shaping Future Human Connection, co-located with ACM CHI Conference on Human Factors in Computing Systems (CHI) 2026 [Workshop] [Core A*].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Kompal Layal, Ashish Kumar, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"VectionSense: Multimodal Inertial-Physiological Cybersickness Detection in Consumer VR."</em> to appear in the proc. of SAXR 2026: Shaping Future Human Connection, co-located with ACM CHI Conference on Human Factors in Computing Systems (CHI) 2026 [Workshop] [Core A*]. <span class="pub-venue">CHI Workshop</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 hci sensing healthcare">
-              <p><strong>Garvit Chugh and Suchetana Chakraborty.</strong> <em>"HydratEar: Non-Invasive Hydration Monitoring using In-Ear Acoustic Reflectometry."</em> to appear in the proc. of IEEE International Conference on Pervasive Computing and Communications (PerCom) 2026 [Main Track] [Core A*].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh and Suchetana Chakraborty.</strong> <em>"HydratEar: Non-Invasive Hydration Monitoring using In-Ear Acoustic Reflectometry."</em> to appear in the proc. of IEEE International Conference on Pervasive Computing and Communications (PerCom) 2026 [Main Track] [Core A*]. <span class="pub-venue">PerCom</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 sensing embedded">
-              <p><strong>Sandeep Vadthya, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"EarFence: Lightweight Ultrasonic Defense for Smart Earbuds Against Hidden Commands."</em> In IEEE International Conference on Pervasive Computing and Communications (PerCom) 2026 [WiP Track] [Core A*].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Sandeep Vadthya, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"EarFence: Lightweight Ultrasonic Defense for Smart Earbuds Against Hidden Commands."</em> In IEEE International Conference on Pervasive Computing and Communications (PerCom) 2026 [WiP Track] [Core A*]. <span class="pub-venue">PerCom WiP</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 hci sensing healthcare">
-              <p><strong>Ashish Kumar*, Sahil Sharma*, Garvit Chugh*, and Suchetana Chakraborty.</strong> <em>"CompulsEar: Body-focused repetitive behaviors detection using earable-based inertial sensing."</em> In IEEE International Conference on Pervasive Computing and Communications (PerCom) 2026 [WiP Track] [*Equal Contribution] [Core A*].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Ashish Kumar*, Sahil Sharma*, Garvit Chugh*, and Suchetana Chakraborty.</strong> <em>"CompulsEar: Body-focused repetitive behaviors detection using earable-based inertial sensing."</em> In IEEE International Conference on Pervasive Computing and Communications (PerCom) 2026 [WiP Track] [*Equal Contribution] [Core A*]. <span class="pub-venue">PerCom WiP</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication journal 2026 hci sensing healthcare">
-              <p><strong>Garvit Chugh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"SpineSense: Earable-Based Inertial Sensing for Spine Movement Monitoring to Combat Neck Pain."</em> to appear in the Proceedings of the ACM on Human-Computer Interaction (PACMHCI), ACM SIGCHI Symposium on Engineering Interactive Computing Systems (EICS) 2026 [Q1 Journal].</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"SpineSense: Earable-Based Inertial Sensing for Spine Movement Monitoring to Combat Neck Pain."</em> to appear in the Proceedings of the ACM on Human-Computer Interaction (PACMHCI), ACM SIGCHI Symposium on Engineering Interactive Computing Systems (EICS) 2026 [Q1 Journal]. <span class="pub-venue">EICS / PACMHCI</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 hci sensing ai">
-              <p><strong>Garvit Chugh, Ananya Mondal, Sandip Chakraborty and Suchetana Chakraborty.</strong> <em>"WristSense: Sensing Hidden Wrist Strain in Routine Activities via Inertial Tokenization and LLM-Based Feedback."</em> to appear in the proc. of ACM Conference on Embedded Networked Sensor Systems (SenSys) 2026 [Main Track] [Core A*].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Ananya Mondal, Sandip Chakraborty and Suchetana Chakraborty.</strong> <em>"WristSense: Sensing Hidden Wrist Strain in Routine Activities via Inertial Tokenization and LLM-Based Feedback."</em> to appear in the proc. of ACM Conference on Embedded Networked Sensor Systems (SenSys) 2026 [Main Track] [Core A*]. <span class="pub-venue">SenSys</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 sensing networking embedded">
-              <p><strong>Garvit Chugh, Ananya Mondal, Osho, and Suchetana Chakraborty.</strong> <em>"Experience: From Sensors to Service: Advancing Ambient Living with an AIoT Community Testbed."</em> In International Conference on COMmunication Systems &amp; NETworkS (COMSNETS) 2026 [Main Track].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Ananya Mondal, Osho, and Suchetana Chakraborty.</strong> <em>"Experience: From Sensors to Service: Advancing Ambient Living with an AIoT Community Testbed."</em> In International Conference on COMmunication Systems &amp; NETworkS (COMSNETS) 2026 [Main Track]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 ai sensing">
-              <p><strong>Ananya Mondal, Mohit Kumar, and Suchetana Chakraborty.</strong> <em>"FedMeet: Personalized Federated Learning for Human Activity Recognition."</em> In 27th International Conference on Distributed Computing and Networking (ICDCN) 2026 [Full Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Ananya Mondal, Mohit Kumar, and Suchetana Chakraborty.</strong> <em>"FedMeet: Personalized Federated Learning for Human Activity Recognition."</em> In 27th International Conference on Distributed Computing and Networking (ICDCN) 2026 [Full Paper]. <span class="pub-venue">ICDCN</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 networking embedded">
-              <p><strong>Susmita Mondal, Adarsh Raj Shrivastava, Jatin Lohar, and Suchetana Chakraborty.</strong> <em>"AASC: Activity-Adjusted Stake Consensus for Scalable IoT Blockchains."</em> In 27th International Conference on Distributed Computing and Networking (ICDCN) 2026 [Full Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Susmita Mondal, Adarsh Raj Shrivastava, Jatin Lohar, and Suchetana Chakraborty.</strong> <em>"AASC: Activity-Adjusted Stake Consensus for Scalable IoT Blockchains."</em> In 27th International Conference on Distributed Computing and Networking (ICDCN) 2026 [Full Paper]. <span class="pub-venue">ICDCN</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2026 ai networking">
-              <p><strong>Osho, Shubh Garg, Suchetana Chakraborty, and Sajal K. Das.</strong> <em>"PCIAFL: Personalized and Class Imbalance-Aware Federated Learning for Driver Behavior Classification."</em> In 27th International Conference on Distributed Computing and Networking (ICDCN) 2026 [Short Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Osho, Shubh Garg, Suchetana Chakraborty, and Sajal K. Das.</strong> <em>"PCIAFL: Personalized and Class Imbalance-Aware Federated Learning for Driver Behavior Classification."</em> In 27th International Conference on Distributed Computing and Networking (ICDCN) 2026 [Short Paper]. <span class="pub-venue">ICDCN</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -153,35 +374,92 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2025">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2025">
-            2025 Publications
+            2025 Publications <span class="pub-year-count" data-year="2025"></span>
           </button>
         </h2>
         <div id="collapse2025" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2025 ai sensing embedded">
-              <p><strong>Sukitha K. and Suchetana Chakraborty.</strong> <em>"Lightweight Ensemble Framework for Reliable Multi-Fault Detection in Cyber-Physical Systems."</em> 32nd IEEE International Conference on High Performance Computing, Data, and Analytics (IEEE HiPC) 2025 [Poster].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Sukitha K. and Suchetana Chakraborty.</strong> <em>"Lightweight Ensemble Framework for Reliable Multi-Fault Detection in Cyber-Physical Systems."</em> 32nd IEEE International Conference on High Performance Computing, Data, and Analytics (IEEE HiPC) 2025 [Poster]. <span class="pub-venue">HiPC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2025 hci sensing">
-              <p><strong>Garvit Chugh, Indrajeet Ghosh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"BiteSense: Earable-Based Inertial Sensing for Eating Behaviour Assessment."</em> PerCom 2025 [Full Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Indrajeet Ghosh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"BiteSense: Earable-Based Inertial Sensing for Eating Behaviour Assessment."</em> PerCom 2025 [Full Paper]. <span class="pub-venue">PerCom</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2025 hci sensing">
-              <p><strong>Sameeran Zhingre, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"Tracking Ephemeral and Residual Emotions via Earable Inertial Sensing During Media Consumption."</em> PerCom 2025 [WIP Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Sameeran Zhingre, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"Tracking Ephemeral and Residual Emotions via Earable Inertial Sensing During Media Consumption."</em> PerCom 2025 [WIP Paper]. <span class="pub-venue">PerCom WiP</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2025 hci sensing embedded">
-              <p><strong>Sameeran Zhingre, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"EarDesk: An Adaptive Desktop BLE Framework for eSense IMU Data Collection and Configuration."</em> PerCom 2025 [Artifact Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Sameeran Zhingre, Garvit Chugh, and Suchetana Chakraborty.</strong> <em>"EarDesk: An Adaptive Desktop BLE Framework for eSense IMU Data Collection and Configuration."</em> PerCom 2025 [Artifact Paper]. <span class="pub-venue">PerCom</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2025 hci sensing">
-              <p><strong>Garvit Chugh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"Unlocking Eye Gestures with Earable Inertial Sensing for Accessible HCI."</em> COMSNETS 2025 [poster paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"Unlocking Eye Gestures with Earable Inertial Sensing for Accessible HCI."</em> COMSNETS 2025 [poster paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2025 ai networking">
-              <p><strong>Osho and Suchetana Chakraborty.</strong> <em>"Learning Non-cooperative Driving Practices and its Impact on Road Traffic Dynamics."</em> COMSNETS 2025 [poster paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Osho and Suchetana Chakraborty.</strong> <em>"Learning Non-cooperative Driving Practices and its Impact on Road Traffic Dynamics."</em> COMSNETS 2025 [poster paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2025 networking embedded">
-              <p><strong>Susmita Mondal and Suchetana Chakraborty.</strong> <a href="https://ieeexplore.ieee.org/iel8/10885406/10885547/10885771.pdf" target="_blank"><em>"TruChain: A Blockchain-based Access Control to Improve the Security of Smart Water Grid Systems."</em></a> COMSNETS 2025 [poster paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Susmita Mondal and Suchetana Chakraborty.</strong> <a href="https://ieeexplore.ieee.org/iel8/10885406/10885547/10885771.pdf" target="_blank"><em>"TruChain: A Blockchain-based Access Control to Improve the Security of Smart Water Grid Systems."</em></a> COMSNETS 2025 [poster paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2025 hci sensing embedded">
-              <p><strong>Susmita Mondal, Sameeran Ravishankar Zingre and Suchetana Chakraborty.</strong> <a href="https://ieeexplore.ieee.org/iel8/10885406/10885547/10885592.pdf" target="_blank"><em>"SlidEar: Exploring eSense in-Ear Wearable for Voice-Assisted Smart Slide Supervision."</em></a> COMSNETS 2025 [poster paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Susmita Mondal, Sameeran Ravishankar Zingre and Suchetana Chakraborty.</strong> <a href="https://ieeexplore.ieee.org/iel8/10885406/10885547/10885592.pdf" target="_blank"><em>"SlidEar: Exploring eSense in-Ear Wearable for Voice-Assisted Smart Slide Supervision."</em></a> COMSNETS 2025 [poster paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -190,26 +468,62 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2024">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2024">
-            2024 Publications
+            2024 Publications <span class="pub-year-count" data-year="2024"></span>
           </button>
         </h2>
         <div id="collapse2024" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication journal 2024 networking">
-              <p><strong>Anirban Das, Navlika Singh, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.future.2023.11.016" target="_blank"><em>"UniPreCIS: A data pre-processing solution for collocated services on shared IoT."</em></a> Future Generation Computer Systems, Elsevier, Vol. 153, pp. 543-557, April 2024.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das, Navlika Singh, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.future.2023.11.016" target="_blank"><em>"UniPreCIS: A data pre-processing solution for collocated services on shared IoT."</em></a> Future Generation Computer Systems, Elsevier, Vol. 153, pp. 543-557, April 2024. <span class="pub-venue">FGCS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2024 ai networking">
-              <p><strong>Osho, Pranay, Pradeep Kumar and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/VTC2024-Fall63153.2024.10758051" target="_blank"><em>"A Cost-Sensitive LSTM Model for Driving Risk Assessment from Vehicular Trajectory Data."</em></a> IEEE VTC2024-Fall.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Osho, Pranay, Pradeep Kumar and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/VTC2024-Fall63153.2024.10758051" target="_blank"><em>"A Cost-Sensitive LSTM Model for Driving Risk Assessment from Vehicular Trajectory Data."</em></a> IEEE VTC2024-Fall. <span class="pub-venue">VTC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2024 ai sensing">
-              <p><strong>Avijoy Chakma, Anirban Das, Abu Zaher Md Faridee, Suchetana Chakraborty, Sandip Chakraborty and Nirmalya Roy.</strong> <a href="https://doi.org/10.1109/SMARTCOMP61445.2024.00077" target="_blank"><em>"Context-Aware Daily Activity Recognition from Natural Acoustic Signals."</em></a> 9th IEEE Workshop on Smart Service Systems (SmartSys) 2024.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Avijoy Chakma, Anirban Das, Abu Zaher Md Faridee, Suchetana Chakraborty, Sandip Chakraborty and Nirmalya Roy.</strong> <a href="https://doi.org/10.1109/SMARTCOMP61445.2024.00077" target="_blank"><em>"Context-Aware Daily Activity Recognition from Natural Acoustic Signals."</em></a> 9th IEEE Workshop on Smart Service Systems (SmartSys) 2024. <span class="pub-venue">SmartSys</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2024 ai networking">
-              <p><strong>Monik Raj Behera, and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/COMSNETS59351.2024.10427470" target="_blank"><em>"Local-FedGT: Decentralized Federated Learning using Game Theory in Dynamic Topology."</em></a> 16th International Conference on COMmunication Systems & NETworkS (COMSNETS), Bengaluru, India, 2024, pp. 651-655 [poster paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Monik Raj Behera, and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/COMSNETS59351.2024.10427470" target="_blank"><em>"Local-FedGT: Decentralized Federated Learning using Game Theory in Dynamic Topology."</em></a> 16th International Conference on COMmunication Systems & NETworkS (COMSNETS), Bengaluru, India, 2024, pp. 651-655 [poster paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2024 networking embedded">
-              <p><strong>Susmita Mondal, Pankaj Pandey, Krishna Prasad Miyapuram and Suchetana Chakraborty.</strong> <a href="https://ieeexplore.ieee.org/abstract/document/10874298" target="_blank"><em>"Protection Against Person-Identification from EEG Patterns: A Blockchain-based Approach."</em></a> Conference on Building a Secure & Empowered Cyberspace (BuildSEC) 2024.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Susmita Mondal, Pankaj Pandey, Krishna Prasad Miyapuram and Suchetana Chakraborty.</strong> <a href="https://ieeexplore.ieee.org/abstract/document/10874298" target="_blank"><em>"Protection Against Person-Identification from EEG Patterns: A Blockchain-based Approach."</em></a> Conference on Building a Secure & Empowered Cyberspace (BuildSEC) 2024. <span class="pub-venue">BuildSEC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -218,32 +532,82 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2023">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2023">
-            2023 Publications
+            2023 Publications <span class="pub-year-count" data-year="2023"></span>
           </button>
         </h2>
         <div id="collapse2023" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2023 networking ai">
-              <p><strong>S. Chakraborty, et al.</strong> <em>"Privacy-Preserving Activity Recognition in Smart Homes."</em> CHASE 2023.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>S. Chakraborty, et al.</strong> <em>"Privacy-Preserving Activity Recognition in Smart Homes."</em> CHASE 2023. <span class="pub-venue">CHASE</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication journal 2023 networking">
-              <p><strong>Ramesh Singh, Radhika Sukapuram, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.adhoc.2022.103044" target="_blank"><em>"A survey of mobility aware Multi-access Edge Computing: Challenges, use cases and future directions."</em></a> Ad Hoc Networks, Elsevier (2023): 103044.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Ramesh Singh, Radhika Sukapuram, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.adhoc.2022.103044" target="_blank"><em>"A survey of mobility aware Multi-access Edge Computing: Challenges, use cases and future directions."</em></a> Ad Hoc Networks, Elsevier (2023): 103044. <span class="pub-venue">Ad Hoc Networks</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2023 sensing networking">
-              <p><strong>Ananya Mondal, Martin Kaushal, and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1145/3600100.3623734" target="_blank"><em>"Sense as you go: A context-aware adaptive sensing framework for on-road driver profiling."</em></a> 10th ACM International Conference on Systems for Energy-Efficient Buildings, Cities, and Transportation (BuildSys '23), pp. 89–98.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Ananya Mondal, Martin Kaushal, and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1145/3600100.3623734" target="_blank"><em>"Sense as you go: A context-aware adaptive sensing framework for on-road driver profiling."</em></a> 10th ACM International Conference on Systems for Energy-Efficient Buildings, Cities, and Transportation (BuildSys '23), pp. 89–98. <span class="pub-venue">BuildSys</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2023 hci sensing healthcare">
-              <p><strong>Garvit Chugh, Suchetana Chakraborty, Ravi Bhandari and Sandip Chakraborty.</strong> <a href="https://doi.org/10.1145/3580252.3586981" target="_blank"><em>"Exploring Earables to Monitor Temporal Lack of Focus during Online Meetings to Identify Onset of Neurological Disorders."</em></a> IEEE/ACM International Conference on Connected Health: Applications, Systems and Engineering Technologies (CHASE) 2023, pp. 126--137.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Suchetana Chakraborty, Ravi Bhandari and Sandip Chakraborty.</strong> <a href="https://doi.org/10.1145/3580252.3586981" target="_blank"><em>"Exploring Earables to Monitor Temporal Lack of Focus during Online Meetings to Identify Onset of Neurological Disorders."</em></a> IEEE/ACM International Conference on Connected Health: Applications, Systems and Engineering Technologies (CHASE) 2023, pp. 126--137. <span class="pub-venue">CHASE</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2023 ai hci">
-              <p><strong>Garvit Chugh and Suchetana Chakraborty.</strong> <em>"Demonstration of LegalHelper: A Low-cost tool for Smart Translation and Creation of Legal Contracts."</em> COMSNETS 2023 [Demo Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh and Suchetana Chakraborty.</strong> <em>"Demonstration of LegalHelper: A Low-cost tool for Smart Translation and Creation of Legal Contracts."</em> COMSNETS 2023 [Demo Paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2023 hci sensing">
-              <p><strong>Garvit Chugh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"enVolve+: Inertial Sensing to Reinforce Involvement of Silent Listeners during an Online Interaction."</em> COMSNETS 2023 [Poster Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Suchetana Chakraborty and Sandip Chakraborty.</strong> <em>"enVolve+: Inertial Sensing to Reinforce Involvement of Silent Listeners during an Online Interaction."</em> COMSNETS 2023 [Poster Paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2023 networking embedded">
-              <p><strong>Dhruv Avinash Patel, Harsh Anand and Suchetana Chakraborty.</strong> <em>"crossTrustChain: CrossChain Interoperability using Multivariate Trust Models."</em> COMSNETS Cybersecurity and Privacy Workshop 2023.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Dhruv Avinash Patel, Harsh Anand and Suchetana Chakraborty.</strong> <em>"crossTrustChain: CrossChain Interoperability using Multivariate Trust Models."</em> COMSNETS Cybersecurity and Privacy Workshop 2023. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -252,41 +616,112 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2022">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2022">
-            2022 Publications
+            2022 Publications <span class="pub-year-count" data-year="2022"></span>
           </button>
         </h2>
         <div id="collapse2022" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2022 embedded sensing">
-              <p><strong>S. Chakraborty, et al.</strong> <em>"Energy-Efficient Ubiquitous Computing Architectures."</em> COMSNETS 2022.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>S. Chakraborty, et al.</strong> <em>"Energy-Efficient Ubiquitous Computing Architectures."</em> COMSNETS 2022. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication journal 2022 networking">
-              <p><strong>Anirban Das, Navlika Singh, Suchetana Chakraborty.</strong> <em>"UniPreCIS : A data pre-processing solution for collocated services on shared IoT."</em> CoRR abs/2208.01394 (2022).</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das, Navlika Singh, Suchetana Chakraborty.</strong> <em>"UniPreCIS : A data pre-processing solution for collocated services on shared IoT."</em> CoRR abs/2208.01394 (2022). <span class="pub-venue">CoRR</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication journal 2022 networking embedded">
-              <p><strong>Anirban Das, Sandip Chakraborty, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.future.2022.03.027" target="_blank"><em>"Where Do All My Smart Home Data Go? Context-aware Data Generation and Forwarding for Edge-based Microservices over Shared IoT Infrastructure."</em></a> Future Generation Computer Systems, Elsevier, vol. 134, pp. 204-218, 2022.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das, Sandip Chakraborty, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.future.2022.03.027" target="_blank"><em>"Where Do All My Smart Home Data Go? Context-aware Data Generation and Forwarding for Edge-based Microservices over Shared IoT Infrastructure."</em></a> Future Generation Computer Systems, Elsevier, vol. 134, pp. 204-218, 2022. <span class="pub-venue">FGCS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication journal 2022 ai sensing">
-              <p><strong>Manan Sharma, Shivam Tiwari, Gaurav Ruhela, Suchetana Chakraborty, Dip Sankar Banerjee.</strong> <a href="https://doi.org/10.1016/j.iot.2021.100486" target="_blank"><em>"Deep Unsupervised Methods towards Behavior Analysis in Ubiquitous Sensor Data."</em></a> Internet of Things Journal, Elsevier, 2022.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Manan Sharma, Shivam Tiwari, Gaurav Ruhela, Suchetana Chakraborty, Dip Sankar Banerjee.</strong> <a href="https://doi.org/10.1016/j.iot.2021.100486" target="_blank"><em>"Deep Unsupervised Methods towards Behavior Analysis in Ubiquitous Sensor Data."</em></a> Internet of Things Journal, Elsevier, 2022. <span class="pub-venue">IoT Journal</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2022 networking">
-              <p><strong>Ramesh Singh, Radhika Sukapuram, and Suchetana Chakraborty.</strong> <em>"Mobility-aware MultiAccess Edge Computing for Multiplayer Augmented and Virtual Reality Gaming."</em> 21st International Symposium on Network Computing and Applications (NCA 2022), IEEE.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Ramesh Singh, Radhika Sukapuram, and Suchetana Chakraborty.</strong> <em>"Mobility-aware MultiAccess Edge Computing for Multiplayer Augmented and Virtual Reality Gaming."</em> 21st International Symposium on Network Computing and Applications (NCA 2022), IEEE. <span class="pub-venue">NCA</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2022 hci sensing">
-              <p><strong>Garvit Chugh, Suchetana Chakraborty, Ravi Bhandari and Sandip Chakraborty.</strong> <em>"enVolve: Are You Listening? Inertial Sensing to Monitor the Involvement of Silent Listeners during an Online Interaction."</em> Adjunct Proceedings of the 2022 ACM International Joint Conference on Pervasive and Ubiquitous Computing and the 2022 ACM International Symposium on Wearable Computers (UbiComp/ISWC '22 Adjunct).</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Garvit Chugh, Suchetana Chakraborty, Ravi Bhandari and Sandip Chakraborty.</strong> <em>"enVolve: Are You Listening? Inertial Sensing to Monitor the Involvement of Silent Listeners during an Online Interaction."</em> Adjunct Proceedings of the 2022 ACM International Joint Conference on Pervasive and Ubiquitous Computing and the 2022 ACM International Symposium on Wearable Computers (UbiComp/ISWC '22 Adjunct). <span class="pub-venue">UbiComp</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2022 sensing ai">
-              <p><strong>Anirban Das, Kartik Narayan and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/SysCon53536.2022.9773844" target="_blank"><em>"Leveraging ambient sensing for the estimation of curiosity-driven human crowd."</em></a> 2022 IEEE International Systems Conference (SysCon), pp. 1-8.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das, Kartik Narayan and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/SysCon53536.2022.9773844" target="_blank"><em>"Leveraging ambient sensing for the estimation of curiosity-driven human crowd."</em></a> 2022 IEEE International Systems Conference (SysCon), pp. 1-8. <span class="pub-venue">SysCon</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2022 sensing embedded">
-              <p><strong>Anirban das and Suchetana Chakraborty.</strong> <em>"Experience: Developing a testbed for ambient sensing and in-network data processing."</em> COMSNETS 2022.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban das and Suchetana Chakraborty.</strong> <em>"Experience: Developing a testbed for ambient sensing and in-network data processing."</em> COMSNETS 2022. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2022 networking">
-              <p><strong>Muzzafer Ali and Suchetana Chakraborty.</strong> <em>"Enabling video conferencing in low bandwidth."</em> IEEE CCNC 2022 [Poster Presentation].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Muzzafer Ali and Suchetana Chakraborty.</strong> <em>"Enabling video conferencing in low bandwidth."</em> IEEE CCNC 2022 [Poster Presentation]. <span class="pub-venue">CCNC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2022 networking">
-              <p><strong>Suchetana Chakraborty and Radhika Sukapuram.</strong> <em>"Multi-Access Edge Computing for Urban Informatics."</em> ICDCN 2022 [Tutorial Session].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty and Radhika Sukapuram.</strong> <em>"Multi-Access Edge Computing for Urban Informatics."</em> ICDCN 2022 [Tutorial Session]. <span class="pub-venue">ICDCN</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -295,14 +730,22 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2021">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2021">
-            2021 Publications
+            2021 Publications <span class="pub-year-count" data-year="2021"></span>
           </button>
         </h2>
         <div id="collapse2021" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication journal 2021 networking">
-              <p><strong>Akhirul Islam, Arindam Debnath, Manojit Ghosh, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.sysarc.2021.102225" target="_blank"><em>"A survey on task offloading in Multi-access Edge Computing."</em></a> Journal of Systems Architecture, Elsevier, vol. 118, 102225, 2021.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Akhirul Islam, Arindam Debnath, Manojit Ghosh, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1016/j.sysarc.2021.102225" target="_blank"><em>"A survey on task offloading in Multi-access Edge Computing."</em></a> Journal of Systems Architecture, Elsevier, vol. 118, 102225, 2021. <span class="pub-venue">JSA</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -311,17 +754,32 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2020">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2020">
-            2020 Publications
+            2020 Publications <span class="pub-year-count" data-year="2020"></span>
           </button>
         </h2>
         <div id="collapse2020" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2020 sensing embedded ai">
-              <p><strong>Anirban Das, Rohan Gupta and Suchetana Chakraborty.</strong> <em>"A study on real-time edge computed occupancy estimation in an indoor environment."</em> 12th International Conference on Communication Systems and Networks (COMSNETS), Bengaluru, January 2020 [Poster Paper].</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das, Rohan Gupta and Suchetana Chakraborty.</strong> <em>"A study on real-time edge computed occupancy estimation in an indoor environment."</em> 12th International Conference on Communication Systems and Networks (COMSNETS), Bengaluru, January 2020 [Poster Paper]. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2020 ai sensing">
-              <p><strong>Manan Sharma, Shivam Tiwari, Suchetana Chakraborty, Dip Sankar Banerjee.</strong> <em>"Behavior Analysis through Routine Cluster Discovery in Ubiquitous Sensor Data."</em> 12th International Conference on Communication Systems and Networks (COMSNETS), Bengaluru, January 2020.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Manan Sharma, Shivam Tiwari, Suchetana Chakraborty, Dip Sankar Banerjee.</strong> <em>"Behavior Analysis through Routine Cluster Discovery in Ubiquitous Sensor Data."</em> 12th International Conference on Communication Systems and Networks (COMSNETS), Bengaluru, January 2020. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -330,23 +788,52 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2019">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2019">
-            2019 Publications
+            2019 Publications <span class="pub-year-count" data-year="2019"></span>
           </button>
         </h2>
         <div id="collapse2019" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2019 ai embedded">
-              <p><strong>Nilotpola Sarma, Suchetana Chakraborty and Dip Sankar Banerjee.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711433" target="_blank"><em>"Learning and Annotating Activities for Home Automation using LSTM."</em></a> Workshop of Machine Intelligence in Networked Data and Systems (MINDS), COMSNETS 2019, pp.631-636, Bangaluru, India (Best Paper Award).</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Nilotpola Sarma, Suchetana Chakraborty and Dip Sankar Banerjee.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711433" target="_blank"><em>"Learning and Annotating Activities for Home Automation using LSTM."</em></a> Workshop of Machine Intelligence in Networked Data and Systems (MINDS), COMSNETS 2019, pp.631-636, Bangaluru, India (Best Paper Award). <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2019 sensing embedded">
-              <p><strong>Anirban Das, Rohan Gupta and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711469" target="_blank"><em>"Significance of Adaptive Sensing for Smart Building Monitoring: A Practical Study."</em></a> Workshop of Wild and Crazy ideas on the interplay between IoT and Big Data (WACI), COMSNETS 2019, pp. 684-689, Bangaluru, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das, Rohan Gupta and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711469" target="_blank"><em>"Significance of Adaptive Sensing for Smart Building Monitoring: A Practical Study."</em></a> Workshop of Wild and Crazy ideas on the interplay between IoT and Big Data (WACI), COMSNETS 2019, pp. 684-689, Bangaluru, India. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2019 networking embedded">
-              <p><strong>Anirban Das, Rohan Gupta and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711204" target="_blank"><em>"Motivating In-network Fusion for Smart Infrastructure Monitoring."</em></a> 11th International Conference on Communications Systems and Networks, COMSNETS 2019, pp. 513-516, Bangaluru, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das, Rohan Gupta and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711204" target="_blank"><em>"Motivating In-network Fusion for Smart Infrastructure Monitoring."</em></a> 11th International Conference on Communications Systems and Networks, COMSNETS 2019, pp. 513-516, Bangaluru, India. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2019 ai sensing">
-              <p><strong>Nilotpola Sarma, Suchetana Chakraborty and Dip Sankar Banerjee.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711147" target="_blank"><em>"Activity Recognition through Feature Learning and Annotations using LSTM."</em></a> 11th International Conference on Communications Systems and Networks, COMSNETS 2019, pp. 444-447, Bangaluru, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Nilotpola Sarma, Suchetana Chakraborty and Dip Sankar Banerjee.</strong> <a href="https://doi.org/10.1109/COMSNETS.2019.8711147" target="_blank"><em>"Activity Recognition through Feature Learning and Annotations using LSTM."</em></a> 11th International Conference on Communications Systems and Networks, COMSNETS 2019, pp. 444-447, Bangaluru, India. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -355,26 +842,62 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2018">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2018">
-            2018 Publications
+            2018 Publications <span class="pub-year-count" data-year="2018"></span>
           </button>
         </h2>
         <div id="collapse2018" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2018 networking">
-              <p><strong>Rohan, Jayashree Phukan, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/ANTS.2018.8710067" target="_blank"><em>"RDDF: Rating Driven Data Forwarding in Vehicular Network."</em></a> IEEE International Conference on Advanced Networks and Telecommunications Systems (ANTS 2018), pp. 1-6, Indore, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Rohan, Jayashree Phukan, Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/ANTS.2018.8710067" target="_blank"><em>"RDDF: Rating Driven Data Forwarding in Vehicular Network."</em></a> IEEE International Conference on Advanced Networks and Telecommunications Systems (ANTS 2018), pp. 1-6, Indore, India. <span class="pub-venue">ANTS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2018 networking embedded">
-              <p><strong>Rohit Sharma and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/GLOCOMW.2018.8644389" target="_blank"><em>"BlockAPP: Using Blockchain for Authentication and Privacy Preservation in IoV."</em></a> IEEE GLOBECOM 2018 Workshops: Blockchain in IoT, pp. 1-6, Abu Dhabi, UAE.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Rohit Sharma and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/GLOCOMW.2018.8644389" target="_blank"><em>"BlockAPP: Using Blockchain for Authentication and Privacy Preservation in IoV."</em></a> IEEE GLOBECOM 2018 Workshops: Blockchain in IoT, pp. 1-6, Abu Dhabi, UAE. <span class="pub-venue">GLOBECOM</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2018 sensing embedded">
-              <p><strong>Anirban Das and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/ICSENS.2018.8589950" target="_blank"><em>"[Poster paper]: SDCF: Sensory Data Collection Framework for Smart Building application."</em></a> IEEE Sensors 2018, pp. 1-4, New Delhi, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/ICSENS.2018.8589950" target="_blank"><em>"[Poster paper]: SDCF: Sensory Data Collection Framework for Smart Building application."</em></a> IEEE Sensors 2018, pp. 1-4, New Delhi, India. <span class="pub-venue">IEEE Sensors</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2018 sensing embedded">
-              <p><strong>Anirban Das and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1145/3264877.3264881" target="_blank"><em>"Context Aware Data Collection Framework for Critical Infrastructure Monitoring System."</em></a> 10th ACM Wireless of the Students, by the Students and for the Students Workshop (ACM S3 Workshop) in conjunction with ACM MOBICOM 2018, pp. 11-13, New Delhi, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Anirban Das and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1145/3264877.3264881" target="_blank"><em>"Context Aware Data Collection Framework for Critical Infrastructure Monitoring System."</em></a> 10th ACM Wireless of the Students, by the Students and for the Students Workshop (ACM S3 Workshop) in conjunction with ACM MOBICOM 2018, pp. 11-13, New Delhi, India. <span class="pub-venue">MobiCom S3</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2018 networking embedded">
-              <p><strong>Rohit Sharma and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/ICACCI.2018.8554369" target="_blank"><em>"B2VDM: Blockchain Based Vehicular Data Management."</em></a> 7th International Conference of Advances in Computing, Communications and Informatics (ICACCI 2018), pp. 2337-2343 , Bangalore, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Rohit Sharma and Suchetana Chakraborty.</strong> <a href="https://doi.org/10.1109/ICACCI.2018.8554369" target="_blank"><em>"B2VDM: Blockchain Based Vehicular Data Management."</em></a> 7th International Conference of Advances in Computing, Communications and Informatics (ICACCI 2018), pp. 2337-2343 , Bangalore, India. <span class="pub-venue">ICACCI</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -383,14 +906,22 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2016">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2016">
-            2016 Publications
+            2016 Publications <span class="pub-year-count" data-year="2016"></span>
           </button>
         </h2>
         <div id="collapse2016" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication journal 2016 sensing networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <a href="https://doi.org/10.1016/j.jnca.2016.03.012" target="_blank"><em>"Impact of Redundant Sensor Deployment over Data Gathering Performance: A Model Based Approach."</em></a> Journal of Network and Computer Applications, Elsevier, pp. 26 - 42, vol. 67, 2016.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <a href="https://doi.org/10.1016/j.jnca.2016.03.012" target="_blank"><em>"Impact of Redundant Sensor Deployment over Data Gathering Performance: A Model Based Approach."</em></a> Journal of Network and Computer Applications, Elsevier, pp. 26 - 42, vol. 67, 2016. <span class="pub-venue">JNCA</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -399,20 +930,42 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2015">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2015">
-            2015 Publications
+            2015 Publications <span class="pub-year-count" data-year="2015"></span>
           </button>
         </h2>
         <div id="collapse2015" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication journal 2015 networking sensing">
-              <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <em>"Fault Resilience in Sensor Networks: Distributed Node-disjoint Multi-path Multi-sink Forwarding."</em> Journal of Network and Computer Applications, Elsevier, pp. 85 - 101, vol. 57, 2015.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <em>"Fault Resilience in Sensor Networks: Distributed Node-disjoint Multi-path Multi-sink Forwarding."</em> Journal of Network and Computer Applications, Elsevier, pp. 85 - 101, vol. 57, 2015. <span class="pub-venue">JNCA</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication journal 2015 networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sushanta Karmakar, Sukumar Nandi.</strong> <em>"Dynamic Tree Switching for Distributed Message-Passing Applications."</em> Journal of Network and Systems Management, Springer, pp. 1 -- 40, vol. 23, issue 1, 2015.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sushanta Karmakar, Sukumar Nandi.</strong> <em>"Dynamic Tree Switching for Distributed Message-Passing Applications."</em> Journal of Network and Systems Management, Springer, pp. 1 -- 40, vol. 23, issue 1, 2015. <span class="pub-venue">JNSM</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
-             <div class="publication book 2015 sensing networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi, Sushanta Karmakar.</strong> <em>"Sensory Data Gathering for Road-traffic Monitoring: Energy Efficiency, Reliability and Fault-tolerance."</em> In Modeling and Processing for Next-Generation Big-Data Technologies, Springer, pp. 89 - 112, vol. 4, 2015.</p>
+
+            <div class="publication book 2015 sensing networking">
+              <div class="pub-meta">
+                <i class="fas fa-book pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi, Sushanta Karmakar.</strong> <em>"Sensory Data Gathering for Road-traffic Monitoring: Energy Efficiency, Reliability and Fault-tolerance."</em> In Modeling and Processing for Next-Generation Big-Data Technologies, Springer, pp. 89 - 112, vol. 4, 2015. <span class="pub-venue">Springer</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -421,23 +974,52 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2014">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2014">
-            2014 Publications
+            2014 Publications <span class="pub-year-count" data-year="2014"></span>
           </button>
         </h2>
         <div id="collapse2014" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication journal 2014 networking sensing">
-              <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <em>"Topology Management Ensuring Reliability in Delay Sensitive Sensor Networks with Arbitrary Node Failures."</em> International Journal of Wireless Information Networks, Springer, pp. 262 - 289, vol. 21, issue 4, 2014.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <em>"Topology Management Ensuring Reliability in Delay Sensitive Sensor Networks with Arbitrary Node Failures."</em> International Journal of Wireless Information Networks, Springer, pp. 262 - 289, vol. 21, issue 4, 2014. <span class="pub-venue">IJWIN</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication journal 2014 networking sensing">
-              <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <em>"ADCROSS: Adaptive Data Collection from Road Surveilling Sensors."</em> IEEE Transactions on Intelligent Transportation Systems, pp. 2049 - 2062, vol. 15, no. 5, 2014.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi and Sushanta Karmakar.</strong> <em>"ADCROSS: Adaptive Data Collection from Road Surveilling Sensors."</em> IEEE Transactions on Intelligent Transportation Systems, pp. 2049 - 2062, vol. 15, no. 5, 2014. <span class="pub-venue">IEEE T-ITS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2014 networking">
-              <p><strong>Sandip Chakraborty, Suchetana Chakraborty, Sushanta Karmakar and Hridoy Sankar Dutta.</strong> <em>"Hierarchical Topology Adaptation for Distributed Convergecast Applications."</em> 29th ACM Symposium on Applied Computing, Dependable and Adaptive Distributed Systems (ACM SAC), pp. 405 - 407, 2014, Gyeongju, Korea.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Sandip Chakraborty, Suchetana Chakraborty, Sushanta Karmakar and Hridoy Sankar Dutta.</strong> <em>"Hierarchical Topology Adaptation for Distributed Convergecast Applications."</em> 29th ACM Symposium on Applied Computing, Dependable and Adaptive Distributed Systems (ACM SAC), pp. 405 - 407, 2014, Gyeongju, Korea. <span class="pub-venue">ACM SAC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2014 networking">
-              <p><strong>Sandip Chakraborty, Subhrendu Chattopadhyay, Suchetana Chakraborty and Sukumar Nandi.</strong> <em>"Defending Concealedness in IEEE 802.11n."</em> 6th International Conference on Communication Systems and Networks (IEEE/ACM COMSNETS), pp. 1 - 8, 2014, Bangalore, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Sandip Chakraborty, Subhrendu Chattopadhyay, Suchetana Chakraborty and Sukumar Nandi.</strong> <em>"Defending Concealedness in IEEE 802.11n."</em> 6th International Conference on Communication Systems and Networks (IEEE/ACM COMSNETS), pp. 1 - 8, 2014, Bangalore, India. <span class="pub-venue">COMSNETS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -446,32 +1028,82 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2013">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2013">
-            2013 Publications
+            2013 Publications <span class="pub-year-count" data-year="2013"></span>
           </button>
         </h2>
         <div id="collapse2013" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication journal 2013 networking sensing">
-              <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi, Sushanta Karmakar.</strong> <em>"Convergecast Tree Management from Arbitrary Node Failure in Sensor Network."</em> Ad Hoc Networks, Elsevier, pp. 1796 - 1819, vol. 11, issue 6, 2013.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakraborty, Sukumar Nandi, Sushanta Karmakar.</strong> <em>"Convergecast Tree Management from Arbitrary Node Failure in Sensor Network."</em> Ad Hoc Networks, Elsevier, pp. 1796 - 1819, vol. 11, issue 6, 2013. <span class="pub-venue">Ad Hoc Networks</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2013 networking">
-              <p><strong>Sandip Chakraborty, Suchetana Chakraborty, Sukumar Nandi.</strong> <em>"Beyond Conventional Routing Protocols: Opportunistic Path Selection for IEEE 802.11s Mesh Networks."</em> 24th Annual IEEE International Symposium on Personal, Indoor and Mobile Radio Communications (IEEE PIMRC), pp. 3224 - 3228, 2013, London, UK.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Sandip Chakraborty, Suchetana Chakraborty, Sukumar Nandi.</strong> <em>"Beyond Conventional Routing Protocols: Opportunistic Path Selection for IEEE 802.11s Mesh Networks."</em> 24th Annual IEEE International Symposium on Personal, Indoor and Mobile Radio Communications (IEEE PIMRC), pp. 3224 - 3228, 2013, London, UK. <span class="pub-venue">PIMRC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2013 sensing networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"RelBAS: Reliable Data Gathering from Border Area Sensors."</em> 18th IEEE Symposium on Computers and Communications (IEEE ISCC), pp. 904 - 909, 2013, Split, Croatia.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"RelBAS: Reliable Data Gathering from Border Area Sensors."</em> 18th IEEE Symposium on Computers and Communications (IEEE ISCC), pp. 904 - 909, 2013, Split, Croatia. <span class="pub-venue">ISCC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2013 sensing networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"Exploring Gradient in Sensor Deployment Pattern for Data Gathering with Sleep based Energy Saving."</em> 9th International Wireless Communications and Mobile Computing Conference (IEEE IWCMC), pp. 1394 - 1399, 2013, Cagliari, Sardinia, Italy.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"Exploring Gradient in Sensor Deployment Pattern for Data Gathering with Sleep based Energy Saving."</em> 9th International Wireless Communications and Mobile Computing Conference (IEEE IWCMC), pp. 1394 - 1399, 2013, Cagliari, Sardinia, Italy. <span class="pub-venue">IWCMC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2013 sensing networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"Energy-efficient Data Gathering for Road-side Sensor Networks ensuring Reliabiity and Fault-tolerance."</em> 27th IEEE International Conference on Advanced Information Networking and Applications (AINA), pp. 189 - 196, 2013, Barcelona, Spain.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"Energy-efficient Data Gathering for Road-side Sensor Networks ensuring Reliabiity and Fault-tolerance."</em> 27th IEEE International Conference on Advanced Information Networking and Applications (AINA), pp. 189 - 196, 2013, Barcelona, Spain. <span class="pub-venue">AINA</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2013 networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakrabory and Sukumar Nandi.</strong> <em>"Side Channel Attacks: Current Researches and Future Scopes."</em> National Workshop on Network Security, 2013, Tezpur, Assam, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakrabory and Sukumar Nandi.</strong> <em>"Side Channel Attacks: Current Researches and Future Scopes."</em> National Workshop on Network Security, 2013, Tezpur, Assam, India. <span class="pub-venue">Workshop</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication book 2013 networking">
-              <p><strong>Suddhasil De, Diganta Goswami, Sukumar Nandi, Suchetana Chakraborty.</strong> <em>"Formalization of a Fully-Decoupled Reactive Tuple Space Model for Mobile Middleware."</em> In Mobile Wireless Middleware, Operating Systems, and Applications, Springer, pp. 77 - 91, vol. 65, 2013.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suddhasil De, Diganta Goswami, Sukumar Nandi, Suchetana Chakraborty.</strong> <em>"Formalization of a Fully-Decoupled Reactive Tuple Space Model for Mobile Middleware."</em> In Mobile Wireless Middleware, Operating Systems, and Applications, Springer, pp. 77 - 91, vol. 65, 2013. <span class="pub-venue">Springer</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -480,26 +1112,62 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2012">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2012">
-            2012 Publications
+            2012 Publications <span class="pub-year-count" data-year="2012"></span>
           </button>
         </h2>
         <div id="collapse2012" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication journal 2012 networking">
-              <p><strong>Suchetana Chakraborty, Ferdous Barbhuiya, Ankush Rai, Arijit Sur, Santosh Biswas and Sukumar Nandi.</strong> <em>"Topology Adaptive Computation of Distributed IDS Set for Detecting Attacks on STP."</em> Journal of Information Assurance and Security, vol. 7, 2012.</p>
+              <div class="pub-meta">
+                <i class="fas fa-book-open pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Ferdous Barbhuiya, Ankush Rai, Arijit Sur, Santosh Biswas and Sukumar Nandi.</strong> <em>"Topology Adaptive Computation of Distributed IDS Set for Detecting Attacks on STP."</em> Journal of Information Assurance and Security, vol. 7, 2012. <span class="pub-venue">JIAS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2012 networking">
-              <p><strong>Suddhasil De, Suchetana Chakraborty, Sukumar Nandi, and Diganta Goswami.</strong> <em>"Supporting Tuple Space based Mobile Middleware over Unreliable Mobile Infrastructures : Design and Formal Specifiations."</em> IEEE International Conference on Advanced Networks and Telecommunications Systems (ANTS), pp. 123 - 125, 2012, Bangalore, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suddhasil De, Suchetana Chakraborty, Sukumar Nandi, and Diganta Goswami.</strong> <em>"Supporting Tuple Space based Mobile Middleware over Unreliable Mobile Infrastructures : Design and Formal Specifiations."</em> IEEE International Conference on Advanced Networks and Telecommunications Systems (ANTS), pp. 123 - 125, 2012, Bangalore, India. <span class="pub-venue">ANTS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2012 networking">
-              <p><strong>Suddhasil De, Suchetana Chakraborty, Diganta Goswami, and Sukumar Nandi.</strong> <em>"Formalization of Discovery and Communication Mechanisms of Tuple Space Based Mobile Middleware for Underlying Unreliable Infrastructure."</em> 2nd IEEE International Conference on Parallel, Distributed and Grid Computing (PDGC), pp. 580 - 585, 2012, Solan, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suddhasil De, Suchetana Chakraborty, Diganta Goswami, and Sukumar Nandi.</strong> <em>"Formalization of Discovery and Communication Mechanisms of Tuple Space Based Mobile Middleware for Underlying Unreliable Infrastructure."</em> 2nd IEEE International Conference on Parallel, Distributed and Grid Computing (PDGC), pp. 580 - 585, 2012, Solan, India. <span class="pub-venue">PDGC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2012 networking">
-              <p><strong>Suddhasil De, Diganta Goswami, Sukumar Nandi, and Suchetana Chakraborty.</strong> <em>"Formalization of a Fully-Decoupled Reactive Tuple space model for Mobile Middleware."</em> 5th International Conference on MOBILe Wireless MiddleWARE, Operating Systems, and Applications (MOBILWARE), 2012, Berlin, Germany.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suddhasil De, Diganta Goswami, Sukumar Nandi, and Suchetana Chakraborty.</strong> <em>"Formalization of a Fully-Decoupled Reactive Tuple space model for Mobile Middleware."</em> 5th International Conference on MOBILe Wireless MiddleWARE, Operating Systems, and Applications (MOBILWARE), 2012, Berlin, Germany. <span class="pub-venue">MOBILWARE</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2012 sensing networking">
-              <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"A Novel Crash-Tolerant Data Gathering in Wireless Sensor Networks."</em> 13th IEEE/IFIP Network Operations and Management Symposium (NOMS), pp. 940 - 946, 2012, Maui, Hawaii, USA.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"A Novel Crash-Tolerant Data Gathering in Wireless Sensor Networks."</em> 13th IEEE/IFIP Network Operations and Management Symposium (NOMS), pp. 940 - 946, 2012, Maui, Hawaii, USA. <span class="pub-venue">NOMS</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -508,26 +1176,62 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading2011">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2011">
-            2011 Publications
+            2011 Publications <span class="pub-year-count" data-year="2011"></span>
           </button>
         </h2>
         <div id="collapse2011" class="accordion-collapse collapse" data-bs-parent="#pubAccordion">
           <div class="accordion-body">
+
             <div class="publication conference 2011 networking">
-              <p><strong>Ankush Rai, Ferdous Barbhuiya, Arijit Sur, Santosh Biswas, Suchetana Chakraborty and Sukumar Nandi.</strong> <em>"Exploit Detection Techniques for STP using Distributed IDS."</em> World Congress on information and Communication Technologies (WICT), pp. 939 - 944, 2011, Mumbai, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Ankush Rai, Ferdous Barbhuiya, Arijit Sur, Santosh Biswas, Suchetana Chakraborty and Sukumar Nandi.</strong> <em>"Exploit Detection Techniques for STP using Distributed IDS."</em> World Congress on information and Communication Technologies (WICT), pp. 939 - 944, 2011, Mumbai, India. <span class="pub-venue">WICT</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2011 sensing networking">
-              <p><strong>Suchetana Chakrabory and Sushanta Karmakar.</strong> <em>"A Novel Approach for Adaptive Data Gathering in Sensor Networks by Dynamic Spanning Tree Switching."</em> International Conference on Advances in Computing and Communications (ACC), Springer (CCIS), vol-191, pp. 585 - 594, 2011, Kochi, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakrabory and Sushanta Karmakar.</strong> <em>"A Novel Approach for Adaptive Data Gathering in Sensor Networks by Dynamic Spanning Tree Switching."</em> International Conference on Advances in Computing and Communications (ACC), Springer (CCIS), vol-191, pp. 585 - 594, 2011, Kochi, India. <span class="pub-venue">ACC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2011 networking sensing">
-              <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"A Reliable and Total Order Tree Based Broadcast in Wireless Sensor Network."</em> 2nd International Conference on Computer and Communication Technology (ICCCT), pp. 618 -623, 2011, Allahabad, India.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"A Reliable and Total Order Tree Based Broadcast in Wireless Sensor Network."</em> 2nd International Conference on Computer and Communication Technology (ICCCT), pp. 618 -623, 2011, Allahabad, India. <span class="pub-venue">ICCCT</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2011 networking sensing">
-              <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"A Tree-Based Local Repairing Approach for Increasing Lifetime of Query Driven WSN."</em> 2011 International Symposium on Pervasive Systems, Algorithms, and Networks (I-SPAN), pp. 475 - 482, 2011, Dalian, China.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakraborty, Sandip Chakrabory, Sukumar Nandi, and Sushanta Karmakar.</strong> <em>"A Tree-Based Local Repairing Approach for Increasing Lifetime of Query Driven WSN."</em> 2011 International Symposium on Pervasive Systems, Algorithms, and Networks (I-SPAN), pp. 475 - 482, 2011, Dalian, China. <span class="pub-venue">I-SPAN</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
             <div class="publication conference 2011 networking">
-              <p><strong>Suchetana Chakrabory and Sushanta Karmakar.</strong> <em>"Adaptive Convergecast by Distributed Topology Switching."</em> 29th Brazilian Symposium on Computer Networks and Distributed Systems (SBRC), pp. 545 - 557, 2011, Campo Grande, Brazil.</p>
+              <div class="pub-meta">
+                <i class="fas fa-users-rectangle pub-icon"></i>
+                <div class="pub-content">
+                  <p><strong>Suchetana Chakrabory and Sushanta Karmakar.</strong> <em>"Adaptive Convergecast by Distributed Topology Switching."</em> 29th Brazilian Symposium on Computer Networks and Distributed Systems (SBRC), pp. 545 - 557, 2011, Campo Grande, Brazil. <span class="pub-venue">SBRC</span></p>
+                </div>
+                <div class="pub-actions"><button class="bibtex-btn" title="Copy BibTeX"><i class="fas fa-quote-right"></i> BibTeX</button></div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -543,11 +1247,24 @@
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init({
-    duration: 800, // values from 0 to 3000, with step 50ms
-    once: true, // whether animation should happen only once - while scrolling down
+    duration: 800,
+    once: true,
   });
+
   let currentTypeFilter = 'all';
   let currentFieldFilter = 'all';
+  let currentSearchQuery = '';
+
+  // Search input with debounce
+  var searchInput = document.getElementById('pubSearchInput');
+  var searchTimer = null;
+  searchInput.addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () {
+      currentSearchQuery = searchInput.value.trim().toLowerCase();
+      applyFilters();
+    }, 200);
+  });
 
   function filterSelection(type) {
     currentTypeFilter = type;
@@ -562,66 +1279,159 @@
   }
 
   function applyFilters() {
-    const publications = document.querySelectorAll('.publication');
-    publications.forEach(pub => {
-      const typeMatch = currentTypeFilter === 'all' || pub.classList.contains(currentTypeFilter);
-      const fieldMatch = currentFieldFilter === 'all' || pub.classList.contains(currentFieldFilter);
+    var publications = document.querySelectorAll('.publication');
+    var totalCount = publications.length;
+    var visibleCount = 0;
 
-      if (typeMatch && fieldMatch) {
-        pub.style.display = "";
+    publications.forEach(function (pub) {
+      var typeMatch = currentTypeFilter === 'all' || pub.classList.contains(currentTypeFilter);
+      var fieldMatch = currentFieldFilter === 'all' || pub.classList.contains(currentFieldFilter);
+      var searchMatch = true;
+
+      if (currentSearchQuery) {
+        var text = pub.textContent.toLowerCase();
+        searchMatch = text.indexOf(currentSearchQuery) !== -1;
+      }
+
+      if (typeMatch && fieldMatch && searchMatch) {
+        pub.style.display = '';
+        visibleCount++;
       } else {
-        pub.style.display = "none";
+        pub.style.display = 'none';
       }
     });
 
-    // Check if any publications are visible within each accordion body
-    const accordionBodies = document.querySelectorAll('.accordion-body');
-    accordionBodies.forEach(body => {
-      const visiblePublications = body.querySelectorAll('.publication[style*="display: \'\';"]');
-      const noResultsMessage = body.querySelector('.no-results');
+    // Update result count
+    var countEl = document.getElementById('pub-result-count');
+    if (currentTypeFilter === 'all' && currentFieldFilter === 'all' && !currentSearchQuery) {
+      countEl.textContent = 'Showing all ' + totalCount + ' publications';
+    } else {
+      countEl.textContent = 'Showing ' + visibleCount + ' of ' + totalCount + ' publications';
+    }
 
-      if (visiblePublications.length === 0) {
-        if (!noResultsMessage) {
-          const p = document.createElement('p');
-          p.className = 'text-muted no-results';
-          p.textContent = 'No publications match the current filter criteria for this year.';
-          body.appendChild(p);
-        }
+    // Update year counts and hide empty accordion sections
+    var accordionItems = document.querySelectorAll('#pubAccordion > .accordion-item');
+    accordionItems.forEach(function (item) {
+      var body = item.querySelector('.accordion-body');
+      var pubs = body.querySelectorAll('.publication');
+      var visible = 0;
+      pubs.forEach(function (p) {
+        if (p.style.display !== 'none') visible++;
+      });
+
+      var badge = item.querySelector('.pub-year-count');
+      if (badge) badge.textContent = visible;
+
+      // Hide entire year section if no visible publications
+      if (visible === 0 && (currentTypeFilter !== 'all' || currentFieldFilter !== 'all' || currentSearchQuery)) {
+        item.style.display = 'none';
       } else {
-        if (noResultsMessage) {
-          noResultsMessage.remove();
-        }
+        item.style.display = '';
       }
     });
+
     AOS.refresh();
   }
 
   function updateButtonStates(filterGroup) {
-    let btns, activeFilter;
+    var btns, activeFilter;
     if (filterGroup === 'type') {
       btns = document.querySelectorAll('.filter-btn[onclick^="filterSelection"]');
       activeFilter = currentTypeFilter;
-    } else { // field
+    } else {
       btns = document.querySelectorAll('.filter-btn[onclick^="fieldFilter"]');
       activeFilter = currentFieldFilter;
     }
 
-    btns.forEach(btn => {
+    btns.forEach(function (btn) {
       btn.classList.remove('active');
-      // Extract the filter value from the onclick attribute
-      const filterValue = btn.getAttribute('onclick').match(/filterSelection\('(.*?)'\)|fieldFilter\('(.*?)'\)/);
-      if (filterValue && (filterValue[1] === activeFilter || filterValue[2] === activeFilter)) {
+      var match = btn.getAttribute('onclick').match(/filterSelection\('(.*?)'\)|fieldFilter\('(.*?)'\)/);
+      if (match && (match[1] === activeFilter || match[2] === activeFilter)) {
         btn.classList.add('active');
       }
     });
   }
 
-  // Initial filter application and button state setup on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    filterSelection('all'); // Set initial type filter
-    fieldFilter('all'); // Set initial field filter
+  // BibTeX generation and copy
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.bibtex-btn');
+    if (!btn) return;
+
+    var pub = btn.closest('.publication');
+    var p = pub.querySelector('.pub-content p');
+    var text = p.textContent;
+
+    // Extract authors (text before the first period or first em)
+    var strongEl = p.querySelector('strong');
+    var authors = strongEl ? strongEl.textContent.replace(/\.$/, '').trim() : 'Unknown';
+
+    // Extract title (text inside em quotes)
+    var emEl = p.querySelector('em');
+    var title = emEl ? emEl.textContent.replace(/^"|"$/g, '').replace(/^"|"$/g, '').trim() : 'Untitled';
+
+    // Extract year from publication classes
+    var classes = pub.className.split(/\s+/);
+    var year = '0000';
+    classes.forEach(function (c) { if (/^\d{4}$/.test(c)) year = c; });
+
+    // Determine type
+    var isJournal = pub.classList.contains('journal');
+    var isBook = pub.classList.contains('book');
+
+    // Extract venue from badge
+    var venueEl = pub.querySelector('.pub-venue');
+    var venue = venueEl ? venueEl.textContent.trim() : '';
+
+    // Generate cite key from first author's last name + year
+    var firstAuthor = authors.split(',')[0].split(' and ')[0].trim();
+    var lastNameParts = firstAuthor.split(/\s+/);
+    var lastName = lastNameParts[lastNameParts.length - 1].replace(/[^a-zA-Z]/g, '');
+    // Get first significant word of title for key
+    var titleWord = title.split(/[\s:]+/).find(function(w) {
+      return w.length > 3 && !/^(the|and|for|from|with|using|via|based|toward|towards)$/i.test(w);
+    }) || 'paper';
+    var citeKey = lastName.toLowerCase() + year + titleWord.toLowerCase().replace(/[^a-z]/g, '');
+
+    var bibtex;
+    if (isJournal) {
+      bibtex = '@article{' + citeKey + ',\n' +
+        '  author    = {' + authors + '},\n' +
+        '  title     = {' + title + '},\n' +
+        '  journal   = {' + venue + '},\n' +
+        '  year      = {' + year + '}\n' +
+        '}';
+    } else if (isBook) {
+      bibtex = '@incollection{' + citeKey + ',\n' +
+        '  author    = {' + authors + '},\n' +
+        '  title     = {' + title + '},\n' +
+        '  booktitle = {' + venue + '},\n' +
+        '  year      = {' + year + '}\n' +
+        '}';
+    } else {
+      bibtex = '@inproceedings{' + citeKey + ',\n' +
+        '  author    = {' + authors + '},\n' +
+        '  title     = {' + title + '},\n' +
+        '  booktitle = {' + venue + '},\n' +
+        '  year      = {' + year + '}\n' +
+        '}';
+    }
+
+    navigator.clipboard.writeText(bibtex).then(function () {
+      btn.classList.add('copied');
+      var origHTML = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        btn.innerHTML = origHTML;
+      }, 1500);
+    });
   });
 
+  // Initial setup
+  document.addEventListener('DOMContentLoaded', function () {
+    filterSelection('all');
+    fieldFilter('all');
+  });
 </script>
 <script src="assets/js/includes.js"></script>
 <script src="assets/js/search-data.js"></script>
