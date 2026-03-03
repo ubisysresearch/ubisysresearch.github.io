@@ -1,16 +1,9 @@
 name: Update Search Index
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'publications.html'
-      - 'news.html'
-      - 'team.html'
-      - 'projects.html'
   schedule:
-    # Every Monday at 6:00 AM UTC
-    - cron: '0 6 * * 1'
+    # Every day at 6:00 AM UTC
+    - cron: '0 6 * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
