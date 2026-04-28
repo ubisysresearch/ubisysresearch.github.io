@@ -1,12 +1,4 @@
 (function () {
-  // Inject Font Awesome globally (skip if already loaded)
-  if (!document.querySelector('link[href*="font-awesome"]')) {
-    var faLink = document.createElement('link');
-    faLink.rel = 'stylesheet';
-    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-    document.head.appendChild(faLink);
-  }
-
   // --- Build navbar via DOM ---
   var nav = document.createElement('nav');
   nav.className = 'navbar navbar-expand-lg navbar-dark bg-dark sticky-top';
