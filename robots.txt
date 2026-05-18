@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /members.html
+
+Sitemap: https://ubisysresearch.github.io/sitemap.xml

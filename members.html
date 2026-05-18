@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Keep this page out of search results.
+       This page is unlinked from the navbar/footer/sitemap and gated
+       at submission by the form's iitj.ac.in restriction. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://docs.google.com" crossorigin>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+  <title>UbiSys Research Group | Member Updates</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    header.members-hero {
+      background: linear-gradient(135deg, var(--accent, #1a6fa8) 0%, #0d3b5c 100%);
+    }
+    .access-note {
+      background: #fff8e1;
+      border-left: 4px solid #f0ad4e;
+      padding: 0.85rem 1rem;
+      border-radius: 0.4rem;
+      font-size: 0.92rem;
+    }
+    .form-cta-card {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 0.75rem;
+      padding: 2.25rem 1.75rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .form-cta-card .btn-form {
+      background: var(--accent, #1a6fa8);
+      color: #fff;
+      padding: 0.75rem 1.75rem;
+      font-weight: 600;
+      border: 0;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      box-shadow: 0 4px 14px rgba(26,111,168,0.32);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .form-cta-card .btn-form:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(26,111,168,0.42);
+      color: #fff;
+    }
+    .form-cta-card .btn-form:active { transform: translateY(0); }
+    .form-fields-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.5rem 1.25rem;
+      max-width: 540px;
+      margin: 1.5rem auto 0;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .form-fields-list li { padding: 0.15rem 0; }
+    .form-fields-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: var(--accent, #1a6fa8);
+      margin-right: 0.5rem;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<header class="members-hero text-white py-5 text-center" data-aos="fade-up">
+  <div class="container">
+    <h1 class="display-5 fw-bold">Member Updates</h1>
+    <p class="lead mb-0">Submit publications, projects, news, and profile changes for the lab website.</p>
+  </div>
+</header>
+
+<section class="py-4" data-aos="fade-up">
+  <div class="container" style="max-width: 860px;">
+
+    <div class="access-note mb-4">
+      <i class="fas fa-circle-info me-2 text-warning"></i>
+      This form is restricted to <strong>@iitj.ac.in</strong> Google accounts.
+      The form opens in a new tab — sign in with your IITJ account if prompted.
+      Trouble accessing? Ping <a href="mailto:suchetana@iitj.ac.in">suchetana@iitj.ac.in</a>.
+    </div>
+
+    <div class="form-cta-card" data-aos="fade-up">
+      <h2 class="h4 fw-bold mb-2">UbiSys Member Updates Form</h2>
+      <p class="text-muted mb-4" style="max-width: 480px; margin: 0 auto;">
+        Submit publications, projects, news, bio updates, photos, or
+        sponsor/grant information for the lab website. Takes ~5 minutes.
+      </p>
+      <a class="btn-form" href="https://docs.google.com/forms/d/e/1FAIpQLSeUZu5QB2UZAKqusY9NrpXMqE6PkdI3JAh-eC_7R4VpEN71tA/viewform" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i>
+        Open the form
+      </a>
+
+      <ul class="form-fields-list list-unstyled">
+        <li>Publications</li>
+        <li>Projects</li>
+        <li>News / awards</li>
+        <li>Bio &amp; photo</li>
+        <li>Sponsors / grants</li>
+        <li>Anything else</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ duration: 800, once: true });</script>
+
+<script src="assets/js/includes.js"></script>
+<script src="assets/js/search-data.js" defer></script>
+<script src="assets/js/search.js"></script>
+</body>
+</html>
