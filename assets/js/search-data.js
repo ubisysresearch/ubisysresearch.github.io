@@ -147,6 +147,7 @@ window.UBISYS_SEARCH_INDEX = [
   {category:'team', title:'Projat Banerjee', text:'Part-Time PhD Scholar', url:'team.html'},
   {category:'team', title:'Kamal Kumar Gola', text:'Part-Time PhD Scholar. Underwater WSN', url:'team.html'},
   {category:'team', title:'Mayank Kumar', text:'Research Assistant. Next-Gen Wargaming Integration', url:'team.html'},
+  {category:'team', title:'Jasvir Jangra', text:'Junior Research Fellow (JRF). GeoAI, remote sensing, tactical terrain analysis & automated GIS pipelines', url:'team.html'},
   {category:'team', title:'Shubham Roy', text:'MTech Scholar, AR/VR', url:'team.html'},
   {category:'team', title:'Anushka Gupta', text:'2025. Banasthali Vidyapith, Jaipur', url:'team.html'},
   {category:'team', title:'Arnav Gupta', text:'2025. Thapar Institute', url:'team.html'},
