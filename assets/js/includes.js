@@ -265,6 +265,7 @@
     { n: 'Alok Dutta', u: 'https://www.linkedin.com/in/alok-dutta-97a900222/' },
     { n: 'Sukitha K.', u: 'https://sites.google.com/view/sukitha/home' },
     { n: 'Osho', u: 'https://sites.google.com/iitj.ac.in/osho/about' },
+    { n: 'Jasvir Jangra', u: 'https://www.linkedin.com/in/jassijangra007/' },
     { n: 'Garvit', u: 'https://garvitchugh.com', first: true },
     { n: 'Ananya', u: 'https://sites.google.com/iitj.ac.in/ananya-mondal/home', first: true },
     { n: 'Susmita', u: 'https://www.linkedin.com/in/susmita-mondal-378949143/', first: true },
