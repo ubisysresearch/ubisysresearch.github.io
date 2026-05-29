@@ -37,6 +37,7 @@
     ['news.html', 'News'],
     ['publications.html', 'Publications'],
     ['team.html', 'Team'],
+    ['gallery.html', 'Gallery'],
     ['join.html', 'Join Us'],
     ['contact.html', 'Contact']
   ];
