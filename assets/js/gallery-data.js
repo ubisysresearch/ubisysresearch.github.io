@@ -19,6 +19,15 @@ var galleryEvents = [
     ]
   },
   {
+    title:   "PhD Open Seminar \u2014 Osho",
+    date:    "May 2026",
+    caption: "Osho presented his PhD open seminar \u2014 covering federated learning for driver behavior classification (PCIAFL) and related vehicular sensing work.",
+    photos: [
+      { src: "assets/img/gallery/2026-05-28_osho_seminar/01.jpg" },
+      { src: "assets/img/gallery/2026-05-28_osho_seminar/02.jpg" },
+    ]
+  },
+  {
     title:   "UbiSys @ ACM SenSys 2026, Saint-Malo",
     date:    "May 2026",
     caption: "CPS-IoT Week, Saint-Malo \u2014 WristSense main-track talk, three posters (MultiWearSense, RoadSense, SAX study), and Dr. Suchetana Chakraborty on the N2Women panel.",
@@ -208,9 +217,9 @@ var galleryEvents = [
     ]
   },
   {
-    title:   "Lab Dinner",
+    title:   "Lab Lunch",
     date:    "May 2022",
-    caption: "A lab dinner.",
+    caption: "A lab lunch.",
     photos: [
       { src: "assets/img/gallery/2022-05-12_lab_dinner/01.jpg" },
     ]
