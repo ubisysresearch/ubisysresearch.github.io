@@ -104,20 +104,38 @@
       padding: 2rem 1rem;
     }
     .lb.is-open { display: flex; }
+
+    /* Frame holds the photo row + thumb rail side-by-side on desktop,
+       stacked on mobile. */
+    .lb-frame {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 95vw;
+      min-width: 0;
+    }
+    .lb-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
     .lb-stage {
-      flex: 1;
+      flex: 1 1 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      min-width: 0;
       max-height: 78vh;
     }
     .lb img {
-      max-width: 92vw;
+      max-width: 100%;
       max-height: 78vh;
       border-radius: 0.5rem;
       box-shadow: 0 12px 40px rgba(0,0,0,0.6);
     }
+
     .lb-meta {
       color: #fff;
       text-align: center;
@@ -127,29 +145,68 @@
     .lb-folder-title { font-size: 1.05rem; font-weight: 600; margin: 0 0 0.2rem; }
     .lb-photo-caption { margin: 0; opacity: 0.85; font-size: 0.92rem; }
     .lb-counter { margin-top: 0.4rem; font-size: 0.8rem; opacity: 0.6; }
+
     .lb-btn {
-      position: absolute;
-      top: 50%; transform: translateY(-50%);
       background: rgba(255,255,255,0.12);
       border: none; color: #fff;
       width: 46px; height: 46px;
       border-radius: 50%;
       font-size: 1.15rem; cursor: pointer;
+      flex-shrink: 0;
       transition: background 0.2s ease;
-      z-index: 2; /* keep above the photo on narrow viewports */
     }
     .lb-btn:hover { background: rgba(255,255,255,0.28); }
-    .lb-prev { left: 1rem; }
-    .lb-next { right: 1rem; }
+    .lb-btn[hidden] { display: none; }
+
     .lb-close {
       position: absolute; top: 1rem; right: 1rem;
       background: rgba(255,255,255,0.12);
       border: none; color: #fff;
       width: 42px; height: 42px;
       border-radius: 50%; font-size: 1.05rem; cursor: pointer;
+      z-index: 3;
     }
     .lb-close:hover { background: rgba(255,255,255,0.28); }
-    .lb-btn[hidden] { display: none; }
+
+    /* Thumbnail rail — vertical on desktop, horizontal on mobile */
+    .lb-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      max-height: 78vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+      padding: 0 0.2rem;
+      scrollbar-width: thin;
+    }
+    .lb-thumbs[hidden] { display: none; }
+    .lb-thumb {
+      width: 88px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      opacity: 0.55;
+      border: 2px solid transparent;
+      transition: opacity 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+    .lb-thumb:hover { opacity: 0.9; }
+    .lb-thumb.is-active { opacity: 1; border-color: #fff; }
+
+    @media (max-width: 768px) {
+      .lb-frame { flex-direction: column; gap: 0.5rem; }
+      .lb-row { width: 100%; }
+      .lb-stage { max-height: 60vh; }
+      .lb-thumbs {
+        flex-direction: row;
+        max-height: none;
+        max-width: 92vw;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .lb-thumb { width: 72px; height: 54px; }
+    }
     @media (max-width: 576px) {
       .lb-btn { width: 38px; height: 38px; }
     }
@@ -178,9 +235,14 @@
 <!-- Lightbox -->
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
   <button class="lb-close" id="lbClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
-  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><i class="fas fa-chevron-left"></i></button>
-  <div class="lb-stage"><img id="lbImg" src="" alt=""></div>
-  <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><i class="fas fa-chevron-right"></i></button>
+  <div class="lb-frame">
+    <div class="lb-row">
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><i class="fas fa-chevron-left"></i></button>
+      <div class="lb-stage"><img id="lbImg" src="" alt=""></div>
+      <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="lb-thumbs" id="lbThumbs" aria-label="Photo thumbnails"></div>
+  </div>
   <div class="lb-meta">
     <p class="lb-folder-title" id="lbFolderTitle"></p>
     <p class="lb-photo-caption" id="lbPhotoCaption"></p>
@@ -257,16 +319,40 @@
   var lbPrev = document.getElementById('lbPrev');
   var lbNext = document.getElementById('lbNext');
   var lbClose = document.getElementById('lbClose');
+  var lbThumbs = document.getElementById('lbThumbs');
 
   var curFolder = 0, curPhoto = 0;
 
   function openFolder(folderIdx) {
     curFolder = folderIdx;
     curPhoto = 0;
+    populateThumbs();
     showPhoto();
     lb.classList.add('is-open');
     lb.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+  }
+
+  function populateThumbs() {
+    while (lbThumbs.firstChild) lbThumbs.removeChild(lbThumbs.firstChild);
+    var ev = events[curFolder];
+    if (!ev.photos || ev.photos.length <= 1) {
+      lbThumbs.hidden = true;
+      return;
+    }
+    lbThumbs.hidden = false;
+    ev.photos.forEach(function (photo, i) {
+      var t = document.createElement('img');
+      t.className = 'lb-thumb';
+      t.src = photo.src;
+      t.alt = '';
+      t.loading = 'lazy';
+      t.addEventListener('click', function () {
+        curPhoto = i;
+        showPhoto();
+      });
+      lbThumbs.appendChild(t);
+    });
   }
 
   function showPhoto() {
@@ -281,6 +367,14 @@
     lbCounter.textContent = multi ? (curPhoto + 1) + ' / ' + ev.photos.length : '';
     lbPrev.hidden = !multi;
     lbNext.hidden = !multi;
+    // Sync active thumb + scroll it into view
+    var thumbs = lbThumbs.querySelectorAll('.lb-thumb');
+    thumbs.forEach(function (t, i) {
+      t.classList.toggle('is-active', i === curPhoto);
+    });
+    if (thumbs[curPhoto] && thumbs[curPhoto].scrollIntoView) {
+      thumbs[curPhoto].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    }
   }
 
   function step(delta) {
