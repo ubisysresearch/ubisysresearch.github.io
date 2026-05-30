@@ -259,6 +259,12 @@
   var events = (typeof galleryEvents !== 'undefined') ? galleryEvents : [];
   var grid = document.getElementById('galleryGrid');
 
+  // 01.jpg -> 01_thumb.jpg (small ~25KB versions used in grid covers + rail).
+  // Full-size only loads when the main lightbox image is shown.
+  function thumbOf(src) {
+    return src ? src.replace(/\.jpg$/i, '_thumb.jpg') : src;
+  }
+
   // --- Render folder cards ---
   if (!events.length) {
     document.getElementById('galleryEmpty').style.display = 'block';
@@ -273,7 +279,7 @@
 
     var coverDiv = document.createElement('div');
     coverDiv.className = 'folder-cover';
-    if (cover) coverDiv.style.backgroundImage = "url('" + encodeURI(cover) + "')";
+    if (cover) coverDiv.style.backgroundImage = "url('" + encodeURI(thumbOf(cover)) + "')";
 
     var count = document.createElement('span');
     count.className = 'folder-count';
@@ -344,7 +350,7 @@
     ev.photos.forEach(function (photo, i) {
       var t = document.createElement('img');
       t.className = 'lb-thumb';
-      t.src = photo.src;
+      t.src = thumbOf(photo.src);
       t.alt = '';
       t.loading = 'lazy';
       t.addEventListener('click', function () {
