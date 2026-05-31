@@ -151,6 +151,7 @@ window.UBISYS_SEARCH_INDEX = [
   {category:'team', title:'Jasvir Jangra', text:'Junior Research Fellow (JRF). GeoAI, remote sensing, tactical terrain analysis & automated GIS pipelines', url:'team.html'},
   {category:'team', title:'Arnesh Sanjeev Singh', text:'MTech Scholar. Structured knowledge extraction from text & image documents', url:'team.html'},
   {category:'team', title:'Parth Pramod Pitrubhakta Wani', text:'MTech Scholar. Structured knowledge extraction from text & document images', url:'team.html'},
+  {category:'team', title:'Sarita Mandal', text:'MTech Scholar. Spoken Language Understanding — bridging the speech-text gap for LLMs (NLP)', url:'team.html'},
   {category:'team', title:'Anushka Gupta', text:'2025. Banasthali Vidyapith, Jaipur', url:'team.html'},
   {category:'team', title:'Arnav Gupta', text:'2025. Thapar Institute', url:'team.html'},
   {category:'team', title:'Sharmad Kalpande', text:'2025. IISER Bhopal', url:'team.html'},
