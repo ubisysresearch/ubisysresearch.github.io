@@ -270,8 +270,8 @@
     { n: 'Garvit', u: 'https://garvitchugh.com', first: true },
     { n: 'Ananya', u: 'https://sites.google.com/iitj.ac.in/ananya-mondal/home', first: true },
     { n: 'Susmita', u: 'https://www.linkedin.com/in/susmita-mondal-378949143/', first: true },
-    { n: 'Sukitha', u: 'https://sites.google.com/view/sukitha/home', first: true }
-    { n: 'Manjeet', u: 'https://mjyadav7.github.io/Manjeet/', first: true  },
+    { n: 'Sukitha', u: 'https://sites.google.com/view/sukitha/home', first: true },
+    { n: 'Manjeet', u: 'https://mjyadav7.github.io/Manjeet/', first: true  }
   ];
 
   /**
